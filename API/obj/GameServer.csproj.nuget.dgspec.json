@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Matthew\\source\\repos\\GameServer\\GameServer\\GameServer.csproj": {}
+    "C:\\Users\\Matthew\\Documents\\Capstone\\API\\GameServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Matthew\\source\\repos\\GameServer\\GameServer\\GameServer.csproj": {
+    "C:\\Users\\Matthew\\Documents\\Capstone\\API\\GameServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matthew\\source\\repos\\GameServer\\GameServer\\GameServer.csproj",
+        "projectUniqueName": "C:\\Users\\Matthew\\Documents\\Capstone\\API\\GameServer.csproj",
         "projectName": "GameServer",
-        "projectPath": "C:\\Users\\Matthew\\source\\repos\\GameServer\\GameServer\\GameServer.csproj",
+        "projectPath": "C:\\Users\\Matthew\\Documents\\Capstone\\API\\GameServer.csproj",
         "packagesPath": "C:\\Users\\Matthew\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matthew\\source\\repos\\GameServer\\GameServer\\obj\\",
+        "outputPath": "C:\\Users\\Matthew\\Documents\\Capstone\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
