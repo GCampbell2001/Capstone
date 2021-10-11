@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SignalRChat.Hubs;
+using Microsoft.AspNet.SignalR;
 
 namespace GameServer
 {
@@ -48,6 +49,9 @@ namespace GameServer
             app.UseRouting();
 
             app.UseAuthorization();
+
+            
+            
 
             app.UseEndpoints(endpoints =>
             {
