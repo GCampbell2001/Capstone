@@ -23,7 +23,7 @@ namespace SignalRChat.Hubs
 
         public async Task SendAudio()
         {
-            string wavFile = "C:\\Users\\Matthew\\Documents\\Capstone\\API\\testLong.wav";
+            string wavFile = "C:\\Users\\Matthew\\Documents\\Capstone\\API\\fuseyboi.wav";
 
             byte[] bitArray = WavToBitArray(wavFile);
 
