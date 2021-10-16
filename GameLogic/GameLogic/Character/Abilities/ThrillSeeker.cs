@@ -123,7 +123,6 @@ namespace GameLogic.Character.Abilities
             base.dodge[0] += 20;
             base.dodge[1] += 20;
 
-
             return Dodge();
         }
 
