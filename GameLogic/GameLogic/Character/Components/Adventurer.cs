@@ -9,11 +9,11 @@ namespace GameLogic.Character.Components
     {
         private CharacterComponent baseComponent;
 
-        private int health;
-        private int damage;
-        private int[] dodge;
-        private int block;
-        private int[] accuracy;
+        protected int health;
+        protected int damage;
+        protected int[] dodge;
+        protected int block;
+        protected int[] accuracy;
 
         public int AbilityUse;
         public int TacticalCooldown;
@@ -53,14 +53,19 @@ namespace GameLogic.Character.Components
 
         public override int Ultimate()
         {
-            //this will be overrided by the ability and thrillSeeker classes
+            //this will be overrided by the ability class
             throw new NotImplementedException();
         }
 
         public override int Utility()
         {
-            //this will be overrided by the ability and thrillSeeker classes
+            //this will be overrided by the ability class
             throw new NotImplementedException();
+        }
+
+        public virtual void LevelUp()
+        {
+            //This will be overrided by the ability class
         }
     }
 }

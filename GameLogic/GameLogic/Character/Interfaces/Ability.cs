@@ -56,5 +56,10 @@ namespace GameLogic.Character.Interfaces
         {
             return base.Utility();
         }
+
+        public override void LevelUp()
+        {
+            //This will be overriden by character specific class
+        }
     }
 }
