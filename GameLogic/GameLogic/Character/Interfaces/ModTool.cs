@@ -4,11 +4,11 @@ using System.Text;
 
 namespace GameLogic.Character.Interfaces
 {
-    public abstract class Mod : CharacterComponent
+    public abstract class ModTool : CharacterComponent
     {
         private CharacterComponent baseComponent;
 
-        public Mod(CharacterComponent baseComponent)
+        public ModTool(CharacterComponent baseComponent)
         {
             this.baseComponent = baseComponent;
         }

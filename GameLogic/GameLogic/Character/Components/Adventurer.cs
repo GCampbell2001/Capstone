@@ -5,50 +5,61 @@ using System.Text;
 
 namespace GameLogic.Character.Components
 {
-    class Adventurer : CharacterComponent
+    public class Adventurer : CharacterComponent
     {
-        private int BaseDamage;
-        private int[] BaseDodge;
-        private int BaseBlock;
-        private int BaseAccuracy;
-        private int 
+        private CharacterComponent baseComponent;
 
-        public Adventurer(int damage, int[] dodge, int block, int accuracy)
+        private int health;
+        private int damage;
+        private int[] dodge;
+        private int block;
+        private int[] accuracy;
+
+        public int AbilityUse;
+        public int TacticalCooldown;
+        public int UtilityCooldown;
+        public int UltimateCooldown;
+
+        public Adventurer(int health, int damage, int[] dodge, int block, int[] accuracy)
         {
-            this.BaseDamage = damage;
-            this.BaseDodge = dodge;
-            this.BaseBlock = block;
-            this.BaseAccuracy = accuracy;
+            this.health = health;
+            this.damage = damage;
+            this.dodge = dodge;
+            this.block = block;
+            this.accuracy = accuracy;
         }
-
 
         public override int Attack()
         {
-            throw new NotImplementedException();
+            return this.damage;
         }
 
         public override int Block()
         {
-            throw new NotImplementedException();
+            return this.block;
         }
 
         public override int Dodge()
         {
-            throw new NotImplementedException();
+            Random rand = new Random();
+            return rand.Next(dodge[0], dodge[1]);
         }
 
         public override int Tactical()
         {
+            //this will be overrided by the ability and thrillSeeker classes
             throw new NotImplementedException();
         }
 
         public override int Ultimate()
         {
+            //this will be overrided by the ability and thrillSeeker classes
             throw new NotImplementedException();
         }
 
         public override int Utility()
         {
+            //this will be overrided by the ability and thrillSeeker classes
             throw new NotImplementedException();
         }
     }
