@@ -1,11 +1,12 @@
-﻿using GameLogic.Character.Interfaces;
+﻿using GameLogic.Character.Components;
+using GameLogic.Character.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GameLogic.Character.Abilities
+namespace GameLogic.Character
 {
-    public class ThrillSeeker : Ability
+    public class ThrillSeeker : Characters
     {
         //This is the Thrill Seeker Character Class
         //They have high Dodge due to increased acrobatic ability.
@@ -44,6 +45,18 @@ namespace GameLogic.Character.Abilities
 
         }
 
+        public ThrillSeeker(int currentHealth, int currentDamage, int[] currentDodge, int currentBlock, int[] currentAccuracy, int currentLevel, int currentTactCooldown, int currentTactDuration, int currentUtilCooldown, int currentUtilDuration, int currentUltCooldown, int currentUltDuration)
+            :base(currentHealth, currentDamage, currentDodge, currentBlock, currentAccuracy)
+        {
+            this.Level = currentLevel;
+            this.tacticalDuration = currentTactDuration;
+            base.TacticalCooldown = currentTactCooldown;
+            this.utilityDuration = currentUtilDuration;
+            base.UtilityCooldown = currentUtilCooldown;
+            this.ultimateDuration = currentUltDuration;
+            base.UltimateCooldown = currentUltCooldown;
+        }
+
         public override int Attack()
         {
             checkAccuracy();
@@ -53,6 +66,17 @@ namespace GameLogic.Character.Abilities
         public override int Block()
         {
             return base.Block();
+        }
+
+        public override int AttemptBlock()
+        {
+            return base.AttemptBlock();
+        }
+
+        public override int AttemptDodge()
+        {
+            checkDodge();
+            return base.AttemptDodge();
         }
 
         public override int Dodge()
@@ -142,6 +166,21 @@ namespace GameLogic.Character.Abilities
             baseBlock += 3;
             baseAccuracy[0] += 3;
             baseAccuracy[1] += 3;
+        }
+
+        public override void CooldownRate(int tact, int util, int ult)
+        {
+            //1's will be passed through normally if nothing is affecting cooldown rate. Otherwise the parameters will be manipulated to change the rate;
+            base.TacticalCooldown -= tact;
+            base.UtilityCooldown -= util;
+            base.UltimateCooldown -= ult;
+        }
+        public override void DurationRate(int tact, int util, int ult)
+        {
+            //1's will be passed through normally if nothing is affecting cooldown rate. Otherwise the parameters will be manipulated to change the rate;
+            tacticalDuration -= tact;
+            utilityDuration -= util;
+            ultimateDuration -= ult;
         }
 
         private void checkAccuracy()

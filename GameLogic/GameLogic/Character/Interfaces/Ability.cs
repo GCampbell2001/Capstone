@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GameLogic.Character.Interfaces
 {
-    public class Ability : Adventurer
+    public class Ability : Characters
     {
         public Ability(int health, int damage, int[] dodge, int block, int[] accuracy)
             : base(health, damage, dodge, block, accuracy)

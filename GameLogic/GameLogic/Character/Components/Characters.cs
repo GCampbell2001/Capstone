@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GameLogic.Character.Components
 {
-    public class Adventurer : CharacterComponent
+    public class Characters : CharacterComponent
     {
         private CharacterComponent baseComponent;
 
@@ -20,7 +20,7 @@ namespace GameLogic.Character.Components
         public int UtilityCooldown;
         public int UltimateCooldown;
 
-        public Adventurer(int health, int damage, int[] dodge, int block, int[] accuracy)
+        public Characters(int health, int damage, int[] dodge, int block, int[] accuracy)
         {
             this.health = health;
             this.damage = damage;
@@ -39,10 +39,21 @@ namespace GameLogic.Character.Components
             return this.block;
         }
 
+        public override int AttemptBlock()
+        {
+            return this.block + 10;
+        }
+
         public override int Dodge()
         {
             Random rand = new Random();
             return rand.Next(dodge[0], dodge[1]);
+        }
+
+        public override int AttemptDodge()
+        {
+            Random rand = new Random();
+            return rand.Next(dodge[0] + 10, dodge[1] + 10);
         }
 
         public override int Tactical()
@@ -66,6 +77,14 @@ namespace GameLogic.Character.Components
         public virtual void LevelUp()
         {
             //This will be overrided by the ability class
+        }
+        public override void CooldownRate(int tact, int util, int ult)
+        {
+            this.baseComponent.CooldownRate(tact, util, ult);
+        }
+        public override void DurationRate(int tact, int util, int ult)
+        {
+            this.baseComponent.DurationRate(tact, util, ult);
         }
     }
 }
