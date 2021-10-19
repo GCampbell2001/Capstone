@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <Folder Include="Character\Decorators\" />
-    <Folder Include="Character\Abilities\" />
   </ItemGroup>
 
 </Project>
