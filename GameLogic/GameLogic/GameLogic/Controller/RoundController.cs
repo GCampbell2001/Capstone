@@ -26,6 +26,15 @@ namespace GameLogic
          * 
          */
 
+
+
+        /*
+         * Maybe make a seperate enemy controller that functions basically the same as this class
+         * the python code however will send the request for the enemy's turn so that audio can be handled differently.
+         * This will also allow for the user to not wait for all the data becuase while the audio for the users turn plays the backend
+         * could be setting up for the enemies turn
+         */
+
         public void RunFightCommand(UserInput userInput, Room room, Characters user)
         {
             /*      TODO
@@ -33,7 +42,7 @@ namespace GameLogic
              *  If player chooses to block or dodge then the controller for that class will handle enemy turn as well.
              * 
              */
-            IActionHandler controller;
+        IActionHandler controller;
             switch(user.GetType().Name)
             {
                 case "ThrillSeeker":
@@ -43,7 +52,7 @@ namespace GameLogic
                     controller = new ThrillController();
                     break;
             }
-            
+            user.ResetCharacter();
             switch (userInput)
             {
                 case UserInput.A:
@@ -78,6 +87,11 @@ namespace GameLogic
 
                     break;
             }
+        }
+
+        public void EnemyTurn(Room room, Characters user)
+        {
+
         }
 
 

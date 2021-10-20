@@ -30,17 +30,8 @@ namespace GameLogic.Character.Components
             this.dodge = dodge;
             this.block = block;
             this.accuracy = accuracy;
-            if(AttemptedToBlock)
-            {
-                this.block -= 10;
-                this.AttemptedToBlock = false;
-            }
-            if(AttemptedToDodge)
-            {
-                this.dodge[0] -= 10;
-                this.dodge[1] -= 10;
-                this.AttemptedToDodge = false;
-            }
+            this.AttemptedToBlock = AttemptedToBlock;
+            this.AttemptedToDodge = AttemptedToDodge;
         }
 
         public override int Attack()
@@ -120,6 +111,21 @@ namespace GameLogic.Character.Components
             TacticalCooldown--;
             UtilityCooldown--;
             UltimateCooldown--;
+        }
+
+        public void ResetCharacter()
+        {
+            if (AttemptedToBlock)
+            {
+                AttemptedToBlock = false;
+                block -= 10;
+            }
+            if (AttemptedToDodge)
+            {
+                AttemptedToDodge = false;
+                dodge[0] -= 10;
+                dodge[1] -= 10;
+            }
         }
     }
 }
