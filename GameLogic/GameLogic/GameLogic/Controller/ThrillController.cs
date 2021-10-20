@@ -11,17 +11,46 @@ namespace GameLogic.GameLogic.Controller
     {
         public override RoundResult Attack(Characters player, Characters enemy)
         {
-            throw new NotImplementedException();
+            int hookDamage = player.Attack();
+            int hookAccuracy = player.Accuracy();
+
+            int enemyDodgeAttempt = enemy.Dodge();
+
+            if (hookAccuracy > (enemyDodgeAttempt + 40))
+            {
+                hookDamage = hookDamage * 2;
+                CheckBlock(enemy, hookDamage);
+                return RoundResult.CRITICAL;
+            }
+            else if (hookAccuracy >= enemyDodgeAttempt)
+            {
+                return CheckBlock(enemy, hookDamage);
+
+            }
+            else if (hookAccuracy < enemyDodgeAttempt)
+            {
+                return RoundResult.MISSED;
+
+            }
+            else
+            {
+                Console.WriteLine("ThrillController.cs - Line 38 \r\nNo Conditional Met");
+                Console.WriteLine("ThrillSeeker Accuracy: " + hookAccuracy);
+                Console.WriteLine("Enemy Dodge: " + enemyDodgeAttempt);
+                return RoundResult.MISSED;
+            }
         }
 
         public override RoundResult Block(Characters player, Characters enemy)
         {
-            throw new NotImplementedException();
+            player.AttemptBlock();
+            return RoundResult.TEMPBLOCK;
         }
 
         public override RoundResult Dodge(Characters player, Characters enemy)
         {
-            throw new NotImplementedException();
+            player.AttemptDodge();
+            return RoundResult.TEMPDODGE;
         }
 
         public override RoundResult Tactical(Characters player, Characters enemy)
@@ -65,7 +94,8 @@ namespace GameLogic.GameLogic.Controller
 
         public override RoundResult Utility(Characters player, Characters enemy)
         {
-            throw new NotImplementedException();
+            player.Utility();
+            return RoundResult.CRITICAL;
         }
     }
 }

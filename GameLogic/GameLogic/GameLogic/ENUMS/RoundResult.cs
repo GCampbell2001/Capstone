@@ -10,7 +10,9 @@ namespace GameLogic.GameLogic.ENUMS
         CRITICAL,
         MISSED,
         BLOCKED,
-        BARELY
+        BARELY,
+        TEMPBLOCK,
+        TEMPDODGE
 
 
     }

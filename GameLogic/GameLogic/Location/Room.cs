@@ -14,7 +14,8 @@ namespace GameLogic.Location
         //these booleans will be checked before Clear since Clear is only for enemies. 
         //This allows me to just skip any room set up for player commands.
         //This should help speed up the program since most of the rooms have enemies.
-        public bool Fight { get; set; }
+        public bool Grunt { get; set; }
+        public bool Boss { get; set; }
         public bool Tool { get; set; }
         public bool Potion { get; set; }
 

@@ -40,13 +40,13 @@ namespace GameLogic.Character
         private int ultimateDuration = 0;
 
         public ThrillSeeker()
-            : base(baseHealth, baseDamage, baseDodge, baseBlock, baseAccuracy)
+            : base(baseHealth, baseDamage, baseDodge, baseBlock, baseAccuracy, false, false)
         {
 
         }
 
-        public ThrillSeeker(int currentHealth, int currentDamage, int[] currentDodge, int currentBlock, int[] currentAccuracy, int currentLevel, int currentTactCooldown, int currentTactDuration, int currentUtilCooldown, int currentUtilDuration, int currentUltCooldown, int currentUltDuration)
-            :base(currentHealth, currentDamage, currentDodge, currentBlock, currentAccuracy)
+        public ThrillSeeker(int currentHealth, int currentDamage, int[] currentDodge, int currentBlock, int[] currentAccuracy, int currentLevel, int currentTactCooldown, int currentTactDuration, int currentUtilCooldown, int currentUtilDuration, int currentUltCooldown, int currentUltDuration, bool AttemptedToBlock, bool AttempedToDodge)
+            :base(currentHealth, currentDamage, currentDodge, currentBlock, currentAccuracy, AttemptedToBlock, AttempedToDodge)
         {
             this.Level = currentLevel;
             this.tacticalDuration = currentTactDuration;

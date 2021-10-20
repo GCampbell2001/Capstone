@@ -20,13 +20,27 @@ namespace GameLogic.Character.Components
         public int UtilityCooldown;
         public int UltimateCooldown;
 
-        public Characters(int health, int damage, int[] dodge, int block, int[] accuracy)
+        public bool AttemptedToBlock;
+        public bool AttemptedToDodge;
+
+        public Characters(int health, int damage, int[] dodge, int block, int[] accuracy, bool AttemptedToBlock, bool AttemptedToDodge)
         {
             this.health = health;
             this.damage = damage;
             this.dodge = dodge;
             this.block = block;
             this.accuracy = accuracy;
+            if(AttemptedToBlock)
+            {
+                this.block -= 10;
+                this.AttemptedToBlock = false;
+            }
+            if(AttemptedToDodge)
+            {
+                this.dodge[0] -= 10;
+                this.dodge[1] -= 10;
+                this.AttemptedToDodge = false;
+            }
         }
 
         public override int Attack()

@@ -25,7 +25,7 @@ namespace GameLogic.GameLogic.Interface
                 return RoundResult.HIT;
             } else if (HitPoints < armor)
             {
-                return RoundResult.MISSED;
+                return RoundResult.BLOCKED;
             } else if (HitPoints == armor)
             {
                 HitPoints = HitPoints / 2;
