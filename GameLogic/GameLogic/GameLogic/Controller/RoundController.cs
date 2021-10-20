@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GameLogic
 {
-    class Controller
+    class RoundController
     {
         /* TODO
          * Method to call CharacterMoves methods based on input
@@ -28,12 +28,27 @@ namespace GameLogic
             switch (userInput)
             {
                 case UserInput.A:
+                    //Attack
 
                     break;
                 case UserInput.S:
+                    //Block
 
                     break;
                 case UserInput.D:
+                    //Dodge
+
+                    break;
+                case UserInput.Q:
+                    //Tactical
+
+                    break;
+                case UserInput.W:
+                    //Utility
+
+                    break;
+                case UserInput.E:
+                    //Ultimate
 
                     break;
             }

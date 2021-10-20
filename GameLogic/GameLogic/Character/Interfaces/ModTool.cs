@@ -17,6 +17,10 @@ namespace GameLogic.Character.Interfaces
         {
             return this.baseComponent.Attack();
         }
+        public override int Accuracy()
+        {
+            return this.baseComponent.Accuracy();
+        }
 
         public override int Dodge()
         {

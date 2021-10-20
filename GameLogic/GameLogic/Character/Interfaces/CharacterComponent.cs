@@ -7,6 +7,7 @@ namespace GameLogic.Character.Interfaces
     public abstract class CharacterComponent
     {
         public abstract int Attack();
+        public abstract int Accuracy();
         public abstract int Dodge();
         public abstract int AttemptDodge();
         public abstract int Block();

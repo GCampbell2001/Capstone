@@ -31,7 +31,14 @@ namespace GameLogic.Character.Components
 
         public override int Attack()
         {
+            Cooldown();
             return this.damage;
+        }
+
+        public override int Accuracy()
+        {
+            Random generator = new Random();
+            return generator.Next(accuracy[1] - accuracy[0]) + accuracy[0];
         }
 
         public override int Block()
@@ -41,6 +48,7 @@ namespace GameLogic.Character.Components
 
         public override int AttemptBlock()
         {
+            Cooldown();
             return this.block + 10;
         }
 
@@ -52,8 +60,14 @@ namespace GameLogic.Character.Components
 
         public override int AttemptDodge()
         {
+            Cooldown();
             Random rand = new Random();
             return rand.Next(dodge[0] + 10, dodge[1] + 10);
+        }
+
+        public void LowerHealth(int damageTaken)
+        {
+            health -= damageTaken;
         }
 
         public override int Tactical()
@@ -85,6 +99,13 @@ namespace GameLogic.Character.Components
         public override void DurationRate(int tact, int util, int ult)
         {
             this.baseComponent.DurationRate(tact, util, ult);
+        }
+
+        public void Cooldown()
+        {
+            TacticalCooldown--;
+            UtilityCooldown--;
+            UltimateCooldown--;
         }
     }
 }

@@ -27,7 +27,7 @@ namespace GameLogic.Character
 
         //These numbers are used to start the cooldown whenever abilites are activated.
         private int tacticalCooldownRate = 3;
-        private int utilityCooldownRate = 3;
+        private int utilityCooldownRate = 4;
         private int ultimateCooldownRate = 10;
 
         //These numbers are used to start a duration countdown. Until These numbers reach 0 they will change certain stats.
@@ -87,6 +87,10 @@ namespace GameLogic.Character
 
         public override int Tactical()
         {
+            //keep the cooldown going for other abilities
+            base.UtilityCooldown--;
+            base.UltimateCooldown--;
+
             //cooldown is started
             base.TacticalCooldown = tacticalCooldownRate;
             tacticalDuration = tacticalStartingDuration;
@@ -121,6 +125,10 @@ namespace GameLogic.Character
 
         public override int Ultimate()
         {
+            //keep the cooldown going for other abilities
+            base.UtilityCooldown--;
+            base.TacticalCooldown--;
+
             //cooldown is started
             base.UltimateCooldown = ultimateCooldownRate;
             ultimateDuration = ultimateStartingDuration;
@@ -129,9 +137,9 @@ namespace GameLogic.Character
             base.dodge[0] -= 50;
             base.dodge[1] -= 50;
 
-            //Ridiculous accuracy increase to guarantee hit
-            base.accuracy[0] += 400;
-            base.accuracy[1] += 400;
+            //Since Classes are Coupled for Characters to allow more creative freedom on abilites accuracy is not affected
+            //base.accuracy[0] += 25;
+            //base.accuracy[1] += 25;
 
             //Damage is Tripled
             return Attack() * 3;
@@ -139,6 +147,10 @@ namespace GameLogic.Character
 
         public override int Utility()
         {
+            //keep the cooldown going for other abilities
+            base.TacticalCooldown--;
+            base.UltimateCooldown--;
+
             //cooldown is started
             base.UtilityCooldown = utilityCooldownRate;
             utilityDuration = utilityStartingDuration;
