@@ -35,7 +35,7 @@ namespace GameLogic
          * could be setting up for the enemies turn
          */
 
-        public void RunFightCommand(UserInput userInput, Room room, Characters user)
+        public void RunFightCommand(UserInput userInput, Room room, Character.Components.Characters user)
         {
             /*      TODO
              *  Create Method for enemy turn that get's called after player
@@ -89,7 +89,7 @@ namespace GameLogic
             }
         }
 
-        public void EnemyTurn(Room room, Characters user)
+        public void EnemyTurn(Room room, Character.Components.Characters user)
         {
 
         }

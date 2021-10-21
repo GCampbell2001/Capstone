@@ -9,14 +9,14 @@ namespace GameLogic.GameLogic.Interface
     public abstract class IActionHandler
     {
 
-        public abstract RoundResult Attack(Characters player, Characters enemy);
-        public abstract RoundResult Block(Characters player, Characters enemy);
-        public abstract RoundResult Dodge(Characters player, Characters enemy);
-        public abstract RoundResult Tactical(Characters player, Characters enemy);
-        public abstract RoundResult Utility(Characters player, Characters enemy);
-        public abstract RoundResult Ultimate(Characters player, Characters enemy);
+        public abstract RoundResult Attack(Character.Components.Characters player, Character.Components.Characters enemy);
+        public abstract RoundResult Block(Character.Components.Characters player, Character.Components.Characters enemy);
+        public abstract RoundResult Dodge(Character.Components.Characters player, Character.Components.Characters enemy);
+        public abstract RoundResult Tactical(Character.Components.Characters player, Character.Components.Characters enemy);
+        public abstract RoundResult Utility(Character.Components.Characters player, Character.Components.Characters enemy);
+        public abstract RoundResult Ultimate(Character.Components.Characters player, Character.Components.Characters enemy);
 
-        public RoundResult CheckBlock(Characters enemy, int HitPoints)
+        public RoundResult CheckBlock(Character.Components.Characters enemy, int HitPoints)
         {
             int armor = enemy.Block();
             if (HitPoints > armor)

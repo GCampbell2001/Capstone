@@ -167,15 +167,15 @@ namespace GameLogic.Character
             //ThrillSeeker LevelUp Guideline
             //Health + 20
             //attack + 10
-            //dodge + 5
-            //block + 3
+            //dodge + 10
+            //block + 6
             //accuracy + 3
             Level++;
             baseHealth += 20;
             baseDamage += 10;
-            baseDodge[0] += 5;
-            baseDodge[1] += 5;
-            baseBlock += 3;
+            baseDodge[0] += 10;
+            baseDodge[1] += 10;
+            baseBlock += 6;
             baseAccuracy[0] += 3;
             baseAccuracy[1] += 3;
         }

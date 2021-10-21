@@ -95,7 +95,7 @@ namespace GameLogic.Character.Components
 
         public virtual void LevelUp()
         {
-            //This will be overrided by the ability class
+            //This will be overriden by Child classes
         }
         public override void CooldownRate(int tact, int util, int ult)
         {
