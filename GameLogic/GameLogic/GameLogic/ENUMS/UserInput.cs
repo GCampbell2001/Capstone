@@ -17,6 +17,8 @@ namespace GameLogic.GameLogic
         NORTH,
         SOUTH,
         EAST,
-        WEST
+        WEST,
+
+        U //this one is for when the User wants an update on what's going on
     }
 }

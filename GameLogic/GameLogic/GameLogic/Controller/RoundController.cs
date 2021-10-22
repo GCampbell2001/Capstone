@@ -24,13 +24,14 @@ namespace GameLogic
          *  Need to know how data is stored, file name wise
          */
 
-        public void RunFightCommand(UserInput userInput, Room room, Characters user)
+        public string RunFightCommand(UserInput userInput, Room room, Characters user)
         {
             /*      TODO
              *  Create Method for enemy turn that get's called after player
              *  If player chooses to block or dodge then the controller for that class will handle enemy turn as well.
              * 
              */
+            AudioFilePrepare prepare = new AudioFilePrepare();
             RoundResult results;
             IActionHandler controller;
             string CharacterString = "";
@@ -55,34 +56,32 @@ namespace GameLogic
                 case UserInput.A:
                     //Attack
                     results = controller.Attack(user, room.Enemy, hitPointData);
-                    audioFileNames = ResultFileStyle(results, room.Enemy);
-                    break;
+                    audioFileNames = prepare.AttackFileStyle(userInput, user, room.Enemy);
+                    audioFileNames += "|" + prepare.ResultFileStyle(results, room.Enemy, user);
+                    audioFileNames += "|" + prepare.HitpointFileStyle(hitPointData);
+                    return audioFileNames;
                 case UserInput.S:
                     //Block
                     results = controller.Block(user, room.Enemy);
-
-
-                    break;
+                    return prepare.AttackFileStyle(userInput, user, room.Enemy);
                 case UserInput.D:
                     //Dodge
                     results = controller.Dodge(user, room.Enemy);
-
-                    break;
+                    return prepare.AttackFileStyle(userInput, user, room.Enemy);
                 case UserInput.Q:
                     //Tactical
                     results = controller.Tactical(user, room.Enemy, hitPointData);
-
-                    break;
+                    return prepare.AbilityFileName(user, userInput, room.Enemy, results, hitPointData);
                 case UserInput.W:
                     //Utility
                     results = controller.Utility(user, room.Enemy, hitPointData);
-
-                    break;
+                    return prepare.AbilityFileName(user, userInput, room.Enemy, results, hitPointData);
                 case UserInput.E:
                     //Ultimate
                     results = controller.Ultimate(user, room.Enemy, hitPointData);
-
-                    break;
+                    return prepare.AbilityFileName(user, userInput, room.Enemy, results, hitPointData);
+                default:
+                    return "ERROR.wav - RoundController Problem with userInput - " + userInput;
             }
         }
 
