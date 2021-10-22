@@ -49,6 +49,9 @@ namespace GameLogic
             user.ResetCharacter();
             switch (userInput)
             {
+                //      IDEA
+                // Put all the audio files together in one string to return
+                // seperate each by | and then the server can split each one or whatever class to get the individual file.
                 case UserInput.A:
                     //Attack
                     results = controller.Attack(user, room.Enemy, hitPointData);
