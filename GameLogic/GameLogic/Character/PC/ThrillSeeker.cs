@@ -16,14 +16,16 @@ namespace GameLogic.Character
         //Utility: They use their hook to manuever around the field (massively increases Dodge) (Duration: 2 turns) (cooldown: 3 turns)
         //Ultimate: Channels their energy and creates 3 Astral Projections of his weapon. (massively lowers dodge during use. Garunteed hit) (triples attack) (Duration: 1 turn) (cooldown: 10 turns)
 
-        private static int baseHealth = 100;
+
+        //ThrillSeekerHealth and baseHealth will be treated the same. ThrillSeekerHealth is just character specific.
+        private static int ThrillSeekerHealth = 100;
         private static int baseDamage = 2;
         private static int[] baseDodge = { 60, 160 };
         private static int baseBlock = 1;
         private static int[] baseAccuracy = { 80, 180 };
 
         //This will work in conjuction to abilities to determine how much numbers changed depending on ability
-        private int Level = 0;
+        
 
         //These numbers are used to start the cooldown whenever abilites are activated.
         private int tacticalCooldownRate = 3;
@@ -40,15 +42,17 @@ namespace GameLogic.Character
         private int ultimateDuration = 0;
 
         public ThrillSeeker()
-            : base(baseHealth, baseDamage, baseDodge, baseBlock, baseAccuracy, false, false)
+            : base(ThrillSeekerHealth, baseDamage, baseDodge, baseBlock, baseAccuracy, false, false)
         {
+            base.Level = 0;
 
         }
 
         public ThrillSeeker(int currentHealth, int currentDamage, int[] currentDodge, int currentBlock, int[] currentAccuracy, int currentLevel, int currentTactCooldown, int currentTactDuration, int currentUtilCooldown, int currentUtilDuration, int currentUltCooldown, int currentUltDuration, bool AttemptedToBlock, bool AttempedToDodge)
             :base(currentHealth, currentDamage, currentDodge, currentBlock, currentAccuracy, AttemptedToBlock, AttempedToDodge)
         {
-            this.Level = currentLevel;
+            base.Level = currentLevel;
+            base.baseHealth = ThrillSeekerHealth;
             this.tacticalDuration = currentTactDuration;
             base.TacticalCooldown = currentTactCooldown;
             this.utilityDuration = currentUtilDuration;

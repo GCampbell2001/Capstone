@@ -9,6 +9,8 @@ namespace GameLogic.Character.Components
     {
         private CharacterComponent baseComponent;
 
+        public int baseHealth { get; set; }
+
         protected int health;
         protected int damage;
         protected int[] dodge;
@@ -22,6 +24,8 @@ namespace GameLogic.Character.Components
 
         public bool AttemptedToBlock;
         public bool AttemptedToDodge;
+
+        protected int Level = 0;
 
         public Characters(int health, int damage, int[] dodge, int block, int[] accuracy, bool AttemptedToBlock, bool AttemptedToDodge)
         {
@@ -126,6 +130,11 @@ namespace GameLogic.Character.Components
                 dodge[0] -= 10;
                 dodge[1] -= 10;
             }
+        }
+
+        public int GetHealth()
+        {
+            return health;
         }
     }
 }

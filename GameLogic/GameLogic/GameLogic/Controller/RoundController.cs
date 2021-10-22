@@ -1,7 +1,10 @@
 ﻿using GameLogic.Character;
 using GameLogic.Character.Components;
 using GameLogic.GameLogic;
+using GameLogic.GameLogic.AI;
+using GameLogic.GameLogic.AI.AIInterface;
 using GameLogic.GameLogic.Controller;
+using GameLogic.GameLogic.ENUMS;
 using GameLogic.GameLogic.Interface;
 using GameLogic.Location;
 using System;
@@ -13,87 +16,144 @@ namespace GameLogic
     class RoundController
     {
         /* TODO
-         * Method to call CharacterMoves methods based on input
-         * 
-         * 
-         * Method to handle Attack
-         * Method to handle Block
-         * Method to handle Dodge
-         * Method to handle Tactical
-         * Method to handle Utility
-         * Method to handle Ultimate
-         * 
-         * 
+         * Need to return some data to say where audio files are.
+         *     IDEA
+         *  data is put in some sort of json format and passed through class that splits in and query's database to get specific file location
+         *  
+         *     WHAT IS NEEDED
+         *  Need to know how data is stored, file name wise
          */
 
-
-
-        /*
-         * Maybe make a seperate enemy controller that functions basically the same as this class
-         * the python code however will send the request for the enemy's turn so that audio can be handled differently.
-         * This will also allow for the user to not wait for all the data becuase while the audio for the users turn plays the backend
-         * could be setting up for the enemies turn
-         */
-
-        public void RunFightCommand(UserInput userInput, Room room, Character.Components.Characters user)
+        public void RunFightCommand(UserInput userInput, Room room, Characters user)
         {
             /*      TODO
              *  Create Method for enemy turn that get's called after player
              *  If player chooses to block or dodge then the controller for that class will handle enemy turn as well.
              * 
              */
-        IActionHandler controller;
+            RoundResult results;
+            IActionHandler controller;
+            string CharacterString = "";
+            string audioFileNames = "";
             switch(user.GetType().Name)
             {
                 case "ThrillSeeker":
                     controller = new ThrillController();
+                    CharacterString = "ThrillSeeker";
                     break;
                 default:
                     controller = new ThrillController();
                     break;
             }
+            int hitPointData = 0;
             user.ResetCharacter();
             switch (userInput)
             {
                 case UserInput.A:
                     //Attack
-                    controller.Attack(user, room.Enemy);
-
+                    results = controller.Attack(user, room.Enemy, hitPointData);
+                    audioFileNames = ResultFileStyle(results, room.Enemy);
                     break;
                 case UserInput.S:
                     //Block
-                    controller.Block(user, room.Enemy);
+                    results = controller.Block(user, room.Enemy);
 
 
                     break;
                 case UserInput.D:
                     //Dodge
-                    controller.Dodge(user, room.Enemy);
+                    results = controller.Dodge(user, room.Enemy);
 
                     break;
                 case UserInput.Q:
                     //Tactical
-                    controller.Tactical(user, room.Enemy);
+                    results = controller.Tactical(user, room.Enemy, hitPointData);
 
                     break;
                 case UserInput.W:
                     //Utility
-                    controller.Utility(user, room.Enemy);
+                    results = controller.Utility(user, room.Enemy, hitPointData);
 
                     break;
                 case UserInput.E:
                     //Ultimate
-                    controller.Ultimate(user, room.Enemy);
+                    results = controller.Ultimate(user, room.Enemy, hitPointData);
 
                     break;
             }
         }
 
-        public void EnemyTurn(Room room, Character.Components.Characters user)
+        public void EnemyTurn(Room room, Characters user)
         {
+            RoundResult results;
+            IActionHandler controller;
+            IAI ai;
+            int hitPointData = 0;
+            switch (room.Enemy.GetType().Name)
+            {
+                case "WaterGoblin":
+                    controller = new WaterController();
+                    ai = new WaterGoblinAI();
+                    break;
+                default:
+                    controller = new WaterController();
+                    ai = new WaterGoblinAI();
+                    break;
+            }
+            UserInput enemyMove = ai.MakeMove(room.Enemy);
+            switch (enemyMove)
+            {
+                case UserInput.A:
+                    //Attack
+                    results = controller.Attack(room.Enemy, user, hitPointData);
+
+                    break;
+                case UserInput.S:
+                    //Block
+                    results = controller.Block(room.Enemy, user);
+
+
+                    break;
+                case UserInput.D:
+                    //Dodge
+                    results = controller.Dodge(room.Enemy, user);
+
+                    break;
+                case UserInput.Q:
+                    //Tactical
+                    results = controller.Tactical(room.Enemy, user, hitPointData);
+
+                    break;
+                case UserInput.W:
+                    //Utility
+                    results = controller.Utility(room.Enemy, user, hitPointData);
+
+                    break;
+                case UserInput.E:
+                    //Ultimate
+                    results = controller.Ultimate(room.Enemy, user, hitPointData);
+
+                    break;
+            }
 
         }
 
+        private string ResultFileStyle(RoundResult result, Characters enemy)
+        {
+            switch (result)
+            {
+                case RoundResult.HIT:
+                    return enemy.GetType().Name + "Hit.wav";
+                case RoundResult.CRITICAL:
+                    return "Critical.wav";
+                case RoundResult.BLOCKED:
+                    return "Blocked.wav";
+                case RoundResult.MISSED:
+                    return "Missed.wav";
+                default:
+                    return "Error.wav";
+            }
 
+        }
     }
 }

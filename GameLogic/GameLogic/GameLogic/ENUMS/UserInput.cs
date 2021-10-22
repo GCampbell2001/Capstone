@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GameLogic.GameLogic
 {
-    enum UserInput
+    public enum UserInput
     {
         Q,
         W,

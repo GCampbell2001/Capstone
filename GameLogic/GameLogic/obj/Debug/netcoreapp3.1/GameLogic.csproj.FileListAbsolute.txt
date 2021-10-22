@@ -4,7 +4,6 @@ C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\bin\Debug\netcoreapp3.1\
 C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\bin\Debug\netcoreapp3.1\GameLogic.runtimeconfig.dev.json
 C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\bin\Debug\netcoreapp3.1\GameLogic.dll
 C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\bin\Debug\netcoreapp3.1\GameLogic.pdb
-C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.csprojAssemblyReference.cache
 C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.AssemblyInfoInputs.cache
 C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.AssemblyInfo.cs
 C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.csproj.CoreCompileInputs.cache

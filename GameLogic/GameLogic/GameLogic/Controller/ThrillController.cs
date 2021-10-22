@@ -7,53 +7,24 @@ using System.Text;
 
 namespace GameLogic.GameLogic.Controller
 {
-    public class ThrillController : IActionHandler
+    public class ThrillController : GeneralCharacterController
     {
-        public override RoundResult Attack(Characters player, Characters enemy)
+        public override RoundResult Attack(Characters player, Characters enemy, int importantData)
         {
-            int hookDamage = player.Attack();
-            int hookAccuracy = player.Accuracy();
-
-            int enemyDodgeAttempt = enemy.Dodge();
-
-            if (hookAccuracy > (enemyDodgeAttempt + 40))
-            {
-                hookDamage = hookDamage * 2;
-                CheckBlock(enemy, hookDamage);
-                return RoundResult.CRITICAL;
-            }
-            else if (hookAccuracy >= enemyDodgeAttempt)
-            {
-                return CheckBlock(enemy, hookDamage);
-
-            }
-            else if (hookAccuracy < enemyDodgeAttempt)
-            {
-                return RoundResult.MISSED;
-
-            }
-            else
-            {
-                Console.WriteLine("ThrillController.cs - Line 38 \r\nNo Conditional Met");
-                Console.WriteLine("ThrillSeeker Accuracy: " + hookAccuracy);
-                Console.WriteLine("Enemy Dodge: " + enemyDodgeAttempt);
-                return RoundResult.MISSED;
-            }
+            return base.Attack(player, enemy, importantData);
         }
 
         public override RoundResult Block(Characters player, Characters enemy)
         {
-            player.AttemptBlock();
-            return RoundResult.TEMPBLOCK;
+            return base.Block(player, enemy);
         }
 
         public override RoundResult Dodge(Characters player, Characters enemy)
         {
-            player.AttemptDodge();
-            return RoundResult.TEMPDODGE;
+            return base.Dodge(player, enemy);
         }
 
-        public override RoundResult Tactical(Characters player, Characters enemy)
+        public override RoundResult Tactical(Characters player, Characters enemy, int importantData)
         {
             int daggerDamage = player.Tactical();
             int daggerAccuracy = player.Accuracy();
@@ -63,11 +34,11 @@ namespace GameLogic.GameLogic.Controller
             if(daggerAccuracy > (enemyDodgeAttempt + 40))
             {
                 daggerDamage = daggerDamage * 2;
-                CheckBlock(enemy, daggerDamage);
+                CheckBlock(enemy, daggerDamage, importantData);
                 return RoundResult.CRITICAL;
             } else if(daggerAccuracy >= enemyDodgeAttempt)
             {
-                return CheckBlock(enemy, daggerDamage);
+                return CheckBlock(enemy, daggerDamage, importantData);
 
             } else if(daggerAccuracy < enemyDodgeAttempt)
             {
@@ -84,15 +55,15 @@ namespace GameLogic.GameLogic.Controller
             
         }
 
-        public override RoundResult Ultimate(Characters player, Characters enemy)
+        public override RoundResult Ultimate(Characters player, Characters enemy, int importantData)
         {
             //No need to check dodge and accuracy since this attack is a guaranteed hit
             int ghostDamage = player.Ultimate();
-            return CheckBlock(enemy, ghostDamage);
+            return CheckBlock(enemy, ghostDamage, importantData);
 
         }
 
-        public override RoundResult Utility(Characters player, Characters enemy)
+        public override RoundResult Utility(Characters player, Characters enemy, int importantData)
         {
             player.Utility();
             return RoundResult.CRITICAL;

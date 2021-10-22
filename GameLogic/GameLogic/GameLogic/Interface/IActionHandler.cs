@@ -9,19 +9,20 @@ namespace GameLogic.GameLogic.Interface
     public abstract class IActionHandler
     {
 
-        public abstract RoundResult Attack(Character.Components.Characters player, Character.Components.Characters enemy);
-        public abstract RoundResult Block(Character.Components.Characters player, Character.Components.Characters enemy);
-        public abstract RoundResult Dodge(Character.Components.Characters player, Character.Components.Characters enemy);
-        public abstract RoundResult Tactical(Character.Components.Characters player, Character.Components.Characters enemy);
-        public abstract RoundResult Utility(Character.Components.Characters player, Character.Components.Characters enemy);
-        public abstract RoundResult Ultimate(Character.Components.Characters player, Character.Components.Characters enemy);
+        public abstract RoundResult Attack(Characters player, Characters enemy, int importantData);
+        public abstract RoundResult Block(Characters player, Characters enemy);
+        public abstract RoundResult Dodge(Characters player, Characters enemy);
+        public abstract RoundResult Tactical(Characters player, Characters enemy, int importantData);
+        public abstract RoundResult Utility(Characters player, Characters enemy, int importantData);
+        public abstract RoundResult Ultimate(Characters player, Characters enemy, int importantData);
 
-        public RoundResult CheckBlock(Character.Components.Characters enemy, int HitPoints)
+        public RoundResult CheckBlock(Characters enemy, int HitPoints, int importantData)
         {
             int armor = enemy.Block();
             if (HitPoints > armor)
             {
                 enemy.LowerHealth(HitPoints);
+                importantData = HitPoints;
                 return RoundResult.HIT;
             } else if (HitPoints < armor)
             {
@@ -30,7 +31,8 @@ namespace GameLogic.GameLogic.Interface
             {
                 HitPoints = HitPoints / 2;
                 enemy.LowerHealth(HitPoints);
-                return RoundResult.BARELY;
+                importantData = HitPoints;
+                return RoundResult.HIT;
             } else
             {
                 Console.WriteLine("IActionHandler.cs Line 35 - Problem with CheckBlock Method");

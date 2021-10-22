@@ -23,14 +23,15 @@ namespace GameLogic.Character.Grunts
          * 
          */
 
-        private static int baseHealth = 17;
+        //WaterGoblinHealth and BaseHealth are treated the same. WaterGoblinHealth is just character specific
+        private static int WaterGoblinHealth = 17;
         private static int baseDamage = 3;
         private static int[] baseDodge = { 80, 180 };
         private static int baseBlock = 1;
         private static int[] baseAccuracy = { 60, 160 };
 
         //This will work in conjuction to abilities to determine how much numbers changed depending on ability
-        private int Level = 0;
+        
 
         //These numbers are used to start the cooldown whenever abilites are activated.
         private int tacticalCooldownRate = 3;
@@ -42,16 +43,29 @@ namespace GameLogic.Character.Grunts
 
         private int tacticalDuration = 0;
 
+        public WaterGoblin()
+            :base(WaterGoblinHealth, baseDamage, baseDodge, baseBlock, baseAccuracy, false, false)
+        {
+            base.Level = 0;
+        }
+
         public WaterGoblin(int currentHealth, int currentDamage, int[] currentDodge, int currentBlock, int[] currentAccuracy, int currentLevel, int currentTactCooldown, int currentTactDuration, int currentUtilCooldown, int currentUtilDuration, int currentUltCooldown, int currentUltDuration, bool AttemptedToBlock, bool AttempedToDodge)
         : base(currentHealth, currentDamage, currentDodge, currentBlock, currentAccuracy, AttemptedToBlock, AttempedToDodge)
         {
-            this.Level = currentLevel;
+            base.Level = currentLevel;
+            
             this.tacticalDuration = currentTactDuration;
             base.TacticalCooldown = currentTactCooldown;
             //Don't really need these but might as well pass them
             //through since they are in the constructor
             base.UtilityCooldown = currentUtilCooldown;
             base.UltimateCooldown = currentUltCooldown;
+            for(int i = 0; i < currentLevel; i++)
+            {
+                //This is to make sure the baseHealth variable matches with the current level.
+                WaterGoblinHealth += 25;
+            }
+            base.baseHealth = WaterGoblinHealth;
         }
 
         public override int Accuracy()
