@@ -15,32 +15,21 @@ namespace GameLogic
 {
     class RoundController
     {
-        /* TODO
-         * Need to return some data to say where audio files are.
-         *     IDEA
-         *  data is put in some sort of json format and passed through class that splits in and query's database to get specific file location
-         *  
-         *     WHAT IS NEEDED
-         *  Need to know how data is stored, file name wise
-         */
+        AudioFilePrepare prepare = new AudioFilePrepare();
 
         public string RunFightCommand(UserInput userInput, Room room, Characters user)
         {
-            /*      TODO
-             *  Create Method for enemy turn that get's called after player
-             *  If player chooses to block or dodge then the controller for that class will handle enemy turn as well.
-             * 
+            /*
+             * This method handles what happens when the user is in a fight
              */
-            AudioFilePrepare prepare = new AudioFilePrepare();
+
             RoundResult results;
             IActionHandler controller;
-            string CharacterString = "";
             string audioFileNames = "";
             switch(user.GetType().Name)
             {
                 case "ThrillSeeker":
                     controller = new ThrillController();
-                    CharacterString = "ThrillSeeker";
                     break;
                 default:
                     controller = new ThrillController();
@@ -85,12 +74,17 @@ namespace GameLogic
             }
         }
 
-        public void EnemyTurn(Room room, Characters user)
+        public string EnemyTurn(Room room, Characters user)
         {
+            /*
+             * This method handles enemy's turns in fights
+             */
+
             RoundResult results;
             IActionHandler controller;
             IAI ai;
             int hitPointData = 0;
+            string audioFileNames = "";
             switch (room.Enemy.GetType().Name)
             {
                 case "WaterGoblin":
@@ -108,34 +102,32 @@ namespace GameLogic
                 case UserInput.A:
                     //Attack
                     results = controller.Attack(room.Enemy, user, hitPointData);
-
-                    break;
+                    audioFileNames = prepare.AttackFileStyle(enemyMove, room.Enemy, user);
+                    audioFileNames += "|" + prepare.ResultFileStyle(results, user, room.Enemy);
+                    audioFileNames += "|" + prepare.HitpointFileStyle(hitPointData);
+                    return audioFileNames;
                 case UserInput.S:
                     //Block
                     results = controller.Block(room.Enemy, user);
-
-
-                    break;
+                    return prepare.AttackFileStyle(enemyMove, room.Enemy, user);
                 case UserInput.D:
                     //Dodge
                     results = controller.Dodge(room.Enemy, user);
-
-                    break;
+                    return prepare.AttackFileStyle(enemyMove, room.Enemy, user);
                 case UserInput.Q:
                     //Tactical
                     results = controller.Tactical(room.Enemy, user, hitPointData);
-
-                    break;
+                    return prepare.AbilityFileName(room.Enemy, enemyMove, user, results, hitPointData);
                 case UserInput.W:
                     //Utility
                     results = controller.Utility(room.Enemy, user, hitPointData);
-
-                    break;
+                    return prepare.AbilityFileName(room.Enemy, enemyMove, user, results, hitPointData);
                 case UserInput.E:
                     //Ultimate
                     results = controller.Ultimate(room.Enemy, user, hitPointData);
-
-                    break;
+                    return prepare.AbilityFileName(room.Enemy, enemyMove, user, results, hitPointData);
+                default:
+                    return "ERROR.wav - RoundController Problem with enemyMove - " + enemyMove;
             }
 
         }

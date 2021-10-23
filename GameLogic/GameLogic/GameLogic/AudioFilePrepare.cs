@@ -10,6 +10,9 @@ namespace GameLogic.GameLogic
     {
         /* 
          * Each method takes in the enemy and attacker just in case they are needed 
+         * 
+         * No file name has .wav added at the end. This way I can have more than one of an audio type with a number at the end.
+         * Hopefully to help prevent the game from becoming stale too quickly
          */
 
         // As of 10/22/2021 12:06 P.M. -
@@ -20,19 +23,19 @@ namespace GameLogic.GameLogic
             switch(action)
             {
                 case UserInput.Q:
-                    return character.GetType().Name + "Tactical.wav";
+                    return character.GetType().Name + "Tactical";
                 case UserInput.W:
-                    return character.GetType().Name + "Utility.wav";
+                    return character.GetType().Name + "Utility";
                 case UserInput.E:
-                    return character.GetType().Name + "Ultimate.wav";
+                    return character.GetType().Name + "Ultimate";
                 case UserInput.A:
-                    return character.GetType().Name + "Attack.wav";
+                    return character.GetType().Name + "Attack";
                 case UserInput.S:
-                    return character.GetType().Name + "Block.wav";
+                    return character.GetType().Name + "Block";
                 case UserInput.D:
-                    return character.GetType().Name + "Dodge.wav";
+                    return character.GetType().Name + "Dodge";
                 default:
-                    return "Error.wav";
+                    return "Error";
             }
         }
 
@@ -43,22 +46,22 @@ namespace GameLogic.GameLogic
             switch (result)
             {
                 case RoundResult.HIT:
-                    return enemy.GetType().Name + "Hit.wav";
+                    return enemy.GetType().Name + "Hit";
                 case RoundResult.CRITICAL:
-                    return "Critical.wav";
+                    return "Critical";
                 case RoundResult.BLOCKED:
-                    return "Blocked.wav";
+                    return "Blocked";
                 case RoundResult.MISSED:
-                    return "Missed.wav";
+                    return "Missed";
                 default:
-                    return "Error.wav";
+                    return "Error";
             }
         }
 
         public string HitpointFileStyle(int damage)
         {
             string hitpointNumber = damage.ToString();
-            return hitpointNumber + ".wav";
+            return hitpointNumber;
         }
 
         public string AbilityFileName(Characters attacker, UserInput ability, Characters enemy, RoundResult result, int hitpoints)
@@ -71,36 +74,36 @@ namespace GameLogic.GameLogic
             switch (ability)
             {
                 case UserInput.Q:
-                    finalString = attacker.GetType().Name + "Tactical.wav";
+                    finalString = attacker.GetType().Name + "Tactical";
                     break;
                 case UserInput.W:
-                    finalString = attacker.GetType().Name + "Utility.wav";
+                    finalString = attacker.GetType().Name + "Utility";
                     break;
                 case UserInput.E:
-                    finalString = attacker.GetType().Name + "Ultimate.wav";
+                    finalString = attacker.GetType().Name + "Ultimate";
                     break;
                 default:
-                    return "Error@AudioFilePrepare78.wav -  " + ability;
+                    return "Error@AudioFilePrepare78 -  " + ability;
             }
 
             switch(result)
             {
                 case RoundResult.HIT:
-                    finalString += "|" + enemy.GetType().Name + ".wav";
+                    finalString += "|" + enemy.GetType().Name + "";
                     break;
                 case RoundResult.BUFFED:
                     finalString += "|";
                     break;
                 case RoundResult.BLOCKED:
-                    finalString += "|Blocked.wav";
+                    finalString += "|Blocked";
                     break;
                 case RoundResult.MISSED:
-                    finalString += "|Missed.wav";
+                    finalString += "|Missed";
                     break;
             }
             if(hitpoints != 0)
             {
-                finalString += "|" + hitpoints + ".wav";
+                finalString += "|" + hitpoints;
             } else
             {
                 finalString += "|";
