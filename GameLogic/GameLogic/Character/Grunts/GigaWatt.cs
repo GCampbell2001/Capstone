@@ -5,26 +5,27 @@ using System.Text;
 
 namespace GameLogic.Character.Grunts
 {
-    public class JimKin : Grunt
+    public class GigaWatt : Grunt
     {
         /*
-         * This is the Jim Kin Grunt Class
-         * A Jim Kin is basically just a chicken
-         * They are responsible for protecting Items kept in the Dungeon
-         * To do so they harnes the ability to double in size.
+         * This is the Giga Watt class
+         * They are metal suit inhabited by a creature of pure electrical energy.
+         * The being is a trickster. They struggle moving their body so it's harder to hit enemies, even with their tactical.
+         * They love magnitizing people. So their tactical is just a debuff that lowers an enemies dodge because they cause small pieces of metal to weigh them down.
          *
-         * They have relatively low health so the trick for these creatures is to defeat them quickly
+         * They have low health but a high block. They'll be hard to bring down but can be brought down the fastest
+         * low health
          * nodge
-         * low block
-         * low attack
+         * high block
+         * medium attack
          *
-         * Tactical: double in size, double in damage (damage is doubled) (cooldown: 2 turns)
+         * Tactical: magnitize foe (applies a debuff [item] that lowers the enemies dodge)
          * Utility: None because Grunt
          * Ultimate: None because Grunt
          * 
          */
 
-        public JimKin()
+        public GigaWatt()
             : base()
         {
             SetBaseStats();
@@ -33,7 +34,7 @@ namespace GameLogic.Character.Grunts
             useDefaultStats();
         }
 
-        public JimKin(int currentHealth, int currentDamage, int[] currentDodge, int currentBlock, int[] currentAccuracy, int currentLevel, int currentTactCooldown, int currentTactDuration, bool AttemptedToBlock, bool AttempedToDodge)
+        public GigaWatt(int currentHealth, int currentDamage, int[] currentDodge, int currentBlock, int[] currentAccuracy, int currentLevel, int currentTactCooldown, int currentTactDuration, bool AttemptedToBlock, bool AttempedToDodge)
         : base(currentHealth, currentDamage, currentDodge, currentBlock, currentAccuracy, AttemptedToBlock, AttempedToDodge)
         {
             SetBaseStats();
@@ -46,20 +47,20 @@ namespace GameLogic.Character.Grunts
 
         public override void LevelUp()
         {
-            //Jim Kin LevelUp Guideline
+            //Giga Watt LevelUp Guideline
             //Health + 10
-            //attack + 1
+            //attack + 2
             //dodge + 4
-            //block + 4
-            //accuracy + 5
+            //block + 9
+            //accuracy + 7
             Level++;
             baseHealth += 10;
-            baseDamage += 1;
+            baseDamage += 2;
             baseDodge[0] += 4;
             baseDodge[1] += 4;
-            baseBlock += 4;
-            baseAccuracy[0] += 5;
-            baseAccuracy[1] += 5;
+            baseBlock += 9;
+            baseAccuracy[0] += 7;
+            baseAccuracy[1] += 7;
         }
 
 
@@ -70,32 +71,29 @@ namespace GameLogic.Character.Grunts
             base.TacticalCooldown = tacticalCooldownRate;
             tacticalDuration = tacticalStartingDuration;
 
-            this.damage = this.damage * 2;
-
             /*
-             * I'm returning zero here because I don't want Jim Kin to attack
-             * right after growing in size.
+             * I'm return 1/2 base damage because this attack isn't meant to hurt the enemy as much as it just applies a debuff
              */
 
-            return 0;
+            return this.damage / 2;
         }
 
         public override void SetBaseStats()
         {
-            base.baseHealth = 20;
-            base.baseDamage = 1;
-            base.baseDodge[0] = 30;
-            base.baseDodge[1] = 130;
-            base.baseBlock = 1;
-            base.baseAccuracy[0] = 50;
-            base.baseAccuracy[1] = 150;
+            base.baseHealth = 18;
+            base.baseDamage = 6;
+            base.baseDodge[0] = 10;
+            base.baseDodge[1] = 110;
+            base.baseBlock = 12;
+            base.baseAccuracy[0] = 60;
+            base.baseAccuracy[1] = 160;
         }
 
         public override void setRates()
         {
 
             //These numbers are used to start the cooldown whenever abilites are activated.
-            base.tacticalCooldownRate = 2;
+            base.tacticalCooldownRate = 3;
 
             //These numbers are used to start a duration countdown. Until These numbers reach 0 they will change certain stats.
             base.tacticalStartingDuration = 0; //no stats are changed back so no starting duration

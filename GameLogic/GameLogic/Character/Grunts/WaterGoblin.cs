@@ -99,7 +99,7 @@ namespace GameLogic.Character.Grunts
             base.tacticalCooldownRate = 3;
 
             //These numbers are used to start a duration countdown. Until These numbers reach 0 they will change certain stats.
-            base.tacticalStartingDuration = 1; //This starts at 1 so accuracy can reset it's value after Tactical is called.
+            base.tacticalStartingDuration = 0; //no stats are changed back so no starting duration
 
             base.tacticalDuration = 0;
         }     
