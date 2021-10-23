@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GameLogic.Character.Grunts
 {
-    public class WaterGoblin : Characters
+    public class WaterGoblin : Grunt
     {
         /*
          * This is the Water Goblin Grunt Class
@@ -23,90 +23,24 @@ namespace GameLogic.Character.Grunts
          * 
          */
 
-        //WaterGoblinHealth and BaseHealth are treated the same. WaterGoblinHealth is just character specific
-        private static int WaterGoblinHealth = 17;
-        private static int baseDamage = 3;
-        private static int[] baseDodge = { 80, 180 };
-        private static int baseBlock = 1;
-        private static int[] baseAccuracy = { 60, 160 };
-
-        //This will work in conjuction to abilities to determine how much numbers changed depending on ability
-        
-
-        //These numbers are used to start the cooldown whenever abilites are activated.
-        private int tacticalCooldownRate = 3;
-        private int utilityCooldownRate = 4;
-        private int ultimateCooldownRate = 10;
-
-        //These numbers are used to start a duration countdown. Until These numbers reach 0 they will change certain stats.
-        private int tacticalStartingDuration = 1; //This starts at 1 so accuracy can reset it's value after Tactical is called.
-
-        private int tacticalDuration = 0;
-
         public WaterGoblin()
-            :base(WaterGoblinHealth, baseDamage, baseDodge, baseBlock, baseAccuracy, false, false)
+            : base()
         {
+            SetBaseStats();
             base.Level = 0;
+            setRates();
+            useDefaultStats();
         }
 
-        public WaterGoblin(int currentHealth, int currentDamage, int[] currentDodge, int currentBlock, int[] currentAccuracy, int currentLevel, int currentTactCooldown, int currentTactDuration, int currentUtilCooldown, int currentUtilDuration, int currentUltCooldown, int currentUltDuration, bool AttemptedToBlock, bool AttempedToDodge)
+        public WaterGoblin(int currentHealth, int currentDamage, int[] currentDodge, int currentBlock, int[] currentAccuracy, int currentLevel, int currentTactCooldown, int currentTactDuration, bool AttemptedToBlock, bool AttempedToDodge)
         : base(currentHealth, currentDamage, currentDodge, currentBlock, currentAccuracy, AttemptedToBlock, AttempedToDodge)
         {
-            base.Level = currentLevel;
-            
+            SetBaseStats();
+            setRates();
+            base.Level = currentLevel;            
             this.tacticalDuration = currentTactDuration;
             base.TacticalCooldown = currentTactCooldown;
-            //Don't really need these but might as well pass them
-            //through since they are in the constructor
-            base.UtilityCooldown = currentUtilCooldown;
-            base.UltimateCooldown = currentUltCooldown;
-            for(int i = 0; i < currentLevel; i++)
-            {
-                //This is to make sure the baseHealth variable matches with the current level.
-                WaterGoblinHealth += 25;
-            }
-            base.baseHealth = WaterGoblinHealth;
-        }
-
-        public override int Accuracy()
-        {
-            return base.Accuracy();
-        }
-
-        public override int Attack()
-        {
-            return base.Attack();
-        }
-
-        public override int AttemptBlock()
-        {
-            return base.AttemptBlock();
-        }
-
-        public override int AttemptDodge()
-        {
-            return base.AttemptDodge();
-        }
-
-        public override int Block()
-        {
-            return base.Block();
-        }
-
-        public override void CooldownRate(int tact, int util, int ult)
-        {
-            base.CooldownRate(tact, util, ult);
-        }
-
-        public override int Dodge()
-        {
-            return base.Dodge();
-        }
-
-        public override void DurationRate(int tact, int util, int ult)
-        {
-            //1's will be passed in normally unless an item affects it.
-            tacticalDuration -= tact;
+            matchLevel(base.Level);
         }
 
         public override void LevelUp()
@@ -127,12 +61,10 @@ namespace GameLogic.Character.Grunts
             baseAccuracy[1] += 5;
         }
 
+        
+
         public override int Tactical()
         {
-            //keep the cooldown going for other abilities
-            base.UtilityCooldown--;
-            base.UltimateCooldown--;
-
             //cooldown is started
             base.TacticalCooldown = tacticalCooldownRate;
             tacticalDuration = tacticalStartingDuration;
@@ -148,16 +80,28 @@ namespace GameLogic.Character.Grunts
             return healBonus;
         }
 
-        public override int Ultimate()
+        public override void SetBaseStats()
         {
-            //No Ultimate
-            return base.Ultimate();
-        }
+            //WaterGoblinHealth and BaseHealth are treated the same. WaterGoblinHealth is just character specific
+            base.baseHealth = 17;
+            base.baseDamage = 3;
+            base.baseDodge[0] = 80;
+            base.baseDodge[1] = 180;
+            base.baseBlock = 1;
+            base.baseAccuracy[0] = 60;
+            base.baseAccuracy[1] = 160;
+    }
 
-        public override int Utility()
+        public override void setRates()
         {
-            //No Utility
-            return base.Utility();
-        }
+
+            //These numbers are used to start the cooldown whenever abilites are activated.
+            base.tacticalCooldownRate = 3;
+
+            //These numbers are used to start a duration countdown. Until These numbers reach 0 they will change certain stats.
+            base.tacticalStartingDuration = 1; //This starts at 1 so accuracy can reset it's value after Tactical is called.
+
+            base.tacticalDuration = 0;
+        }     
     }
 }

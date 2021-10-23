@@ -6,7 +6,7 @@ using System.Text;
 
 namespace GameLogic.Character
 {
-    public class ThrillSeeker : Characters
+    public class ThrillSeeker : Biggie
     {
         //This is the Thrill Seeker Character Class
         //They have high Dodge due to increased acrobatic ability.
@@ -17,76 +17,29 @@ namespace GameLogic.Character
         //Ultimate: Channels their energy and creates 3 Astral Projections of his weapon. (massively lowers dodge during use. Garunteed hit) (triples attack) (Duration: 1 turn) (cooldown: 10 turns)
 
 
-        //ThrillSeekerHealth and baseHealth will be treated the same. ThrillSeekerHealth is just character specific.
-        private static int ThrillSeekerHealth = 100;
-        private static int baseDamage = 2;
-        private static int[] baseDodge = { 60, 160 };
-        private static int baseBlock = 1;
-        private static int[] baseAccuracy = { 80, 180 };
-
-        //This will work in conjuction to abilities to determine how much numbers changed depending on ability
-        
-
-        //These numbers are used to start the cooldown whenever abilites are activated.
-        private int tacticalCooldownRate = 3;
-        private int utilityCooldownRate = 4;
-        private int ultimateCooldownRate = 10;
-
-        //These numbers are used to start a duration countdown. Until These numbers reach 0 they will change certain stats.
-        private int tacticalStartingDuration = 1; //This starts at 1 so accuracy can reset it's value after Tactical is called.
-        private int utilityStartingDuration = 2;
-        private int ultimateStartingDuration = 1;
-
-        private int tacticalDuration = 0;
-        private int utilityDuration = 0;
-        private int ultimateDuration = 0;
-
         public ThrillSeeker()
-            : base(ThrillSeekerHealth, baseDamage, baseDodge, baseBlock, baseAccuracy, false, false)
+            : base()
         {
+            SetBaseStats();
             base.Level = 0;
+            setRates();
+            useDefaultStats();
 
         }
 
         public ThrillSeeker(int currentHealth, int currentDamage, int[] currentDodge, int currentBlock, int[] currentAccuracy, int currentLevel, int currentTactCooldown, int currentTactDuration, int currentUtilCooldown, int currentUtilDuration, int currentUltCooldown, int currentUltDuration, bool AttemptedToBlock, bool AttempedToDodge)
             :base(currentHealth, currentDamage, currentDodge, currentBlock, currentAccuracy, AttemptedToBlock, AttempedToDodge)
         {
+            SetBaseStats();
+            setRates();
             base.Level = currentLevel;
-            base.baseHealth = ThrillSeekerHealth;
             this.tacticalDuration = currentTactDuration;
             base.TacticalCooldown = currentTactCooldown;
             this.utilityDuration = currentUtilDuration;
             base.UtilityCooldown = currentUtilCooldown;
             this.ultimateDuration = currentUltDuration;
             base.UltimateCooldown = currentUltCooldown;
-        }
-
-        public override int Attack()
-        {
-            checkAccuracy();
-            return base.Attack();
-        }
-
-        public override int Block()
-        {
-            return base.Block();
-        }
-
-        public override int AttemptBlock()
-        {
-            return base.AttemptBlock();
-        }
-
-        public override int AttemptDodge()
-        {
-            checkDodge();
-            return base.AttemptDodge();
-        }
-
-        public override int Dodge()
-        {
-            checkDodge();
-            return base.Dodge();
+            matchLevel(base.Level);
         }
 
         public override int Tactical()
@@ -184,21 +137,6 @@ namespace GameLogic.Character
             baseAccuracy[1] += 3;
         }
 
-        public override void CooldownRate(int tact, int util, int ult)
-        {
-            //1's will be passed through normally if nothing is affecting cooldown rate. Otherwise the parameters will be manipulated to change the rate;
-            base.TacticalCooldown -= tact;
-            base.UtilityCooldown -= util;
-            base.UltimateCooldown -= ult;
-        }
-        public override void DurationRate(int tact, int util, int ult)
-        {
-            //1's will be passed through normally if nothing is affecting cooldown rate. Otherwise the parameters will be manipulated to change the rate;
-            tacticalDuration -= tact;
-            utilityDuration -= util;
-            ultimateDuration -= ult;
-        }
-
         private void checkAccuracy()
         {
             //Since Ultimate and Tactical change Accuracy This will check if those are currently in use for every attack
@@ -222,6 +160,34 @@ namespace GameLogic.Character
             {
                 base.dodge = baseDodge;
             }
+        }
+
+        public override void SetBaseStats()
+        {
+            base.baseHealth = 100;
+            base.baseDamage = 2;
+            base.baseDodge[0] = 60;
+            base.baseDodge[1] = 160;
+            base.baseBlock = 1;
+            base.baseAccuracy[0] = 80;
+            base.baseAccuracy[1] = 180;
+        }
+
+        public override void setRates()
+        {
+            //These numbers are used to start the cooldown whenever abilites are activated.
+            base.tacticalCooldownRate = 3;
+            base.utilityCooldownRate = 4;
+            base.ultimateCooldownRate = 10;
+
+            //These numbers are used to start a duration countdown. Until These numbers reach 0 they will change certain stats.
+            base.tacticalStartingDuration = 1; //This starts at 1 so accuracy can reset it's value after Tactical is called.
+            base.utilityStartingDuration = 2;
+            base.ultimateStartingDuration = 1;
+
+            base.tacticalDuration = 0;
+            base.utilityDuration = 0;
+            base.ultimateDuration = 0;
         }
     }
 }

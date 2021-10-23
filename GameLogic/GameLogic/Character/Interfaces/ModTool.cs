@@ -13,56 +13,43 @@ namespace GameLogic.Character.Interfaces
             this.baseComponent = baseComponent;
         }
 
-        public override int Attack()
+        public int Attack()
         {
             return this.baseComponent.Attack();
         }
-        public override int Accuracy()
+        public int Accuracy()
         {
             return this.baseComponent.Accuracy();
         }
 
-        public override int Dodge()
+        public int Dodge()
         {
             return this.baseComponent.Dodge();
         }
 
-        public override int AttemptDodge()
+        public int AttemptDodge()
         {
             return this.baseComponent.Dodge();
         }
 
-        public override int Block()
+        public int Block()
         {
             return this.baseComponent.Block();
         }
 
-        public override int AttemptBlock()
+        public int AttemptBlock()
         {
             return this.baseComponent.Block();
         }
 
-        public override int Tactical()
+        public void CooldownRate(int currentCooldownLeft, int decrementCooldown)
         {
-            return this.baseComponent.Tactical();
+            this.baseComponent.CooldownRate(currentCooldownLeft, decrementCooldown);
         }
 
-        public override int Ultimate()
+        public void DurationRate(int currentDurationLeft, int decrementDuration)
         {
-            return this.baseComponent.Ultimate();
-        }
-
-        public override int Utility()
-        {
-            return this.baseComponent.Utility();
-        }
-        public override void CooldownRate(int tact, int util, int ult)
-        {
-            this.baseComponent.CooldownRate(tact, util, ult);
-        }
-        public override void DurationRate(int tact, int util, int ult)
-        {
-            this.baseComponent.DurationRate(tact, util, ult);
+            this.baseComponent.DurationRate(currentDurationLeft, decrementDuration);
         }
     }
 }
