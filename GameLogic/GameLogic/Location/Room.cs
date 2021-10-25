@@ -1,4 +1,5 @@
 ﻿using GameLogic.Character.Components;
+using GameLogic.Character.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +10,7 @@ namespace GameLogic.Location
     {
         //TODO: Add Character Class
 
-        public Characters Enemy { get; set; }
+        public ICharacter Enemy { get; set; }
 
         //these booleans will be checked before Clear since Clear is only for enemies. 
         //This allows me to just skip any room set up for player commands.

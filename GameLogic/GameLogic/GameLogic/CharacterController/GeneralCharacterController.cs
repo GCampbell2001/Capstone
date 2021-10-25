@@ -1,4 +1,5 @@
 ﻿using GameLogic.Character.Components;
+using GameLogic.Character.Interfaces;
 using GameLogic.GameLogic.ENUMS;
 using GameLogic.GameLogic.Interface;
 using System;
@@ -7,9 +8,9 @@ using System.Text;
 
 namespace GameLogic.GameLogic.Controller
 {
-    public class GeneralCharacterController : IActionHandler
+    public abstract class GeneralCharacterController : IActionHandler
     {
-        public override RoundResult Attack(Characters player, Characters enemy, int importantData)
+        public RoundResult Attack(ICharacter player, ICharacter enemy, int importantData)
         {
             int damage = player.Attack();
             int accuracy = player.Accuracy();
@@ -41,34 +42,87 @@ namespace GameLogic.GameLogic.Controller
             }
         }
 
-        public override RoundResult Block(Characters player, Characters enemy)
+        public RoundResult Block(ICharacter player, ICharacter enemy)
         {
             player.AttemptBlock();
             return RoundResult.TEMPBLOCK;
         }
 
-        public override RoundResult Dodge(Characters player, Characters enemy)
+        public RoundResult Dodge(ICharacter player, ICharacter enemy)
         {
             player.AttemptDodge();
             return RoundResult.TEMPDODGE;
         }
 
-        public override RoundResult Tactical(Characters player, Characters enemy, int importantData)
+        public RoundResult CheckBlock(ICharacter enemy, int HitPoints, int importantData)
         {
-            //This is overriden by Character Specific Controller
+            int armor = enemy.Block();
+            if (HitPoints > armor)
+            {
+                enemy.LowerHealth(HitPoints);
+                importantData = HitPoints;
+                return RoundResult.HIT;
+            }
+            else if (HitPoints < armor)
+            {
+                return RoundResult.BLOCKED;
+            }
+            else if (HitPoints == armor)
+            {
+                HitPoints = HitPoints / 2;
+                enemy.LowerHealth(HitPoints);
+                importantData = HitPoints;
+                return RoundResult.HIT;
+            }
+            else
+            {
+                Console.WriteLine("IActionHandler.cs Line 35 - Problem with CheckBlock Method");
+                Console.WriteLine("No Conditional Met");
+                Console.WriteLine("Enemy Block: " + armor);
+                Console.WriteLine("HitPoints: " + HitPoints);
+                return RoundResult.MISSED;
+            }
+        }
+
+        public virtual RoundResult UserTactical(Biggie player, ICharacter enemy, int importantData)
+        {
+            // User Tactical
+            // Override
+            throw new NotImplementedException();
+        }
+        public virtual RoundResult UserUltimate(Biggie player, ICharacter enemy, int importantData)
+        {
+            // this is meant to be overriden by only the user controller class
             throw new NotImplementedException();
         }
 
-        public override RoundResult Ultimate(Characters player, Characters enemy, int importantData)
+        public virtual RoundResult PCUtility(Biggie player, int importantData)
         {
-            //This is overriden by Character Specific Controller
+            // Utility only ever affect the user so I can make one for bosses and users.
+            // this is also meant to be overriden
             throw new NotImplementedException();
         }
 
-        public override RoundResult Utility(Characters player, Characters enemy, int importantData)
+        public virtual RoundResult BossTactical(Biggie player, Biggie boss, int importantData)
         {
-            //This is overriden by Character Specific Controller
+            // This is the tactical for a boss
+            // this is meant to be overriden
             throw new NotImplementedException();
         }
+
+        public virtual RoundResult BossUltimate(Biggie player, Biggie boss, int importantData)
+        {
+            // This is the ultimate for a boss
+            // this is meant to be overriden
+            throw new NotImplementedException();
+        }
+
+        public virtual RoundResult GruntTactical(Grunt grunt, Biggie player, int importantData)
+        {
+            // This is the tactical for grunts
+            // override
+            throw new NotImplementedException();
+        }
+
     }
 }

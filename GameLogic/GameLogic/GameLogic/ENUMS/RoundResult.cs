@@ -13,7 +13,8 @@ namespace GameLogic.GameLogic.ENUMS
         TEMPBLOCK,
         TEMPDODGE,
         HEALED,
-        BUFFED
+        BUFFED,
+        DEBUFFED
 
 
     }

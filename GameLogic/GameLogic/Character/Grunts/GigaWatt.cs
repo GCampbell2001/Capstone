@@ -19,7 +19,7 @@ namespace GameLogic.Character.Grunts
          * high block
          * medium attack
          *
-         * Tactical: magnitize foe (applies a debuff [item] that lowers the enemies dodge)
+         * Tactical: magnitize foe (applies a debuff [item] that lowers the enemies dodge) (Cooldown: 3 turns)
          * Utility: None because Grunt
          * Ultimate: None because Grunt
          * 

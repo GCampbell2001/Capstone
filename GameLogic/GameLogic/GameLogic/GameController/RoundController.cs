@@ -1,8 +1,11 @@
 ﻿using GameLogic.Character;
 using GameLogic.Character.Components;
+using GameLogic.Character.Interfaces;
 using GameLogic.GameLogic;
 using GameLogic.GameLogic.AI;
+using GameLogic.GameLogic.AI.AIComponents;
 using GameLogic.GameLogic.AI.AIInterface;
+using GameLogic.GameLogic.CharacterController;
 using GameLogic.GameLogic.Controller;
 using GameLogic.GameLogic.ENUMS;
 using GameLogic.GameLogic.Interface;
@@ -17,14 +20,14 @@ namespace GameLogic
     {
         AudioFilePrepare prepare = new AudioFilePrepare();
 
-        public string RunFightCommand(UserInput userInput, Room room, Characters user)
+        public string RunFightCommand(UserInput userInput, Room room, Biggie user)
         {
             /*
              * This method handles what happens when the user is in a fight
              */
 
             RoundResult results;
-            IActionHandler controller;
+            GeneralCharacterController controller;
             string audioFileNames = "";
             switch(user.GetType().Name)
             {
@@ -59,80 +62,84 @@ namespace GameLogic
                     return prepare.AttackFileStyle(userInput, user, room.Enemy);
                 case UserInput.Q:
                     //Tactical
-                    results = controller.Tactical(user, room.Enemy, hitPointData);
+                    results = controller.UserTactical(user, room.Enemy, hitPointData);
                     return prepare.AbilityFileName(user, userInput, room.Enemy, results, hitPointData);
                 case UserInput.W:
                     //Utility
-                    results = controller.Utility(user, room.Enemy, hitPointData);
+                    results = controller.PCUtility(user, hitPointData);
                     return prepare.AbilityFileName(user, userInput, room.Enemy, results, hitPointData);
                 case UserInput.E:
                     //Ultimate
-                    results = controller.Ultimate(user, room.Enemy, hitPointData);
+                    results = controller.UserUltimate(user, room.Enemy, hitPointData);
                     return prepare.AbilityFileName(user, userInput, room.Enemy, results, hitPointData);
                 default:
                     return "ERROR.wav - RoundController Problem with userInput - " + userInput;
             }
         }
 
-        public string EnemyTurn(Room room, Characters user)
+        public string GruntTurn(Grunt grunt, Biggie user)
         {
             /*
              * This method handles enemy's turns in fights
              */
 
             RoundResult results;
-            IActionHandler controller;
+            GeneralCharacterController controller;
             IAI ai;
             int hitPointData = 0;
             string audioFileNames = "";
-            switch (room.Enemy.GetType().Name)
+            switch (grunt.GetType().Name)
             {
                 case "WaterGoblin":
                     controller = new WaterController();
                     ai = new WaterGoblinAI();
+                    break;
+                case "Sqwaubler":
+                    controller = new SqwaublerController();
+                    ai = new SqwaublerAI();
+                    break;
+                case "GigaWatt":
+                    controller = new WattController();
+                    ai = new GigAI();
+                    break;
+                case "JimKin":
+                    controller = new JimController();
+                    ai = new JimAI();
                     break;
                 default:
                     controller = new WaterController();
                     ai = new WaterGoblinAI();
                     break;
             }
-            UserInput enemyMove = ai.MakeMove(room.Enemy);
+            UserInput enemyMove = ai.MakeMove(grunt);
             switch (enemyMove)
             {
                 case UserInput.A:
                     //Attack
-                    results = controller.Attack(room.Enemy, user, hitPointData);
-                    audioFileNames = prepare.AttackFileStyle(enemyMove, room.Enemy, user);
-                    audioFileNames += "|" + prepare.ResultFileStyle(results, user, room.Enemy);
+                    results = controller.Attack(grunt, user, hitPointData);
+                    audioFileNames = prepare.AttackFileStyle(enemyMove, grunt, user);
+                    audioFileNames += "|" + prepare.ResultFileStyle(results, user, grunt);
                     audioFileNames += "|" + prepare.HitpointFileStyle(hitPointData);
                     return audioFileNames;
                 case UserInput.S:
                     //Block
-                    results = controller.Block(room.Enemy, user);
-                    return prepare.AttackFileStyle(enemyMove, room.Enemy, user);
+                    results = controller.Block(grunt, user);
+                    return prepare.AttackFileStyle(enemyMove, grunt, user);
                 case UserInput.D:
                     //Dodge
-                    results = controller.Dodge(room.Enemy, user);
-                    return prepare.AttackFileStyle(enemyMove, room.Enemy, user);
+                    results = controller.Dodge(grunt, user);
+                    return prepare.AttackFileStyle(enemyMove, grunt, user);
                 case UserInput.Q:
                     //Tactical
-                    results = controller.Tactical(room.Enemy, user, hitPointData);
-                    return prepare.AbilityFileName(room.Enemy, enemyMove, user, results, hitPointData);
-                case UserInput.W:
-                    //Utility
-                    results = controller.Utility(room.Enemy, user, hitPointData);
-                    return prepare.AbilityFileName(room.Enemy, enemyMove, user, results, hitPointData);
-                case UserInput.E:
-                    //Ultimate
-                    results = controller.Ultimate(room.Enemy, user, hitPointData);
-                    return prepare.AbilityFileName(room.Enemy, enemyMove, user, results, hitPointData);
+                    results = controller.GruntTactical(grunt, user, hitPointData);
+                    return prepare.AbilityFileName(grunt, enemyMove, user, results, hitPointData);
                 default:
                     return "ERROR.wav - RoundController Problem with enemyMove - " + enemyMove;
             }
 
         }
 
-        private string ResultFileStyle(RoundResult result, Characters enemy)
+        private string ResultFileStyle(RoundResult result, ICharacter enemy)
         {
             switch (result)
             {

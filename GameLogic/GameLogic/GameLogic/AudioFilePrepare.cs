@@ -1,4 +1,5 @@
 ﻿using GameLogic.Character.Components;
+using GameLogic.Character.Interfaces;
 using GameLogic.GameLogic.ENUMS;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace GameLogic.GameLogic
         // As of 10/22/2021 12:06 P.M. -
         // I plan on audio stuff for when the player wants an update not in here.
 
-        public string AttackFileStyle(UserInput action, Characters character, Characters enemy)
+        public string AttackFileStyle(UserInput action, ICharacter character, ICharacter enemy)
         {
             switch(action)
             {
@@ -39,7 +40,7 @@ namespace GameLogic.GameLogic
             }
         }
 
-        public string ResultFileStyle(RoundResult result, Characters enemy, Characters attacker)
+        public string ResultFileStyle(RoundResult result, ICharacter enemy, ICharacter attacker)
         {
             // This method is to prepare the file name based on whether or not the attack had hit the target
 
@@ -64,7 +65,7 @@ namespace GameLogic.GameLogic
             return hitpointNumber;
         }
 
-        public string AbilityFileName(Characters attacker, UserInput ability, Characters enemy, RoundResult result, int hitpoints)
+        public string AbilityFileName(ICharacter attacker, UserInput ability, ICharacter enemy, RoundResult result, int hitpoints)
         {
             /*
              * This compiles the string for all the audio files as it goes down. First determining wich ability to call for, then if it has a result

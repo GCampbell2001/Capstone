@@ -1,4 +1,6 @@
-﻿using GameLogic.Character.Components;
+﻿using GameLogic.Character;
+using GameLogic.Character.Components;
+using GameLogic.Character.Interfaces;
 using GameLogic.GameLogic.ENUMS;
 using GameLogic.GameLogic.Interface;
 using System;
@@ -9,22 +11,8 @@ namespace GameLogic.GameLogic.Controller
 {
     public class ThrillController : GeneralCharacterController
     {
-        public override RoundResult Attack(Characters player, Characters enemy, int importantData)
-        {
-            return base.Attack(player, enemy, importantData);
-        }
 
-        public override RoundResult Block(Characters player, Characters enemy)
-        {
-            return base.Block(player, enemy);
-        }
-
-        public override RoundResult Dodge(Characters player, Characters enemy)
-        {
-            return base.Dodge(player, enemy);
-        }
-
-        public override RoundResult Tactical(Characters player, Characters enemy, int importantData)
+        public override RoundResult UserTactical(Biggie player, ICharacter enemy, int importantData)
         {
             int daggerDamage = player.Tactical();
             int daggerAccuracy = player.Accuracy();
@@ -54,16 +42,13 @@ namespace GameLogic.GameLogic.Controller
 
             
         }
-
-        public override RoundResult Ultimate(Characters player, Characters enemy, int importantData)
+        public override RoundResult UserUltimate(Biggie player, ICharacter enemy, int importantData)
         {
-            //No need to check dodge and accuracy since this attack is a guaranteed hit
             int ghostDamage = player.Ultimate();
             return CheckBlock(enemy, ghostDamage, importantData);
-
         }
 
-        public override RoundResult Utility(Characters player, Characters enemy, int importantData)
+        public override RoundResult PCUtility(Biggie player, int importantData)
         {
             player.Utility();
             return RoundResult.CRITICAL;

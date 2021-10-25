@@ -18,7 +18,6 @@ namespace GameLogic.Character.Interfaces
         public abstract void setRates();
         public abstract void matchLevel(int level);
         public abstract void useDefaultStats();
-
-
+        public abstract void LowerHealth(int damageTaken);
     }
 }

@@ -6,48 +6,49 @@ namespace GameLogic.Character.Interfaces
 {
     public abstract class ModTool : CharacterComponent
     {
-        private CharacterComponent baseComponent;
+        protected CharacterComponent baseComponent;
+        public bool Debuff;
 
         public ModTool(CharacterComponent baseComponent)
         {
             this.baseComponent = baseComponent;
         }
 
-        public int Attack()
+        public virtual int Attack()
         {
             return this.baseComponent.Attack();
         }
-        public int Accuracy()
+        public virtual int Accuracy()
         {
             return this.baseComponent.Accuracy();
         }
 
-        public int Dodge()
+        public virtual int Dodge()
         {
             return this.baseComponent.Dodge();
         }
 
-        public int AttemptDodge()
+        public virtual int AttemptDodge()
         {
             return this.baseComponent.Dodge();
         }
 
-        public int Block()
+        public virtual int Block()
         {
             return this.baseComponent.Block();
         }
 
-        public int AttemptBlock()
+        public virtual int AttemptBlock()
         {
             return this.baseComponent.Block();
         }
 
-        public void CooldownRate(int currentCooldownLeft, int decrementCooldown)
+        public virtual void CooldownRate(int currentCooldownLeft, int decrementCooldown)
         {
             this.baseComponent.CooldownRate(currentCooldownLeft, decrementCooldown);
         }
 
-        public void DurationRate(int currentDurationLeft, int decrementDuration)
+        public virtual void DurationRate(int currentDurationLeft, int decrementDuration)
         {
             this.baseComponent.DurationRate(currentDurationLeft, decrementDuration);
         }
