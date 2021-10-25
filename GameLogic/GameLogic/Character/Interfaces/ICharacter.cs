@@ -10,7 +10,7 @@ namespace GameLogic.Character.Interfaces
          * This is because all characters have a Tactical
          * They also have a LevelUp method();
          */
-
+        
         public abstract int Tactical();
 
         public abstract void LevelUp();
@@ -19,5 +19,9 @@ namespace GameLogic.Character.Interfaces
         public abstract void matchLevel(int level);
         public abstract void useDefaultStats();
         public abstract void LowerHealth(int damageTaken);
+
+        public abstract List<ModTool> GetItems();
+
+        public abstract void AddItem(ModTool item);
     }
 }

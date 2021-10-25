@@ -1,4 +1,5 @@
 ﻿using GameLogic.Character.Components;
+using GameLogic.Character.Decorators;
 using GameLogic.Character.Interfaces;
 using GameLogic.GameLogic.ENUMS;
 using GameLogic.GameLogic.Interface;
@@ -12,6 +13,21 @@ namespace GameLogic.GameLogic.Controller
     {
         public RoundResult Attack(ICharacter player, ICharacter enemy, int importantData)
         {
+            /*
+             * This specific method is supposed to be overriden
+             * The Controller class will determine if the character has items and if it does generate's the stack so that it can be passed around.
+             */
+
+            throw new NotImplementedException();
+        }
+        public virtual RoundResult AttackWithItems(CharacterComponent player, CharacterComponent enemy, int importantData)
+        {
+
+
+            throw new NotImplementedException();
+        }
+        public virtual RoundResult AttackWithoutItems(ICharacter player, ICharacter enemy, int importantData)
+        {
             int damage = player.Attack();
             int accuracy = player.Accuracy();
 
@@ -20,12 +36,12 @@ namespace GameLogic.GameLogic.Controller
             if (accuracy > (enemyDodgeAttempt + 40))
             {
                 damage = damage * 2;
-                CheckBlock(enemy, damage, importantData);
+                CheckBlockWithoutItems(enemy, damage, importantData);
                 return RoundResult.CRITICAL;
             }
             else if (accuracy >= enemyDodgeAttempt)
             {
-                return CheckBlock(enemy, damage, importantData);
+                return CheckBlockWithoutItems(enemy, damage, importantData);
 
             }
             else if (accuracy < enemyDodgeAttempt)
@@ -54,7 +70,7 @@ namespace GameLogic.GameLogic.Controller
             return RoundResult.TEMPDODGE;
         }
 
-        public RoundResult CheckBlock(ICharacter enemy, int HitPoints, int importantData)
+        public RoundResult CheckBlockWithoutItems(ICharacter enemy, int HitPoints, int importantData)
         {
             int armor = enemy.Block();
             if (HitPoints > armor)

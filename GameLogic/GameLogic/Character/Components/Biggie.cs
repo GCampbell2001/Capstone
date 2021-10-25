@@ -152,6 +152,16 @@ namespace GameLogic.Character.Components
             }
         }
 
+        public List<ModTool> GetItems()
+        {
+            return items;
+        }
+
+        public void AddItem(ModTool item)
+        {
+            items.Add(item);
+        }
+
         //These methods are all suppsoed to be overwritten.
         public abstract void SetBaseStats();
         public abstract void LevelUp();
@@ -161,6 +171,6 @@ namespace GameLogic.Character.Components
 
         public abstract int Ultimate();
 
-        public abstract void setRates();        
+        public abstract void setRates();
     }
 }

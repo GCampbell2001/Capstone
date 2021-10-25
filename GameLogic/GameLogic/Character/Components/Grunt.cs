@@ -14,6 +14,8 @@ namespace GameLogic.Character.Components
          * It also adds the Utility and Ultimate methods. Those 2 and tactical will be left empty to be overriden by the character specific classes.
          */
 
+        public List<ModTool> items;
+
         public int baseHealth { get; set; }
         protected int health;
         protected int damage;
@@ -137,6 +139,16 @@ namespace GameLogic.Character.Components
             {
                 LevelUp();
             }
+        }
+
+        public List<ModTool> GetItems()
+        {
+            return items;
+        }
+
+        public void AddItem(ModTool item)
+        {
+            items.Add(item);
         }
 
         //These methods are all suppsoed to be overwritten.

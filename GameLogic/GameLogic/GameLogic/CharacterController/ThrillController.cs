@@ -11,6 +11,25 @@ namespace GameLogic.GameLogic.Controller
 {
     public class ThrillController : GeneralCharacterController
     {
+        public RoundResult Attack(ICharacter player, ICharacter enemy, int importantData)
+        {
+            /* 
+             * This method determines if the characters have any items.
+             * If they do It creates the stack and calls the appropreite attack method.
+             */
+
+            List<ModTool> playerItems = player.GetItems();
+            if(playerItems.Count <= 0)
+            {
+                return this.AttackWithoutItems(player, enemy, importantData);
+            } else
+            {
+
+            }
+
+            return this.Attack(player, enemy, importantData);
+        }
+        
 
         public override RoundResult UserTactical(Biggie player, ICharacter enemy, int importantData)
         {
@@ -22,11 +41,11 @@ namespace GameLogic.GameLogic.Controller
             if(daggerAccuracy > (enemyDodgeAttempt + 40))
             {
                 daggerDamage = daggerDamage * 2;
-                CheckBlock(enemy, daggerDamage, importantData);
+                CheckBlockWithoutItems(enemy, daggerDamage, importantData);
                 return RoundResult.CRITICAL;
             } else if(daggerAccuracy >= enemyDodgeAttempt)
             {
-                return CheckBlock(enemy, daggerDamage, importantData);
+                return CheckBlockWithoutItems(enemy, daggerDamage, importantData);
 
             } else if(daggerAccuracy < enemyDodgeAttempt)
             {
@@ -45,7 +64,7 @@ namespace GameLogic.GameLogic.Controller
         public override RoundResult UserUltimate(Biggie player, ICharacter enemy, int importantData)
         {
             int ghostDamage = player.Ultimate();
-            return CheckBlock(enemy, ghostDamage, importantData);
+            return CheckBlockWithoutItems(enemy, ghostDamage, importantData);
         }
 
         public override RoundResult PCUtility(Biggie player, int importantData)
