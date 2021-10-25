@@ -10,27 +10,7 @@ using System.Text;
 namespace GameLogic.GameLogic.Controller
 {
     public class ThrillController : GeneralCharacterController
-    {
-        public RoundResult Attack(ICharacter player, ICharacter enemy, int importantData)
-        {
-            /* 
-             * This method determines if the characters have any items.
-             * If they do It creates the stack and calls the appropreite attack method.
-             */
-
-            List<ModTool> playerItems = player.GetItems();
-            if(playerItems.Count <= 0)
-            {
-                return this.AttackWithoutItems(player, enemy, importantData);
-            } else
-            {
-
-            }
-
-            return this.Attack(player, enemy, importantData);
-        }
-        
-
+    {  
         public override RoundResult UserTactical(Biggie player, ICharacter enemy, int importantData)
         {
             int daggerDamage = player.Tactical();

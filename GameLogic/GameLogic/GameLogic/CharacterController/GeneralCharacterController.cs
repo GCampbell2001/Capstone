@@ -14,14 +14,47 @@ namespace GameLogic.GameLogic.Controller
         public RoundResult Attack(ICharacter player, ICharacter enemy, int importantData)
         {
             /*
-             * This specific method is supposed to be overriden
-             * The Controller class will determine if the character has items and if it does generate's the stack so that it can be passed around.
+             * Determine if the player has items. Then choose which attack method to use from that
              */
+            if(player.GetMainItem() == null)
+            {
+                return this.AttackWithoutItems(player, enemy, importantData);
+            } else
+            {
+                return this.AttackWithItems(player.GetMainItem(), enemy, importantData);
+            }
 
-            throw new NotImplementedException();
         }
         public virtual RoundResult AttackWithItems(CharacterComponent player, CharacterComponent enemy, int importantData)
         {
+            int damage = player.Attack();
+            int accuracy = player.Accuracy();
+
+            int enemyDodgeAttempt = enemy.Dodge();
+
+            if (accuracy > (enemyDodgeAttempt + 40))
+            {
+                damage = damage * 2;
+                CheckBlockWithItems(enemy, damage, importantData);
+                return RoundResult.CRITICAL;
+            }
+            else if (accuracy >= enemyDodgeAttempt)
+            {
+                return CheckBlockWithItems(enemy, damage, importantData);
+
+            }
+            else if (accuracy < enemyDodgeAttempt)
+            {
+                return RoundResult.MISSED;
+
+            }
+            else
+            {
+                Console.WriteLine("GeneralCharacterController.cs - Line 38 \r\nNo Conditional Met");
+                Console.WriteLine("Player Accuracy: " + accuracy);
+                Console.WriteLine("Enemy Dodge: " + enemyDodgeAttempt);
+                return RoundResult.MISSED;
+            }
 
 
             throw new NotImplementedException();
@@ -71,6 +104,36 @@ namespace GameLogic.GameLogic.Controller
         }
 
         public RoundResult CheckBlockWithoutItems(ICharacter enemy, int HitPoints, int importantData)
+        {
+            int armor = enemy.Block();
+            if (HitPoints > armor)
+            {
+                enemy.LowerHealth(HitPoints);
+                importantData = HitPoints;
+                return RoundResult.HIT;
+            }
+            else if (HitPoints < armor)
+            {
+                return RoundResult.BLOCKED;
+            }
+            else if (HitPoints == armor)
+            {
+                HitPoints = HitPoints / 2;
+                enemy.LowerHealth(HitPoints);
+                importantData = HitPoints;
+                return RoundResult.HIT;
+            }
+            else
+            {
+                Console.WriteLine("IActionHandler.cs Line 35 - Problem with CheckBlock Method");
+                Console.WriteLine("No Conditional Met");
+                Console.WriteLine("Enemy Block: " + armor);
+                Console.WriteLine("HitPoints: " + HitPoints);
+                return RoundResult.MISSED;
+            }
+        }
+
+        public RoundResult CheckBlockWithItems(CharacterComponent enemy, int HitPoints, int importantData)
         {
             int armor = enemy.Block();
             if (HitPoints > armor)

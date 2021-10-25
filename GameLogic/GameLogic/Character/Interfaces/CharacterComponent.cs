@@ -14,5 +14,6 @@ namespace GameLogic.Character.Interfaces
         public int AttemptBlock();
         public void CooldownRate(int currentCooldownLeft, int decrementCooldown);
         public void DurationRate(int currentDurationLeft, int decrementDuration);
+        public abstract void LowerHealth(int damageTaken);
     }
 }

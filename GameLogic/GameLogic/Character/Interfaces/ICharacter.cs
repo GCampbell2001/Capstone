@@ -18,9 +18,8 @@ namespace GameLogic.Character.Interfaces
         public abstract void setRates();
         public abstract void matchLevel(int level);
         public abstract void useDefaultStats();
-        public abstract void LowerHealth(int damageTaken);
-
-        public abstract List<ModTool> GetItems();
+        public abstract ModTool GetMainItem();
+        public abstract void SetMainItem(ModTool item);
 
         public abstract void AddItem(ModTool item);
     }
