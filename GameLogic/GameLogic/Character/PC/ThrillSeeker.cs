@@ -14,7 +14,7 @@ namespace GameLogic.Character
         //Low Attack but accurate. They are less likely to miss their target
         //Tactical: They throw a knife to do more damage than normal (very low chance to miss) (cooldown: 3 turns)
         //Utility: They use their hook to manuever around the field (massively increases Dodge) (Duration: 2 turns) (cooldown: 3 turns)
-        //Ultimate: Channels their energy and creates 3 Astral Projections of his weapon. (massively lowers dodge during use. Garunteed hit) (triples attack) (Duration: 1 turn) (cooldown: 10 turns)
+        //Ultimate: Channels their energy and creates 5 Astral Projections of his weapon. (massively lowers dodge during use. Garunteed hit) (5 * attack) (Duration: 1 turn) (cooldown: 10 turns)
 
 
         public ThrillSeeker()
@@ -40,13 +40,14 @@ namespace GameLogic.Character
             this.ultimateDuration = currentUltDuration;
             base.UltimateCooldown = currentUltCooldown;
             matchLevel(base.Level);
+            checkAccuracy();
+            checkDodge();
         }
 
         public override int Tactical()
         {
             //keep the cooldown going for other abilities
-            base.UtilityCooldown--;
-            base.UltimateCooldown--;
+            Cooldown();
 
             //cooldown is started
             base.TacticalCooldown = tacticalCooldownRate;
@@ -83,8 +84,7 @@ namespace GameLogic.Character
         public override int Ultimate()
         {
             //keep the cooldown going for other abilities
-            base.UtilityCooldown--;
-            base.TacticalCooldown--;
+            Cooldown();
 
             //cooldown is started
             base.UltimateCooldown = ultimateCooldownRate;
@@ -99,14 +99,13 @@ namespace GameLogic.Character
             //base.accuracy[1] += 25;
 
             //Damage is Tripled
-            return Attack() * 3;
+            return Attack() * 5;
         }
 
         public override int Utility()
         {
             //keep the cooldown going for other abilities
-            base.TacticalCooldown--;
-            base.UltimateCooldown--;
+            Cooldown();
 
             //cooldown is started
             base.UtilityCooldown = utilityCooldownRate;
@@ -178,7 +177,7 @@ namespace GameLogic.Character
             //These numbers are used to start the cooldown whenever abilites are activated.
             base.tacticalCooldownRate = 3;
             base.utilityCooldownRate = 4;
-            base.ultimateCooldownRate = 10;
+            base.ultimateCooldownRate = 6;
 
             //These numbers are used to start a duration countdown. Until These numbers reach 0 they will change certain stats.
             base.tacticalStartingDuration = 1; //This starts at 1 so accuracy can reset it's value after Tactical is called.

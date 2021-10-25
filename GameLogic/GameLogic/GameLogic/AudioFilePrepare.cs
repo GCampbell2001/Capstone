@@ -101,6 +101,9 @@ namespace GameLogic.GameLogic
                 case RoundResult.MISSED:
                     finalString += "|Missed";
                     break;
+                //case RoundResult.HEALED:
+                //    finalString += "|Healed";
+                //    break;
             }
             if(hitpoints != 0)
             {
