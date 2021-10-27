@@ -37,6 +37,9 @@ namespace GameLogic
                 case "Tank":
                     controller = new TankController();
                     break;
+                case "Brawler":
+                    controller = new BrawlerController();
+                    break;
                 default:
                     controller = new ThrillController();
                     break;

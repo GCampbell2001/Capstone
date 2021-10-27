@@ -137,6 +137,11 @@ namespace GameLogic.Character.Components
             health -= damageTaken;
         }
 
+        public void raiseHealth(int healFor)
+        {
+            health += healFor;
+        }
+
         public void useDefaultStats()
         {
             this.damage = this.baseDamage;
