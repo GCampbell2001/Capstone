@@ -2,6 +2,7 @@
     {
         "location" : "G4",
         "level" : 1,
+        "enemy": "none",
         "boss" : false,
         "item" : false,
         "heals" : false,
@@ -160,6 +161,8 @@
     },
     {
         "location" : "E1",
+        "level" : 1,
+        "enemy": "none",
         "boss" : false,
         "item" : false,
         "heals": true,
@@ -328,6 +331,7 @@
     {
         "location" : "C2",
         "level" : 1,
+        "enemy": "none",
         "boss" : false,
         "item" : false,
         "heals" : true,
@@ -385,6 +389,7 @@
     {
         "location" : "C7",
         "level" : 1,
+        "enemy": "none",
         "boss" : false,
         "item" : false,
         "heals" : true,
@@ -441,6 +446,7 @@
     {
         "location" : "B5",
         "level" : 1,
+        "enemy": "none",
         "boss" : false,
         "item" : false,
         "heals" : true,
@@ -536,6 +542,7 @@
     {
         "location" : "A7",
         "level" : 1,
+        "enemy": "none",
         "boss" : false,
         "item" : true,
         "tool" : "Goggles",
@@ -658,6 +665,7 @@
     {
         "location" : "F4",
         "level" : 2,
+        "enemy": "none",
         "boss" : false,
         "item" : false,
         "heals" : true,
@@ -792,6 +800,7 @@
     {
         "location" : "D2",
         "level" : 2,
+        "enemy": "none",
         "boss" : false,
         "item" : false,
         "heals" : false,
@@ -826,6 +835,7 @@
     {
         "location" : "D5",
         "level" : 2,
+        "enemy": "none",
         "boss" : false,
         "item" : false,
         "heals" : true,
@@ -892,6 +902,7 @@
     {
         "location" : "C4",
         "level" : 2,
+        "enemy": "none",
         "boss" : false,
         "item" : true,
         "tool" : "Amulet",
@@ -925,6 +936,7 @@
     {
         "location" : "C7",
         "level" : 2,
+        "enemy": "none",
         "boss" : false,
         "item" : false,
         "heals" : true,
@@ -1045,6 +1057,7 @@
     {
         "location" : "A4",
         "level" : 2,
+        "enemy": "none",
         "boss" : false,
         "item" : false,
         "heals" : true,
@@ -1198,6 +1211,7 @@
     {
         "location" : "F4",
         "level" : 3,
+        "enemy": "none",
         "boss" : false,
         "item" : false,
         "heals" : true,
@@ -1351,6 +1365,7 @@
     {
         "location" : "D4",
         "level" : 3,
+        "enemy": "none",
         "boss" : false,
         "item" : false,
         "heals" : false,
@@ -1386,6 +1401,7 @@
     {
         "location" : "D7",
         "level" : 3,
+        "enemy": "none",
         "boss" : false,
         "item" : false,
         "heals" : true,
@@ -1395,6 +1411,7 @@
     {
         "location" : "C1",
         "level" : 3,
+        "enemy": "none",
         "boss" : false,
         "item" : false,
         "heals" : true,
@@ -1550,6 +1567,7 @@
     {
         "location" : "A1",
         "level" : 3,
+        "enemy": "none",
         "boss" : false,
         "item" : true,
         "tool" : "Watch",
@@ -1615,6 +1633,7 @@
     {
         "location" : "A7",
         "level" : 3,
+        "enemy": "none",
         "boss" : false,
         "item" : true,
         "tool" : "Hat",

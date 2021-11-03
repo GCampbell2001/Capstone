@@ -32,6 +32,11 @@ namespace SignalRChat.Hubs
 
         }
 
+
+        /*
+         * TODO
+         * Make Python Application to talk to this hub that Sends the Wav file Already turned to Array
+         */
         private byte[] WavToBitArray(string wavFilePath)
         {
             byte[] wavBitArray;
@@ -41,20 +46,6 @@ namespace SignalRChat.Hubs
                 wavFileStream.Read(wavBitArray, 0, (int)wavFileStream.Length);
             }
             return wavBitArray;
-        }
-
-        private  byte[] CreateHeadersArray(byte[] bitArray, int StartingIndexOfDataChunk)
-        {
-            byte[] onlyHeaders = new byte[StartingIndexOfDataChunk];
-            Array.Copy(bitArray, 0, onlyHeaders, 0, StartingIndexOfDataChunk);
-            return onlyHeaders;
-        }
-
-        private  byte[] CreateAudioArray(byte[] bitArray, int StartingIndexOfDataChunk)
-        {
-            byte[] onlyAudio = new byte[bitArray.Length - StartingIndexOfDataChunk];
-            Array.Copy(bitArray, StartingIndexOfDataChunk, onlyAudio, 0, bitArray.Length - StartingIndexOfDataChunk);
-            return onlyAudio;
         }
     
         

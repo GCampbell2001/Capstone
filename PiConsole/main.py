@@ -43,7 +43,8 @@ hub_connection = HubConnectionBuilder()\
 hub_connection.on_open(lambda: print("connection opened and handshake received ready to send messages"))
 hub_connection.on_close(lambda: print("connection closed"))
 
-hub_connection.on("RecieveAudio", play_message)
+# hub_connection.on("RecieveAudio", play_message)
+hub_connection.on("ReceiveMessage", print)
 
 hub_connection.start()
 
@@ -52,18 +53,24 @@ message = None
 
 # Do login
 
+# while message != "exit()":
+#     message = input(">> ")
+#     if message is not None and message != "" and message != "exit()":
+#         hub_connection.send("SendAudio", [])
+#         print("I'M SENDING HERE")
+#         print("I'M SENDING HERE")
+#         print("I'M SENDING HERE")
+#     else:
+#         try:
+#             os.remove("testing.wav")
+#         finally:
+#             print("")
+
 while message != "exit()":
     message = input(">> ")
     if message is not None and message != "" and message != "exit()":
-        hub_connection.send("SendAudio", [])
+        hub_connection.send("SendMessage", [username, message])
         print("I'M SENDING HERE")
-        print("I'M SENDING HERE")
-        print("I'M SENDING HERE")
-    else:
-        try:
-            os.remove("testing.wav")
-        finally:
-            print("")
 
 
 hub_connection.stop()
