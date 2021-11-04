@@ -21,14 +21,14 @@ namespace GameLogic.Character.Components
         public int baseHealth { get; set; }
         protected int health;
         protected int damage;
-        protected int[] dodge;
+        protected int[] dodge = { 0, 0 };
         protected int block;
-        protected int[] accuracy;
+        protected int[] accuracy = { 0, 0 };
 
         protected int baseDamage;
-        protected int[] baseDodge;
+        protected int[] baseDodge = { 0, 0 };
         protected int baseBlock;
-        protected int[] baseAccuracy;
+        protected int[] baseAccuracy = { 0, 0 };
 
 
         public int AbilityUse;
