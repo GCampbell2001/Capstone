@@ -47,7 +47,6 @@ C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\GameServer.dll
 C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\GameServer.pdb
 C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\GameServer.Views.dll
 C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\GameServer.Views.pdb
-C:\Users\Matthew\Documents\Capstone\API\obj\Debug\netcoreapp3.1\GameServer.csprojAssemblyReference.cache
 C:\Users\Matthew\Documents\Capstone\API\obj\Debug\netcoreapp3.1\GameServer.AssemblyInfoInputs.cache
 C:\Users\Matthew\Documents\Capstone\API\obj\Debug\netcoreapp3.1\GameServer.AssemblyInfo.cs
 C:\Users\Matthew\Documents\Capstone\API\obj\Debug\netcoreapp3.1\GameServer.csproj.CoreCompileInputs.cache
@@ -104,3 +103,19 @@ C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\Microsoft.Identi
 C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\snappy32.dll
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\snappy64.dll
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\libzstd.dll
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\DnsClient.dll
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\MongoDB.Bson.dll
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\MongoDB.Driver.dll
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\MongoDB.Driver.Core.dll
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\MongoDB.Libmongocrypt.dll
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\SharpCompress.dll
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\runtimes\win\native\libzstd.dll
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\runtimes\win\native\snappy32.dll
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\runtimes\win\native\snappy64.dll
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\runtimes\linux\native\libmongocrypt.so
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\runtimes\win\native\mongocrypt.dll

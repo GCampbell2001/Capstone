@@ -91,7 +91,7 @@ namespace GameLogic
 
             RoundResult results;
             GeneralCharacterController controller;
-            IAI ai;
+            GruntAI ai;
             int hitPointData = 0;
             string audioFileNames = "";
             switch (grunt.GetType().Name)

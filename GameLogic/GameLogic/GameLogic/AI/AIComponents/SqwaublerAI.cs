@@ -1,4 +1,5 @@
 ﻿using GameLogic.Character.Components;
+using GameLogic.Character.Interfaces;
 using GameLogic.GameLogic.AI.AIInterface;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace GameLogic.GameLogic.AI.AIComponents
 {
-    public class SqwaublerAI : IAI
+    public class SqwaublerAI : GruntAI
     {
         /*
          * Squabler is meant to be annoying. Their tactical helps achieve that
@@ -17,7 +18,7 @@ namespace GameLogic.GameLogic.AI.AIComponents
          * there
          */
 
-        public UserInput MakeMove(Characters character)
+        public UserInput MakeMove(Grunt character)
         {
             Random generator = new Random();
 

@@ -1,4 +1,5 @@
 ﻿using GameLogic.Character.Components;
+using GameLogic.Character.Interfaces;
 using GameLogic.GameLogic.AI.AIInterface;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace GameLogic.GameLogic.AI.AIComponents
 {
-    public class JimAI : IAI
+    public class JimAI : GruntAI
     { 
         /* JimKin's whole things is doubling in size. This however also doubles
          * his attack so he needs to handled quickly. I'll start by making the chances 
@@ -15,7 +16,7 @@ namespace GameLogic.GameLogic.AI.AIComponents
          */
 
 
-        public UserInput MakeMove(Characters character)
+        public UserInput MakeMove(Grunt character)
         {
             Random generator = new Random();
 

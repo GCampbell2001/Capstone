@@ -6,9 +6,9 @@ using System.Text;
 
 namespace GameLogic.GameLogic.AI.AIInterface
 {
-    public interface IAI
+    public interface GruntAI
     {
-        public UserInput MakeMove(ICharacter character);
+        public UserInput MakeMove(Grunt character);
 
 
     }

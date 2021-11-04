@@ -1,4 +1,5 @@
 ﻿using GameLogic.Character.Components;
+using GameLogic.Character.Interfaces;
 using GameLogic.GameLogic.AI.AIInterface;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace GameLogic.GameLogic.AI.AIComponents
 {
-    public class GigAI : IAI
+    public class GigAI : GruntAI
     {
         /*
          * GigaWatt doesn't move much but has a high block. He also has nodge
@@ -14,7 +15,7 @@ namespace GameLogic.GameLogic.AI.AIComponents
          * To make the fight more fair I'll make the chances of him choosing
          * to block lower than using his tactical or attacking.
          */
-        public UserInput MakeMove(Characters character)
+        public UserInput MakeMove(Grunt character)
         {
             Random generator = new Random();
 

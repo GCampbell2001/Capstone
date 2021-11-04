@@ -52,5 +52,10 @@ namespace GameLogic.Character.Interfaces
         {
             this.baseComponent.DurationRate(currentDurationLeft, decrementDuration);
         }
+
+        public void LowerHealth(int damageTaken)
+        {
+            this.baseComponent.LowerHealth(damageTaken);
+        }
     }
 }

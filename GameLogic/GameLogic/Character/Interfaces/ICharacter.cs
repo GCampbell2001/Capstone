@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -20,7 +21,7 @@ namespace GameLogic.Character.Interfaces
         public abstract void useDefaultStats();
         public abstract ModTool GetMainItem();
         public abstract void SetMainItem(ModTool item);
-
         public abstract void AddItem(ModTool item);
+        public abstract JObject ToJSON();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using GameLogic.Character.Interfaces;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -31,6 +32,12 @@ namespace GameLogic.Character.Components
 
 
         public int AbilityUse;
+
+        internal int GetHealth()
+        {
+            return this.health;
+        }
+
         public int TacticalCooldown;
 
         public bool AttemptedToBlock;
@@ -157,11 +164,24 @@ namespace GameLogic.Character.Components
             items.Add(item);
         }
 
+        public JObject ToJSON()
+        {
+            string final = "{ class : " + this.GetType().ToString() + ", level : "
+                + this.Level + ", health : " + this.health + ", damage : " + this.damage
+                + ", dodge : [" + this.dodge[0] + ", " + this.dodge[1] + "], block : " +
+                this.block + ", accuracy : [" + this.accuracy[0] + ", " + this.accuracy[1]
+                + "], tactCooldown : " + this.TacticalCooldown + ", attemptDodge : " + AttemptedToDodge
+                + ", attemptBlock : " + AttemptedToBlock + "}";
+            return JObject.Parse(final);
+        }
+
         //These methods are all suppsoed to be overwritten.
         public abstract void SetBaseStats();
         public abstract void LevelUp();
         public abstract int Tactical();
 
         public abstract void setRates();
+
+        
     }
 }

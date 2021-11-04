@@ -1,5 +1,6 @@
 ﻿using GameLogic.Character.Components;
 using GameLogic.Character.Grunts;
+using GameLogic.Character.Interfaces;
 using GameLogic.GameLogic.AI.AIInterface;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace GameLogic.GameLogic.AI
 {
-    public class WaterGoblinAI : IAI
+    public class WaterGoblinAI : GruntAI
     {
         /* WaterGoblin's only ability is to heal himself. 
          * Because of this he only heal's if he is below half health.
@@ -16,7 +17,7 @@ namespace GameLogic.GameLogic.AI
          * if he is below half health he is 40% likely to try and heal 20% likely to any of the other options.
          */
 
-        public UserInput MakeMove(Characters character)
+        public UserInput MakeMove(Grunt character)
         {
             Random generator = new Random();
 

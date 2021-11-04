@@ -17,7 +17,7 @@ namespace GameLogic.GameLogic.CharacterController
 
         public override RoundResult GruntTactical(Grunt grunt, Biggie player, int importantData)
         {
-            player.items.Add(new Screech(player));
+            player.ApplyItem(new Screech(player));
             return RoundResult.DEBUFFED;
         }
     }

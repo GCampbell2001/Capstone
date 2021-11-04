@@ -10,3 +10,5 @@ C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\
 C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.dll
 C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.pdb
 C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.genruntimeconfig.cache
+C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.csproj.CopyComplete
