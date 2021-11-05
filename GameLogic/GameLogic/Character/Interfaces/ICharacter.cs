@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using MongoDB.Bson;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,6 +23,6 @@ namespace GameLogic.Character.Interfaces
         public abstract ModTool GetMainItem();
         public abstract void SetMainItem(ModTool item);
         public abstract void AddItem(ModTool item);
-        public abstract JObject ToJSON();
+        public abstract BsonDocument ToBson();
     }
 }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GameLogic.GameLogic.AI.AIComponents
 {
-    public class JimAI : GruntAI
+    public class JimAI : EnemyAI
     { 
         /* JimKin's whole things is doubling in size. This however also doubles
          * his attack so he needs to handled quickly. I'll start by making the chances 

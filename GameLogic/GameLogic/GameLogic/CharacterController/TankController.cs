@@ -10,7 +10,7 @@ namespace GameLogic.GameLogic.CharacterController
 {
     public class TankController : GeneralCharacterController
     {
-        public override RoundResult UserTactical(Biggie player, ICharacter enemy, int importantData)
+        public override RoundResult BossTactical(Biggie player, Biggie enemy, int importantData)
         {
             int hammerDamage = player.Tactical();
             int hammerAccuracy = player.Accuracy();

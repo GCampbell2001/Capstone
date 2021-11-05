@@ -12,3 +12,6 @@ C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\
 C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.genruntimeconfig.cache
 C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.csproj.CopyComplete
+C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.csprojAssemblyReference.cache
+C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\bin\Debug\netcoreapp3.1\MongoDB.Bson.dll
+C:\Users\Matthew\Documents\Capstone\GameLogic\GameLogic\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll

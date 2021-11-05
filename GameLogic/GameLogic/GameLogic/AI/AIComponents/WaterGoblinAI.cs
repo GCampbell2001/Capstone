@@ -8,7 +8,7 @@ using System.Text;
 
 namespace GameLogic.GameLogic.AI
 {
-    public class WaterGoblinAI : GruntAI
+    public class WaterGoblinAI : EnemyAI
     {
         /* WaterGoblin's only ability is to heal himself. 
          * Because of this he only heal's if he is below half health.

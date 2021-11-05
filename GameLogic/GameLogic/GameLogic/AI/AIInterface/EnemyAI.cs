@@ -6,7 +6,7 @@ using System.Text;
 
 namespace GameLogic.GameLogic.AI.AIInterface
 {
-    public interface GruntAI
+    public interface EnemyAI
     {
         public UserInput MakeMove(Grunt character);
 

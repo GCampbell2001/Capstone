@@ -31,6 +31,18 @@ namespace GameLogic.Character.Grunts
             setRates();
             useDefaultStats();
         }
+        public WaterGoblin(int currentLevel)
+            : base()
+        {
+            SetBaseStats();
+            base.Level = 0;
+            setRates();
+            useDefaultStats();
+            for (int i = 0; i < currentLevel; i++)
+            {
+                LevelUp();
+            }
+        }
 
         public WaterGoblin(int currentHealth, int currentDamage, int[] currentDodge, int currentBlock, int[] currentAccuracy, int currentLevel, int currentTactCooldown, int currentTactDuration, bool AttemptedToBlock, bool AttempedToDodge)
         : base(currentHealth, currentDamage, currentDodge, currentBlock, currentAccuracy, AttemptedToBlock, AttempedToDodge)
