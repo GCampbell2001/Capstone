@@ -20,7 +20,7 @@ namespace GameLogic.Character.Components
         private ModTool currentItem = null;
 
         public int baseHealth { get; set; }
-        protected int health;
+        public int health { get; set; }
         protected int damage;
         protected int[] dodge = { 0, 0 };
         protected int block;
@@ -52,9 +52,9 @@ namespace GameLogic.Character.Components
         protected int utilityStartingDuration;
         protected int ultimateStartingDuration;
 
-        protected int tacticalDuration;
-        protected int utilityDuration;
-        protected int ultimateDuration;
+        public int tacticalDuration { get; set; }
+        public int utilityDuration { get; set; }
+        public int ultimateDuration { get; set; }
 
         public Biggie() { }
 

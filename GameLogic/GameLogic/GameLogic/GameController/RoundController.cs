@@ -31,13 +31,13 @@ namespace GameLogic
             string audioFileNames = "";
             switch(user.GetType().Name)
             {
-                case "ThrillSeeker":
+                case "GameLogic.Character.PC.ThrillSeeker":
                     controller = new ThrillController();
                     break;
-                case "Tank":
+                case "GameLogic.Character.PC.Tank":
                     controller = new TankController();
                     break;
-                case "Brawler":
+                case "GameLogic.Character.PC.Brawler":
                     controller = new BrawlerController();
                     break;
                 default:
@@ -91,24 +91,24 @@ namespace GameLogic
 
             RoundResult results;
             GeneralCharacterController controller;
-            EnemyAI ai;
+            GruntAI ai;
             int hitPointData = 0;
             string audioFileNames = "";
             switch (grunt.GetType().Name)
             {
-                case "WaterGoblin":
+                case "GameLogic.Character.Grunts.WaterGoblin":
                     controller = new WaterController();
                     ai = new WaterGoblinAI();
                     break;
-                case "Sqwaubler":
+                case "GameLogic.Character.Grunts.Sqwaubler":
                     controller = new SqwaublerController();
                     ai = new SqwaublerAI();
                     break;
-                case "GigaWatt":
+                case "GameLogic.Character.Grunts.GigaWatt":
                     controller = new WattController();
                     ai = new GigAI();
                     break;
-                case "JimKin":
+                case "GameLogic.Character.Grunts.JimKin":
                     controller = new JimController();
                     ai = new JimAI();
                     break;
@@ -117,30 +117,84 @@ namespace GameLogic
                     ai = new WaterGoblinAI();
                     break;
             }
-            UserInput enemyMove = ai.MakeMove(grunt);
-            switch (enemyMove)
+            UserInput gruntMove = ai.MakeMove(grunt);
+            switch (gruntMove)
             {
                 case UserInput.A:
                     //Attack
                     results = controller.Attack(grunt, user, hitPointData);
-                    audioFileNames = prepare.AttackFileStyle(enemyMove, grunt, user);
+                    audioFileNames = prepare.AttackFileStyle(gruntMove, grunt, user);
                     audioFileNames += "|" + prepare.ResultFileStyle(results, user, grunt);
                     audioFileNames += "|" + prepare.HitpointFileStyle(hitPointData);
                     return audioFileNames;
                 case UserInput.S:
                     //Block
                     results = controller.Block(grunt, user);
-                    return prepare.AttackFileStyle(enemyMove, grunt, user);
+                    return prepare.AttackFileStyle(gruntMove, grunt, user);
                 case UserInput.D:
                     //Dodge
                     results = controller.Dodge(grunt, user);
-                    return prepare.AttackFileStyle(enemyMove, grunt, user);
+                    return prepare.AttackFileStyle(gruntMove, grunt, user);
                 case UserInput.Q:
                     //Tactical
                     results = controller.GruntTactical(grunt, user, hitPointData);
-                    return prepare.AbilityFileName(grunt, enemyMove, user, results, hitPointData);
+                    return prepare.AbilityFileName(grunt, gruntMove, user, results, hitPointData);
                 default:
-                    return "ERROR.wav - RoundController Problem with enemyMove - " + enemyMove;
+                    return "ERROR.wav - RoundController Problem with enemyMove - " + gruntMove;
+            }
+
+        }
+
+        public string BossTurn(Biggie boss, Biggie player) 
+        {
+            /*
+             * This method handles the Boss's turn in a fight
+             */
+
+            RoundResult results;
+            GeneralCharacterController controller;
+            BossAI ai;
+            int hitPointData = 0;
+            string audioFileNames = "";
+            switch (boss.GetType().Name)
+            {
+                case "GameLogic.Character.PC.InfernalWish":
+                    controller = new InfernalController();
+                    ai = new InfernalAI();
+                    break;
+                default:
+                    controller = new InfernalController();
+                    ai = new InfernalAI();
+                    break;
+            }
+            UserInput bossMove = ai.MakeMove(boss);
+            switch (bossMove)
+            {
+                case UserInput.A:
+                    //Attack
+                    results = controller.Attack(boss, player, hitPointData);
+                    audioFileNames = prepare.AttackFileStyle(bossMove, boss, player);
+                    audioFileNames += "|" + prepare.ResultFileStyle(results, player, boss);
+                    audioFileNames += "|" + prepare.HitpointFileStyle(hitPointData);
+                    return audioFileNames;
+                case UserInput.S:
+                    //Block
+                    results = controller.Block(boss, player);
+                    return prepare.AttackFileStyle(bossMove, boss, player);
+                case UserInput.D:
+                    //Dodge
+                    results = controller.Dodge(boss, player);
+                    return prepare.AttackFileStyle(bossMove, boss, player);
+                case UserInput.Q:
+                    //Tactical
+                    results = controller.BossTactical(player, boss, hitPointData);
+                    return prepare.AbilityFileName(boss, bossMove, player, results, hitPointData);
+                case UserInput.W:
+                    //Utility
+                    results = controller.PCUtility(boss, hitPointData);
+                    return prepare.AbilityFileName(boss, bossMove, player, results, hitPointData);
+                default:
+                    return "ERROR.wav - RoundController Problem with bossMove - " + bossMove;
             }
 
         }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GameLogic.GameLogic.AI.AIComponents
 {
-    public class SqwaublerAI : EnemyAI
+    public class SqwaublerAI : GruntAI
     {
         /*
          * Squabler is meant to be annoying. Their tactical helps achieve that

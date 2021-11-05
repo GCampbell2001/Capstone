@@ -51,7 +51,7 @@ namespace GameLogic.GameLogic.CharacterController
 
         public override RoundResult BossUltimate(Biggie player, Biggie boss, int importantData)
         {
-            player.Ultimate();
+            boss.Ultimate();
             return RoundResult.BUFFED;
         }
     }

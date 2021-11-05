@@ -22,7 +22,7 @@ namespace GameLogic.Character.PC
          *  Tactical: Infernal Wish uses a fire based attack that burns the enemy doing little damage but applying the debuff Burn (Cooldown: 3)
          *  Utility: He focuses his energy on dodging attacks but this lowers his attack in result (Duration: 3) (Cooldown: 5)
          *  Ultimate: Infernal Wish unleashes his inner rage and transforms into his demonic state. 
-         *      Massively increases dodge, moderate increase in block, accuracy is slightly decreased, and damage is left untouched (Duration: 7) (Cooldown: 10)
+         *      Massively increases dodge, moderate increase in block, accuracy is slightly decreased, small heal, and damage is left untouched (Duration: 7) (Cooldown: 10)
          */
 
 
@@ -104,6 +104,7 @@ namespace GameLogic.Character.PC
                     base.block += 15;
                     base.accuracy[0] -= 5;
                     base.accuracy[1] -= 5;
+                    raiseHealth(10);
                     break;
                 case 1:
                     base.dodge[0] += 45;
@@ -111,6 +112,7 @@ namespace GameLogic.Character.PC
                     base.block += 20;
                     base.accuracy[0] -= 10;
                     base.accuracy[1] -= 10;
+                    raiseHealth(25);
                     break;
                 case 2:
                     base.dodge[0] += 55;
@@ -118,6 +120,7 @@ namespace GameLogic.Character.PC
                     base.block += 25;
                     base.accuracy[0] -= 15;
                     base.accuracy[1] -= 15;
+                    raiseHealth(40);
                     break;
                 case 3:
                     base.dodge[0] += 65;
@@ -125,6 +128,7 @@ namespace GameLogic.Character.PC
                     base.block += 30;
                     base.accuracy[0] -= 20;
                     base.accuracy[1] -= 20;
+                    raiseHealth(55);
                     break;
                 default:
                     base.dodge[0] += 35;
@@ -132,6 +136,7 @@ namespace GameLogic.Character.PC
                     base.block += 15;
                     base.accuracy[0] -= 5;
                     base.accuracy[1] -= 5;
+                    raiseHealth(10);
                     break;
             }
 

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GameLogic.GameLogic.AI.AIComponents
 {
-    public class GigAI : EnemyAI
+    public class GigAI : GruntAI
     {
         /*
          * GigaWatt doesn't move much but has a high block. He also has nodge
