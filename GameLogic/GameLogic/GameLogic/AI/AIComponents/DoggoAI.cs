@@ -19,22 +19,16 @@ namespace GameLogic.GameLogic.AI.AIComponents
         public UserInput MakeMove(Biggie character)
         {
             List<UserInput> normalMoveSet = new List<UserInput>() { UserInput.Q, UserInput.Q, UserInput.A, UserInput.S, UserInput.D, UserInput.W };
-            List<UserInput> halfHealthMoveSet = new List<UserInput> { UserInput.D, UserInput.Q, UserInput.D, UserInput.S, UserInput.D, UserInput.A };
+            List<UserInput> halfHealthMoveSet = new List<UserInput> { UserInput.Q, UserInput.W, UserInput.E, UserInput.A, UserInput.S, UserInput.D };
             UserInput normalMoveChoice = normalMoveSet.OrderBy(m => new Random().Next()).ElementAt(0);
             UserInput halfHealthMoveChoice = halfHealthMoveSet.OrderBy(m => new Random().Next()).ElementAt(0);
             if(character.health <= character.health / 2)
             {
-                if (character.UltimateCooldown <= 0)
-                    return UserInput.E;
-                else
-                {
-                    return tryBasicMove(character, normalMoveChoice);
-                }
+                return tryBasicMove(character, halfHealthMoveChoice);
+            } else
+            {
+                return tryBasicMove(character, normalMoveChoice);
             }
-
-            
-
-                throw new NotImplementedException();
         }
 
         private UserInput tryBasicMove(Biggie character, UserInput normalMoveChoice)

@@ -24,17 +24,17 @@ namespace GameLogic.GameLogic
             switch(action)
             {
                 case UserInput.Q:
-                    return character.GetType().Name + "Tactical";
+                    return GetCharacterName(character) + "Tactical";
                 case UserInput.W:
-                    return character.GetType().Name + "Utility";
+                    return GetCharacterName(character) + "Utility";
                 case UserInput.E:
-                    return character.GetType().Name + "Ultimate";
+                    return GetCharacterName(character) + "Ultimate";
                 case UserInput.A:
-                    return character.GetType().Name + "Attack";
+                    return GetCharacterName(character) + "Attack";
                 case UserInput.S:
-                    return character.GetType().Name + "Block";
+                    return GetCharacterName(character) + "Block";
                 case UserInput.D:
-                    return character.GetType().Name + "Dodge";
+                    return GetCharacterName(character) + "Dodge";
                 default:
                     return "Error";
             }
@@ -47,7 +47,7 @@ namespace GameLogic.GameLogic
             switch (result)
             {
                 case RoundResult.HIT:
-                    return enemy.GetType().Name + "Hit";
+                    return GetCharacterName(enemy) + "Hit";
                 case RoundResult.CRITICAL:
                     return "Critical";
                 case RoundResult.BLOCKED:
@@ -75,13 +75,13 @@ namespace GameLogic.GameLogic
             switch (ability)
             {
                 case UserInput.Q:
-                    finalString = attacker.GetType().Name + "Tactical";
+                    finalString = GetCharacterName(attacker) + "Tactical";
                     break;
                 case UserInput.W:
-                    finalString = attacker.GetType().Name + "Utility";
+                    finalString = GetCharacterName(attacker) + "Utility";
                     break;
                 case UserInput.E:
-                    finalString = attacker.GetType().Name + "Ultimate";
+                    finalString = GetCharacterName(attacker) + "Ultimate";
                     break;
                 default:
                     return "Error@AudioFilePrepare78 -  " + ability;
@@ -90,7 +90,7 @@ namespace GameLogic.GameLogic
             switch(result)
             {
                 case RoundResult.HIT:
-                    finalString += "|" + enemy.GetType().Name + "";
+                    finalString += "|" + GetCharacterName(enemy) + "";
                     break;
                 case RoundResult.BUFFED:
                     finalString += "|";
@@ -114,6 +114,13 @@ namespace GameLogic.GameLogic
             }
 
             return finalString;
+        }
+
+        public string GetCharacterName(ICharacter character)
+        {
+            string[] namePieces = character.GetType().Name.Split(".");
+            //this line gets the last string of the array because GetType().Name returns a string that includes folder names from the location of the class
+            return namePieces[namePieces.Length - 1];
         }
     }
 }

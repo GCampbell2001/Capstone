@@ -162,6 +162,10 @@ namespace GameLogic
                     controller = new InfernalController();
                     ai = new InfernalAI();
                     break;
+                case "GameLogic.Character.PC.Doggo":
+                    controller = new DoggoController();
+                    ai = new DoggoAI();
+                    break;
                 default:
                     controller = new InfernalController();
                     ai = new InfernalAI();
@@ -199,22 +203,25 @@ namespace GameLogic
 
         }
 
-        private string ResultFileStyle(RoundResult result, ICharacter enemy)
-        {
-            switch (result)
-            {
-                case RoundResult.HIT:
-                    return enemy.GetType().Name + "Hit.wav";
-                case RoundResult.CRITICAL:
-                    return "Critical.wav";
-                case RoundResult.BLOCKED:
-                    return "Blocked.wav";
-                case RoundResult.MISSED:
-                    return "Missed.wav";
-                default:
-                    return "Error.wav";
-            }
+        //Commented out this method. Going to test it later. If it turns out I'm good to delete this I will
 
-        }
+        //private string ResultFileStyle(RoundResult result, ICharacter enemy)
+        //{
+        //    switch (result)
+        //    {
+        //        case RoundResult.HIT:
+        //            return prepare.GetCharacterName(enemy) + "Hit.wav";
+        //        case RoundResult.CRITICAL:
+        //            return "Critical.wav";
+        //        case RoundResult.BLOCKED:
+        //            return "Blocked.wav";
+        //        case RoundResult.MISSED:
+        //            return "Missed.wav";
+        //        default:
+        //            return "Error.wav";
+        //    }
+
+        //}
+
     }
 }
