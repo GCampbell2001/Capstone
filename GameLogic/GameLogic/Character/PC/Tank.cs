@@ -54,14 +54,14 @@ namespace GameLogic.Character.PC
         {
             /*
              * Nodge LevelUp Guidline
-             * Health + 50
+             * Health + 65
              * Attack + 15
              * Dodge + 1
              * Block + 12
              * Accuracy + 5
              */
             Level++;
-            baseHealth += 50;
+            baseHealth += 65;
             baseDamage += 15;
             baseDodge[0] += 1;
             baseDodge[1] += 1;

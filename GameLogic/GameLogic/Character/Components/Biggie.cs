@@ -71,6 +71,7 @@ namespace GameLogic.Character.Components
 
         public int Attack()
         {
+            Duration();
             Cooldown();
             return this.damage;
         }
@@ -84,12 +85,14 @@ namespace GameLogic.Character.Components
         public int AttemptBlock()
         {
             Cooldown();
+            Duration();
             return this.block + 10;
         }
 
         public int AttemptDodge()
         {
             Cooldown();
+            Duration();
             Random rand = new Random();
             return rand.Next(dodge[0] + 10, dodge[1] + 10);
         }
@@ -119,6 +122,12 @@ namespace GameLogic.Character.Components
             TacticalCooldown--;
             UtilityCooldown--;
             UltimateCooldown--;
+        }
+        public void Duration()
+        {
+            tacticalDuration -= 1;
+            utilityDuration -= 1;
+            ultimateDuration -= 1;
         }
         public void ResetCharacter()
         {

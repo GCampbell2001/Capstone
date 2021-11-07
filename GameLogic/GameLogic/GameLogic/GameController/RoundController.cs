@@ -166,6 +166,10 @@ namespace GameLogic
                     controller = new DoggoController();
                     ai = new DoggoAI();
                     break;
+                case "GameLogic.Character.PC.Cowboy":
+                    controller = new CowBoyController();
+                    ai = new CowboyAI();
+                    break;
                 default:
                     controller = new InfernalController();
                     ai = new InfernalAI();

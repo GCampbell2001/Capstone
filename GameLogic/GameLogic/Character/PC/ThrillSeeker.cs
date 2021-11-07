@@ -121,13 +121,13 @@ namespace GameLogic.Character
         public override void LevelUp()
         {
             //ThrillSeeker LevelUp Guideline
-            //Health + 20
+            //Health + 35
             //attack + 10
             //dodge + 10
             //block + 6
             //accuracy + 3
             Level++;
-            baseHealth += 20;
+            baseHealth += 35;
             baseDamage += 10;
             baseDodge[0] += 10;
             baseDodge[1] += 10;

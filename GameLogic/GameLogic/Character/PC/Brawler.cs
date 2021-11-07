@@ -164,14 +164,14 @@ namespace GameLogic.Character.PC
         {
             /*
              * Brawler LevelUp Guidline
-             * Health + 15
+             * Health + 25
              * Attack + 20
              * Dodge + 4
              * Block + 6
              * Accuracy + 5
              */
             Level++;
-            baseHealth += 15;
+            baseHealth += 25;
             baseDamage += 20;
             baseDodge[0] += 4;
             baseDodge[1] += 4;
