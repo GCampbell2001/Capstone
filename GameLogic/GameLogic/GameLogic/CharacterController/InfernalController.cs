@@ -22,12 +22,12 @@ namespace GameLogic.GameLogic.CharacterController
             {
                 fireDamage = fireDamage * 2;
                 CheckBlockWithoutItems(player, fireDamage, importantData);
-                player.ApplyItem(new Burn(player));
+                player.AddItem(new Burn(player));
                 return RoundResult.CRITICAL;
             }
             else if (fireAccuracy >= enemyDodgeAttempt)
             {
-                player.ApplyItem(new Burn(player));
+                player.AddItem(new Burn(player));
                 return CheckBlockWithoutItems(player, fireDamage, importantData);
             }
             else if (fireAccuracy < enemyDodgeAttempt)

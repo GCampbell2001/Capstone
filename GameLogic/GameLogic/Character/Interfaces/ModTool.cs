@@ -14,6 +14,11 @@ namespace GameLogic.Character.Interfaces
             this.baseComponent = baseComponent;
         }
 
+        public void changeBaseComponent(CharacterComponent baseComp)
+        {
+            this.baseComponent = baseComp;
+        }
+
         public virtual int Attack()
         {
             return this.baseComponent.Attack();
@@ -43,14 +48,17 @@ namespace GameLogic.Character.Interfaces
             return this.baseComponent.Block();
         }
 
-        public virtual void CooldownRate(int currentCooldownLeft, int decrementCooldown)
+        public void TacticalCooldownDecrement(int decrement)
         {
-            this.baseComponent.CooldownRate(currentCooldownLeft, decrementCooldown);
+            this.baseComponent.TacticalCooldownDecrement(decrement);
         }
-
-        public virtual void DurationRate(int currentDurationLeft, int decrementDuration)
+        public void UtilityCooldownDecrement(int decrement)
         {
-            this.baseComponent.DurationRate(currentDurationLeft, decrementDuration);
+            this.baseComponent.UtilityCooldownDecrement(decrement);
+        }
+        public void UltimateCooldownDecrement(int decrement)
+        {
+            this.baseComponent.UltimateCooldownDecrement(decrement);
         }
 
         public void LowerHealth(int damageTaken)

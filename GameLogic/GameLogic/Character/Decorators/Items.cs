@@ -7,6 +7,8 @@ namespace GameLogic.Character.Decorators
     public enum Items
     {
         SCREECH,
-        MAGNETIZE
+        MAGNETIZE,
+        FEAR,
+        BURN
     }
 }

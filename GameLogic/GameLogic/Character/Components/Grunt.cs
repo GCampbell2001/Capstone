@@ -18,7 +18,6 @@ namespace GameLogic.Character.Components
 
         private List<ModTool> items;
         private ModTool currentItem = null;
-
         public int baseHealth { get; set; }
         protected int health;
         protected int damage;
@@ -105,14 +104,17 @@ namespace GameLogic.Character.Components
             Random rand = new Random();
             return rand.Next(dodge[0], dodge[1]);
         }
-        public void CooldownRate(int currentCooldownLeft, int decrementCooldown)
+        public void TacticalCooldownDecrement(int decrement)
         {
-            currentCooldownLeft -= decrementCooldown;
+            TacticalCooldown -= decrement;
         }
-
-        public void DurationRate(int currentDurationLeft, int decrementDuration)
+        public void UtilityCooldownDecrement(int decrement)
         {
-            currentDurationLeft -= decrementDuration;
+            UtilityCooldown -= decrement;
+        }
+        public void UltimateCooldownDecrement(int decrement)
+        {
+            UltimateCooldown -= decrement;
         }
 
         public void Cooldown()
@@ -162,9 +164,14 @@ namespace GameLogic.Character.Components
             return currentItem;
         }
 
-        public void SetMainItem(ModTool item)
+        public List<ModTool> GetItems()
         {
-            this.currentItem = item;
+            return items;
+        }
+
+        public void SetMainItem(CharacterComponent item)
+        {
+            this.currentItem = (ModTool)item;
         }
 
         public void AddItem(ModTool item)

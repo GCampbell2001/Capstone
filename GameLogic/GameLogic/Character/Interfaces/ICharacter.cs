@@ -21,7 +21,8 @@ namespace GameLogic.Character.Interfaces
         public abstract void matchLevel(int level);
         public abstract void useDefaultStats();
         public abstract ModTool GetMainItem();
-        public abstract void SetMainItem(ModTool item);
+        public abstract void SetMainItem(CharacterComponent item);
+        public abstract List<ModTool> GetItems();
         public abstract void AddItem(ModTool item);
         public abstract void Duration();
         public abstract BsonDocument ToBson();

@@ -13,7 +13,7 @@ namespace GameLogic.GameLogic.CharacterController
         public override RoundResult BossTactical(Biggie player, Biggie boss, int importantData)
         {
             boss.Tactical();
-            player.ApplyItem(new Fear(player));
+            player.AddItem(new Fear(player));
             return RoundResult.DEBUFFED;
         }
 
