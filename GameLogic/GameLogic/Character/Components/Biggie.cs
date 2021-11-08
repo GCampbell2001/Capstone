@@ -1,4 +1,5 @@
-﻿using GameLogic.Character.Interfaces;
+﻿using GameLogic.Character.Decorators;
+using GameLogic.Character.Interfaces;
 using MongoDB.Bson;
 using Newtonsoft.Json.Linq;
 using System;
@@ -16,7 +17,7 @@ namespace GameLogic.Character.Components
          * It also adds the Utility and Ultimate methods. Those 2 and tactical will be left empty to be overriden by the character specific classes.
          */
 
-        private List<ModTool> items;
+        private List<ModTool> items = new List<ModTool>();
         private ModTool currentItem = null;
 
         public int baseHealth { get; set; }
@@ -191,9 +192,47 @@ namespace GameLogic.Character.Components
             items.Add(item);
         }
 
-        public void ApplyItem(ModTool item)
+        public void ApplyItem(String item)
         {
-            items.Add(item);
+            if(items.Count < 1)
+            {
+                switch (item)
+                {
+                    case "Goggles":
+                        items.Add(new Goggles(this));
+                        break;
+                    case "Amulet":
+                        items.Add(new Amulet(this));
+                        break;
+                    case "Hat":
+                        items.Add(new Hat(this));
+                        break;
+                    case "Watch":
+                        items.Add(new Watch(this));
+                        break;
+                }
+                SetMainItem(items[0]);
+            }
+            else
+            {
+                switch(item)
+                {
+                    case "Goggles":
+                        items.Add(new Goggles(items[items.Count - 1]));
+                        break;
+                    case "Amulet":
+                        items.Add(new Amulet(items[items.Count - 1]));
+                        break;
+                    case "Hat":
+                        items.Add(new Hat(items[items.Count - 1]));
+                        break;
+                    case "Watch":
+                        items.Add(new Watch(items[items.Count - 1]));
+                        break;
+                }
+                SetMainItem(items[items.Count - 1]);
+            }
+            
         }
         public void resetItems(List<ModTool> tools)
         {
@@ -202,13 +241,34 @@ namespace GameLogic.Character.Components
         }
         public BsonDocument ToBson()
         {
-            string final = "{ class : \"" + this.GetType().ToString() + "\", level : "
+            string final = "";
+            if(items == null)
+            {
+                final = "{ class : \"" + this.GetType().ToString() + "\", level : "
                 + this.Level + ", health : " + this.health + ", damage : " + this.damage
                 + ", dodge : [" + this.dodge[0] + ", " + this.dodge[1] + "], block : " +
                 this.block + ", accuracy : [" + this.accuracy[0] + ", " + this.accuracy[1]
                 + "], tactCooldown : " + this.TacticalCooldown + ", utilCooldown: "
-                + this.UtilityCooldown + ", ultCooldown : " + this.UltimateCooldown + ", attemptDodge : \"" + AttemptedToDodge
+                + this.UtilityCooldown + ", ultCooldown : " + this.UltimateCooldown + ", tactDuration : " + this.tacticalDuration + ", utilDuration : " 
+                + this.utilityDuration +", ultDuration : " + this.ultimateDuration + ", attemptDodge : \"" + AttemptedToDodge
                 + "\", attemptBlock : \"" + AttemptedToBlock + "\"}";
+            } else
+            {
+                final = "{ class : \"" + this.GetType().ToString() + "\", level : "
+                + this.Level + ", health : " + this.health + ", damage : " + this.damage
+                + ", dodge : [" + this.dodge[0] + ", " + this.dodge[1] + "], block : " +
+                this.block + ", accuracy : [" + this.accuracy[0] + ", " + this.accuracy[1]
+                + "], tactCooldown : " + this.TacticalCooldown + ", utilCooldown: "
+                + this.UtilityCooldown + ", ultCooldown : " + this.UltimateCooldown + ", tactDuration : " + this.tacticalDuration + ", utilDuration : "
+                + this.utilityDuration + ", ultDuration : " + this.ultimateDuration + ", attemptDodge : \"" + AttemptedToDodge
+                + "\", attemptBlock : \"" + AttemptedToBlock + "\" items : [\"";
+                for(int i = 0; i < items.Count - 1; i++)
+                {
+                    final += items[i].Format() + "\", \"";
+                }
+                final += items[items.Count - 1].Format() + "\"]}";
+
+            }
             return BsonDocument.Parse(final);
         }
 

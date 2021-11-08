@@ -65,5 +65,12 @@ namespace GameLogic.Character.Interfaces
         {
             this.baseComponent.LowerHealth(damageTaken);
         }
+
+        public string Format()
+        {
+            string name = this.GetType().Name;
+            string[] peices = name.Split(".");
+            return peices[peices.Length - 1];
+        }
     }
 }

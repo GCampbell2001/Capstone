@@ -1,4 +1,5 @@
 ﻿using GameLogic.Character.Components;
+using GameLogic.Character.Decorators;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -31,6 +32,13 @@ namespace GameLogic.Character.PC
             base.Level = 0;
             setRates();
             useDefaultStats();
+
+            //this next bit is purely for testing
+            Goggles goggles = new Goggles(this);
+            Hat hat = new Hat(goggles);
+            AddItem(goggles);
+            AddItem(hat);
+            SetMainItem(hat);
         }
 
         public Tank(int currentHealth, int currentDamage, int[] currentDodge, int currentBlock, int[] currentAccuracy, int currentLevel, int currentTactCooldown, int currentTactDuration, int currentUtilCooldown, int currentUtilDuration, int currentUltCooldown, int currentUltDuration, bool AttemptedToBlock, bool AttempedToDodge)
@@ -47,7 +55,7 @@ namespace GameLogic.Character.PC
             this.ultimateDuration = currentUltDuration;
             base.UltimateCooldown = currentUltCooldown;
             matchLevel(base.Level);
-            checkBlock();
+            checkBlock();   
         }
 
         public override void LevelUp()

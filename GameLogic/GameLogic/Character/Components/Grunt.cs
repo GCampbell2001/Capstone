@@ -16,7 +16,7 @@ namespace GameLogic.Character.Components
          * It also adds the Utility and Ultimate methods. Those 2 and tactical will be left empty to be overriden by the character specific classes.
          */
 
-        private List<ModTool> items;
+        private List<ModTool> items = new List<ModTool>();
         private ModTool currentItem = null;
         public int baseHealth { get; set; }
         protected int health;
@@ -110,11 +110,11 @@ namespace GameLogic.Character.Components
         }
         public void UtilityCooldownDecrement(int decrement)
         {
-            UtilityCooldown -= decrement;
+            //this method is for Biggies
         }
         public void UltimateCooldownDecrement(int decrement)
         {
-            UltimateCooldown -= decrement;
+            //this method is for Biggies
         }
 
         public void Cooldown()
