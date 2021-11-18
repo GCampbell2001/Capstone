@@ -16,11 +16,11 @@ using System.Text;
 
 namespace GameLogic
 {
-    class RoundController
+    public class RoundController
     {
         AudioFilePrepare prepare = new AudioFilePrepare();
 
-        public string RunFightCommand(UserInput userInput, Room room, Biggie user)
+        public string PlayerTurn(UserInput userInput, ICharacter enemy, Biggie user)
         {
             /*
              * This method handles what happens when the user is in a fight
@@ -53,31 +53,31 @@ namespace GameLogic
                 // seperate each by | and then the server can split each one or whatever class to get the individual file.
                 case UserInput.A:
                     //Attack
-                    results = controller.Attack(user, room.Enemy, hitPointData);
-                    audioFileNames = prepare.AttackFileStyle(userInput, user, room.Enemy);
-                    audioFileNames += "|" + prepare.ResultFileStyle(results, room.Enemy, user);
+                    results = controller.Attack(user, enemy, hitPointData);
+                    audioFileNames = prepare.AttackFileStyle(userInput, user, enemy);
+                    audioFileNames += "|" + prepare.ResultFileStyle(results, enemy, user);
                     audioFileNames += "|" + prepare.HitpointFileStyle(hitPointData);
                     return audioFileNames;
                 case UserInput.S:
                     //Block
-                    results = controller.Block(user, room.Enemy);
-                    return prepare.AttackFileStyle(userInput, user, room.Enemy);
+                    results = controller.Block(user, enemy);
+                    return prepare.AttackFileStyle(userInput, user, enemy);
                 case UserInput.D:
                     //Dodge
-                    results = controller.Dodge(user, room.Enemy);
-                    return prepare.AttackFileStyle(userInput, user, room.Enemy);
+                    results = controller.Dodge(user, enemy);
+                    return prepare.AttackFileStyle(userInput, user, enemy);
                 case UserInput.Q:
                     //Tactical
-                    results = controller.UserTactical(user, room.Enemy, hitPointData);
-                    return prepare.AbilityFileName(user, userInput, room.Enemy, results, hitPointData);
+                    results = controller.UserTactical(user, enemy, hitPointData);
+                    return prepare.AbilityFileName(user, userInput, enemy, results, hitPointData);
                 case UserInput.W:
                     //Utility
                     results = controller.PCUtility(user, hitPointData);
-                    return prepare.AbilityFileName(user, userInput, room.Enemy, results, hitPointData);
+                    return prepare.AbilityFileName(user, userInput, enemy, results, hitPointData);
                 case UserInput.E:
                     //Ultimate
-                    results = controller.UserUltimate(user, room.Enemy, hitPointData);
-                    return prepare.AbilityFileName(user, userInput, room.Enemy, results, hitPointData);
+                    results = controller.UserUltimate(user, enemy, hitPointData);
+                    return prepare.AbilityFileName(user, userInput, enemy, results, hitPointData);
                 default:
                     return "ERROR.wav - RoundController Problem with userInput - " + userInput;
             }

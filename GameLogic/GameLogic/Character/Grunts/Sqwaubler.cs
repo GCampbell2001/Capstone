@@ -21,7 +21,7 @@ namespace GameLogic.Character.Grunts
          * no block
          * low attack
          *
-         * Tactical: Unleash a blood curdling screech (applies a debuff [item] that lowers the enemies block.) (Cooldown: 
+         * Tactical: Unleash a blood curdling screech (applies a debuff [item] that lowers the enemies block.) (Cooldown: 3)
          * Utility: None because Grunt
          * Ultimate: None because Grunt
          * 

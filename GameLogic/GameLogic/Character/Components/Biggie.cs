@@ -57,6 +57,9 @@ namespace GameLogic.Character.Components
         public int utilityDuration { get; set; }
         public int ultimateDuration { get; set; }
 
+        //this is to determine is the character is a player or a boss
+        protected Boolean player = false;
+
         public Biggie() { }
 
         public Biggie(int health, int damage, int[] dodge, int block, int[] accuracy, bool AttemptedToBlock, bool AttemptedToDodge)
@@ -244,7 +247,7 @@ namespace GameLogic.Character.Components
             string final = "";
             if(items == null)
             {
-                final = "{ class : \"" + this.GetType().ToString() + "\", level : "
+                final = "{ player : \"" + this.player + "\", class : \"" + this.GetType().ToString() + "\", level : "
                 + this.Level + ", health : " + this.health + ", damage : " + this.damage
                 + ", dodge : [" + this.dodge[0] + ", " + this.dodge[1] + "], block : " +
                 this.block + ", accuracy : [" + this.accuracy[0] + ", " + this.accuracy[1]
@@ -254,7 +257,7 @@ namespace GameLogic.Character.Components
                 + "\", attemptBlock : \"" + AttemptedToBlock + "\"}";
             } else
             {
-                final = "{ class : \"" + this.GetType().ToString() + "\", level : "
+                final = "{ player : \"" + this.player + "\", class : \"" + this.GetType().ToString() + "\", level : "
                 + this.Level + ", health : " + this.health + ", damage : " + this.damage
                 + ", dodge : [" + this.dodge[0] + ", " + this.dodge[1] + "], block : " +
                 this.block + ", accuracy : [" + this.accuracy[0] + ", " + this.accuracy[1]
@@ -270,6 +273,18 @@ namespace GameLogic.Character.Components
 
             }
             return BsonDocument.Parse(final);
+        }
+
+        public bool isDead()
+        {
+            if (this.health <= 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         //These methods are all suppsoed to be overwritten.

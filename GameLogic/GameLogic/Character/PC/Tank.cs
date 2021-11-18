@@ -28,6 +28,7 @@ namespace GameLogic.Character.PC
         public Tank()
             : base()
         {
+            base.player = true;
             SetBaseStats();
             base.Level = 0;
             setRates();
@@ -44,6 +45,7 @@ namespace GameLogic.Character.PC
         public Tank(int currentHealth, int currentDamage, int[] currentDodge, int currentBlock, int[] currentAccuracy, int currentLevel, int currentTactCooldown, int currentTactDuration, int currentUtilCooldown, int currentUtilDuration, int currentUltCooldown, int currentUltDuration, bool AttemptedToBlock, bool AttempedToDodge)
             : base(currentHealth, currentDamage, currentDodge, currentBlock, currentAccuracy, AttemptedToBlock, AttempedToDodge)
         {
+            base.player = true;
             SetBaseStats();
             setRates();
             setRates();

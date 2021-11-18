@@ -181,13 +181,25 @@ namespace GameLogic.Character.Components
 
         public BsonDocument ToBson()
         {
-            string final = "{ class : \"" + this.GetType().ToString() + "\", level : "
+            //included the true grunt variable for pulling data from database
+            string final = "{ grunt : true, class : \"" + this.GetType().ToString() + "\", level : "
                 + this.Level + ", health : " + this.health + ", damage : " + this.damage
                 + ", dodge : [" + this.dodge[0] + ", " + this.dodge[1] + "], block : " +
                 this.block + ", accuracy : [" + this.accuracy[0] + ", " + this.accuracy[1]
                 + "], tactCooldown : " + this.TacticalCooldown + ", attemptDodge : \"" + AttemptedToDodge
                 + "\", attemptBlock : \"" + AttemptedToBlock + "\"}";
             return BsonDocument.Parse(final);
+        }
+
+        public bool isDead()
+        {
+            if(this.health <= 0)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
         }
 
         //These methods are all suppsoed to be overwritten.

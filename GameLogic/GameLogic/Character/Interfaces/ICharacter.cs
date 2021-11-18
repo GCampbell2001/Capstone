@@ -26,5 +26,7 @@ namespace GameLogic.Character.Interfaces
         public abstract void AddItem(ModTool item);
         public abstract void Duration();
         public abstract BsonDocument ToBson();
+
+        public abstract bool isDead();
     }
 }

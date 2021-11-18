@@ -14,7 +14,7 @@ namespace GameLogic.GameLogic.GameController
          * 
          */
 
-        public string HealingRoom(Biggie player) 
+        public void HealingRoom(Biggie player) 
         {
             //this heals the character
             int missingHealth = player.baseHealth - player.health;
@@ -46,12 +46,6 @@ namespace GameLogic.GameLogic.GameController
             }
             //this sets the main item so the proper order can be followed for stats in fights.
             player.SetMainItem(lastPiece);
-
-            //FINSIH METHOD BY CREATING STRINGS FOR FILE NAMES
-            //ALL NUMBER LOGIC AND CHARACTER MANIPULATION HAS BEEN FINISHED
-
-
-            throw new NotImplementedException();   
         }
     }
 }

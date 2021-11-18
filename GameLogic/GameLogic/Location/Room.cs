@@ -6,7 +6,7 @@ using System.Text;
 
 namespace GameLogic.Location
 {
-    class Room
+    public class Room
     {
         //TODO: Add Character Class
 
