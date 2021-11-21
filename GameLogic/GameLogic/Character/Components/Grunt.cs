@@ -159,14 +159,14 @@ namespace GameLogic.Character.Components
             }
         }
 
-        public ModTool GetMainItem()
+        public ref ModTool GetMainItem()
         {
-            return currentItem;
+            return ref currentItem;
         }
 
-        public List<ModTool> GetItems()
+        public ref List<ModTool> GetItems()
         {
-            return items;
+            return ref items;
         }
 
         public void SetMainItem(CharacterComponent item)
@@ -186,7 +186,7 @@ namespace GameLogic.Character.Components
                 + this.Level + ", health : " + this.health + ", damage : " + this.damage
                 + ", dodge : [" + this.dodge[0] + ", " + this.dodge[1] + "], block : " +
                 this.block + ", accuracy : [" + this.accuracy[0] + ", " + this.accuracy[1]
-                + "], tactCooldown : " + this.TacticalCooldown + ", attemptDodge : \"" + AttemptedToDodge
+                + "], tactCooldown : " + this.TacticalCooldown + ", tactDuration : " + this.tacticalDuration + ", attemptDodge : \"" + AttemptedToDodge
                 + "\", attemptBlock : \"" + AttemptedToBlock + "\"}";
             return BsonDocument.Parse(final);
         }

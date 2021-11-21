@@ -10,7 +10,7 @@ namespace GameLogic.GameLogic.CharacterController
 {
     public class JimController : GeneralCharacterController
     {
-        public override RoundResult GruntTactical(Grunt grunt, Biggie player, int importantData)
+        public override RoundResult GruntTactical(ref Grunt grunt, ref Biggie player, ref int importantData)
         {
             grunt.Tactical();
             return RoundResult.BUFFED;

@@ -31,13 +31,13 @@ namespace GameLogic
             string audioFileNames = "";
             switch(user.GetType().Name)
             {
-                case "GameLogic.Character.PC.ThrillSeeker":
+                case "ThrillSeeker":
                     controller = new ThrillController();
                     break;
-                case "GameLogic.Character.PC.Tank":
+                case "Tank":
                     controller = new TankController();
                     break;
-                case "GameLogic.Character.PC.Brawler":
+                case "Brawler":
                     controller = new BrawlerController();
                     break;
                 default:
@@ -53,7 +53,7 @@ namespace GameLogic
                 // seperate each by | and then the server can split each one or whatever class to get the individual file.
                 case UserInput.A:
                     //Attack
-                    results = controller.Attack(user, enemy, hitPointData);
+                    results = controller.Attack(user, enemy, ref hitPointData);
                     audioFileNames = prepare.AttackFileStyle(userInput, user, enemy);
                     audioFileNames += "|" + prepare.ResultFileStyle(results, enemy, user);
                     audioFileNames += "|" + prepare.HitpointFileStyle(hitPointData);
@@ -68,15 +68,15 @@ namespace GameLogic
                     return prepare.AttackFileStyle(userInput, user, enemy);
                 case UserInput.Q:
                     //Tactical
-                    results = controller.UserTactical(user, enemy, hitPointData);
+                    results = controller.UserTactical(ref user, ref enemy, ref hitPointData);
                     return prepare.AbilityFileName(user, userInput, enemy, results, hitPointData);
                 case UserInput.W:
                     //Utility
-                    results = controller.PCUtility(user, hitPointData);
+                    results = controller.PCUtility(ref user, ref hitPointData);
                     return prepare.AbilityFileName(user, userInput, enemy, results, hitPointData);
                 case UserInput.E:
                     //Ultimate
-                    results = controller.UserUltimate(user, enemy, hitPointData);
+                    results = controller.UserUltimate(ref user, ref enemy, ref hitPointData);
                     return prepare.AbilityFileName(user, userInput, enemy, results, hitPointData);
                 default:
                     return "ERROR.wav - RoundController Problem with userInput - " + userInput;
@@ -96,19 +96,19 @@ namespace GameLogic
             string audioFileNames = "";
             switch (grunt.GetType().Name)
             {
-                case "GameLogic.Character.Grunts.WaterGoblin":
+                case "WaterGoblin":
                     controller = new WaterController();
                     ai = new WaterGoblinAI();
                     break;
-                case "GameLogic.Character.Grunts.Sqwaubler":
+                case "Sqwaubler":
                     controller = new SqwaublerController();
                     ai = new SqwaublerAI();
                     break;
-                case "GameLogic.Character.Grunts.GigaWatt":
+                case "GigaWatt":
                     controller = new WattController();
                     ai = new GigAI();
                     break;
-                case "GameLogic.Character.Grunts.JimKin":
+                case "JimKin":
                     controller = new JimController();
                     ai = new JimAI();
                     break;
@@ -117,12 +117,12 @@ namespace GameLogic
                     ai = new WaterGoblinAI();
                     break;
             }
-            UserInput gruntMove = ai.MakeMove(grunt);
+            UserInput gruntMove = ai.MakeMove(ref grunt);
             switch (gruntMove)
             {
                 case UserInput.A:
                     //Attack
-                    results = controller.Attack(grunt, user, hitPointData);
+                    results = controller.Attack(grunt, user, ref hitPointData);
                     audioFileNames = prepare.AttackFileStyle(gruntMove, grunt, user);
                     audioFileNames += "|" + prepare.ResultFileStyle(results, user, grunt);
                     audioFileNames += "|" + prepare.HitpointFileStyle(hitPointData);
@@ -137,7 +137,7 @@ namespace GameLogic
                     return prepare.AttackFileStyle(gruntMove, grunt, user);
                 case UserInput.Q:
                     //Tactical
-                    results = controller.GruntTactical(grunt, user, hitPointData);
+                    results = controller.GruntTactical(ref grunt, ref user, ref hitPointData);
                     return prepare.AbilityFileName(grunt, gruntMove, user, results, hitPointData);
                 default:
                     return "ERROR.wav - RoundController Problem with enemyMove - " + gruntMove;
@@ -158,15 +158,15 @@ namespace GameLogic
             string audioFileNames = "";
             switch (boss.GetType().Name)
             {
-                case "GameLogic.Character.PC.InfernalWish":
+                case "InfernalWish":
                     controller = new InfernalController();
                     ai = new InfernalAI();
                     break;
-                case "GameLogic.Character.PC.Doggo":
+                case "Doggo":
                     controller = new DoggoController();
                     ai = new DoggoAI();
                     break;
-                case "GameLogic.Character.PC.Cowboy":
+                case "Cowboy":
                     controller = new CowBoyController();
                     ai = new CowboyAI();
                     break;
@@ -175,12 +175,12 @@ namespace GameLogic
                     ai = new InfernalAI();
                     break;
             }
-            UserInput bossMove = ai.MakeMove(boss);
+            UserInput bossMove = ai.MakeMove(ref boss);
             switch (bossMove)
             {
                 case UserInput.A:
                     //Attack
-                    results = controller.Attack(boss, player, hitPointData);
+                    results = controller.Attack(boss, player, ref hitPointData);
                     audioFileNames = prepare.AttackFileStyle(bossMove, boss, player);
                     audioFileNames += "|" + prepare.ResultFileStyle(results, player, boss);
                     audioFileNames += "|" + prepare.HitpointFileStyle(hitPointData);
@@ -195,11 +195,11 @@ namespace GameLogic
                     return prepare.AttackFileStyle(bossMove, boss, player);
                 case UserInput.Q:
                     //Tactical
-                    results = controller.BossTactical(player, boss, hitPointData);
+                    results = controller.BossTactical(ref player, ref boss, ref hitPointData);
                     return prepare.AbilityFileName(boss, bossMove, player, results, hitPointData);
                 case UserInput.W:
                     //Utility
-                    results = controller.PCUtility(boss, hitPointData);
+                    results = controller.PCUtility(ref boss, ref hitPointData);
                     return prepare.AbilityFileName(boss, bossMove, player, results, hitPointData);
                 default:
                     return "ERROR.wav - RoundController Problem with bossMove - " + bossMove;

@@ -11,7 +11,7 @@ namespace GameLogic.GameLogic.CharacterController
 {
     public class InfernalController : GeneralCharacterController
     {
-        public override RoundResult BossTactical(Biggie player, Biggie boss, int importantData)
+        public override RoundResult BossTactical(ref Biggie player, ref Biggie boss, ref int importantData)
         {
             int fireDamage = boss.Tactical();
             int fireAccuracy = boss.Accuracy();
@@ -21,14 +21,14 @@ namespace GameLogic.GameLogic.CharacterController
             if (fireAccuracy > (enemyDodgeAttempt + 40))
             {
                 fireDamage = fireDamage * 2;
-                CheckBlockWithoutItems(player, fireDamage, importantData);
+                CheckBlockWithoutItems(ref player, fireDamage, ref importantData);
                 player.AddItem(new Burn(player));
                 return RoundResult.CRITICAL;
             }
             else if (fireAccuracy >= enemyDodgeAttempt)
             {
                 player.AddItem(new Burn(player));
-                return CheckBlockWithoutItems(player, fireDamage, importantData);
+                return CheckBlockWithItems(ref player, fireDamage, ref importantData);
             }
             else if (fireAccuracy < enemyDodgeAttempt)
             {
@@ -43,13 +43,15 @@ namespace GameLogic.GameLogic.CharacterController
             }
         }
 
-        public override RoundResult PCUtility(Biggie player, int importantData)
+        
+
+        public override RoundResult PCUtility(ref Biggie player, ref int importantData)
         {
             player.Utility();
             return RoundResult.BUFFED;
         }
 
-        public override RoundResult BossUltimate(Biggie player, Biggie boss, int importantData)
+        public override RoundResult BossUltimate(ref Biggie player, ref Biggie boss, ref int importantData)
         {
             boss.Ultimate();
             return RoundResult.BUFFED;

@@ -28,6 +28,7 @@ namespace GameLogic.Character.PC
         public Tank()
             : base()
         {
+            
             base.player = true;
             SetBaseStats();
             base.Level = 0;
@@ -89,6 +90,7 @@ namespace GameLogic.Character.PC
              * Medium Attack
              */
             base.baseHealth = 150;
+            this.health = base.baseHealth;
             base.baseDamage = 11;
             base.baseDodge[0] = 0;
             base.baseDodge[1] = 100;

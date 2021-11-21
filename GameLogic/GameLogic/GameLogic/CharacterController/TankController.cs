@@ -10,7 +10,7 @@ namespace GameLogic.GameLogic.CharacterController
 {
     public class TankController : GeneralCharacterController
     {
-        public override RoundResult BossTactical(Biggie player, Biggie enemy, int importantData)
+        public override RoundResult BossTactical(ref Biggie player, ref Biggie enemy, ref int importantData)
         {
             int hammerDamage = player.Tactical();
             int hammerAccuracy = player.Accuracy();
@@ -20,12 +20,12 @@ namespace GameLogic.GameLogic.CharacterController
             if (hammerAccuracy > (enemyDodgeAttempt + 40))
             {
                 hammerDamage = hammerDamage * 2;
-                CheckBlockWithoutItems(enemy, hammerDamage, importantData);
+                CheckBlockWithoutItems(ref enemy, hammerDamage, ref importantData);
                 return RoundResult.CRITICAL;
             }
             else if (hammerAccuracy >= enemyDodgeAttempt)
             {
-                return CheckBlockWithoutItems(enemy, hammerDamage, importantData);
+                return CheckBlockWithoutItems(ref enemy, hammerDamage, ref importantData);
 
             }
             else if (hammerAccuracy < enemyDodgeAttempt)
@@ -42,13 +42,13 @@ namespace GameLogic.GameLogic.CharacterController
             }
         }
 
-        public override RoundResult UserUltimate(Biggie player, ICharacter enemy, int importantData)
+        public override RoundResult UserUltimate(ref Biggie player, ref ICharacter enemy, ref int importantData)
         {
             importantData = player.Ultimate();
             return RoundResult.HEALED;
         }
 
-        public override RoundResult PCUtility(Biggie player, int importantData)
+        public override RoundResult PCUtility(ref Biggie player, ref int importantData)
         {
             player.Utility();
             return RoundResult.TEMPBLOCK;

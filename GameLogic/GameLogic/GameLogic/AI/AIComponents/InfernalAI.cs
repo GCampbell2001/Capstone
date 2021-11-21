@@ -21,7 +21,7 @@ namespace GameLogic.GameLogic.AI.AIComponents
          * he doesn't have any change in move chance.
          * 
          */
-        public UserInput MakeMove(Biggie character)
+        public UserInput MakeMove(ref Biggie character)
         {
             List<UserInput> normalMoveSet = new List<UserInput>() { UserInput.Q, UserInput.Q, UserInput.A, UserInput.S, UserInput.D, UserInput.W };
             List<UserInput> utilityMoveSet = new List<UserInput> { UserInput.D, UserInput.Q, UserInput.D, UserInput.S, UserInput.D, UserInput.A };
@@ -33,7 +33,7 @@ namespace GameLogic.GameLogic.AI.AIComponents
                     return UserInput.E;
                 else
                 {
-                    return tryBasicMove(character, normalMoveChoice);
+                    return tryBasicMove(ref character, normalMoveChoice);
                 }
             } else if (character.utilityDuration > 0)
             {
@@ -44,11 +44,11 @@ namespace GameLogic.GameLogic.AI.AIComponents
                 return utilityMoveChoice;
             } else
             {
-                return tryBasicMove(character, normalMoveChoice);
+                return tryBasicMove(ref character, normalMoveChoice);
             }
         }
 
-        private UserInput tryBasicMove(Biggie character, UserInput normalMoveChoice)
+        private UserInput tryBasicMove(ref Biggie character, UserInput normalMoveChoice)
         {
             if (normalMoveChoice == UserInput.Q && character.TacticalCooldown > 0)
             {

@@ -16,7 +16,7 @@ namespace GameLogic.GameLogic.AI.AIComponents
          * He has the same chance to block as he does to attack.  He doesn't try to use his ultimate
          * until he reaches half health. This is to help keep Doggo from being too OP
          */
-        public UserInput MakeMove(Biggie character)
+        public UserInput MakeMove(ref Biggie character)
         {
             List<UserInput> normalMoveSet = new List<UserInput>() { UserInput.Q, UserInput.Q, UserInput.A, UserInput.S, UserInput.D, UserInput.W };
             List<UserInput> halfHealthMoveSet = new List<UserInput> { UserInput.Q, UserInput.W, UserInput.E, UserInput.A, UserInput.S, UserInput.D };
@@ -24,14 +24,14 @@ namespace GameLogic.GameLogic.AI.AIComponents
             UserInput halfHealthMoveChoice = halfHealthMoveSet.OrderBy(m => new Random().Next()).ElementAt(0);
             if(character.health <= character.health / 2)
             {
-                return tryBasicMove(character, halfHealthMoveChoice);
+                return tryBasicMove(ref character, halfHealthMoveChoice);
             } else
             {
-                return tryBasicMove(character, normalMoveChoice);
+                return tryBasicMove(ref character, normalMoveChoice);
             }
         }
 
-        private UserInput tryBasicMove(Biggie character, UserInput normalMoveChoice)
+        private UserInput tryBasicMove(ref Biggie character, UserInput normalMoveChoice)
         {
             if (normalMoveChoice == UserInput.Q && character.TacticalCooldown > 0)
             {

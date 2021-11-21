@@ -15,7 +15,7 @@ namespace GameLogic.GameLogic.AI.AIComponents
          * To make the fight more fair I'll make the chances of him choosing
          * to block lower than using his tactical or attacking.
          */
-        public UserInput MakeMove(Grunt character)
+        public UserInput MakeMove(ref Grunt character)
         {
             Random generator = new Random();
 

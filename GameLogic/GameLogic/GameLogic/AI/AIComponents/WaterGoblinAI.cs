@@ -17,7 +17,7 @@ namespace GameLogic.GameLogic.AI
          * if he is below half health he is 40% likely to try and heal 20% likely to any of the other options.
          */
 
-        public UserInput MakeMove(Grunt character)
+        public UserInput MakeMove(ref Grunt character)
         {
             Random generator = new Random();
 

@@ -278,6 +278,7 @@ namespace GameLogic.Character.PC
              * High Attack
              */
             base.baseHealth = 80;
+            this.health = base.baseHealth;
             base.baseDamage = 17;
             base.baseDodge[0] = 40;
             base.baseDodge[1] = 140;

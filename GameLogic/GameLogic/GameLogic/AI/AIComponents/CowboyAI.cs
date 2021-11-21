@@ -16,7 +16,7 @@ namespace GameLogic.GameLogic.AI.AIComponents
          * If tries to use his ultimate but can't then he will try to use his tactical instead. If he can't use his tactical then he will use his base attack. However, if his
          * Utility is active then he'll go straight for his general attack instead of his tactical.
          */
-        public UserInput MakeMove(Biggie character)
+        public UserInput MakeMove(ref Biggie character)
         {
             List<UserInput> normalMoveSet = new List<UserInput>() { UserInput.Q, UserInput.W, UserInput.A, UserInput.D, UserInput.D };
             List<UserInput> threeQuartersHealthMoveSet = new List<UserInput> { UserInput.Q, UserInput.W, UserInput.E, UserInput.A, UserInput.D, UserInput.D };
@@ -36,11 +36,11 @@ namespace GameLogic.GameLogic.AI.AIComponents
                 
             } else if (character.health <= (character.health - (character.health / 4)))
             {
-                return tryBasicMove(character, threeQuartersHealthMoveChoice);
+                return tryBasicMove(ref character, threeQuartersHealthMoveChoice);
             }
             else
             {
-                return tryBasicMove(character, normalMoveChoice);
+                return tryBasicMove(ref character, normalMoveChoice);
             }
         }
 
@@ -55,7 +55,7 @@ namespace GameLogic.GameLogic.AI.AIComponents
             }
         }
 
-        private UserInput tryBasicMove(Biggie character, UserInput normalMoveChoice)
+        private UserInput tryBasicMove(ref Biggie character, UserInput normalMoveChoice)
         {
             if (normalMoveChoice == UserInput.Q && character.TacticalCooldown > 0)
             {
@@ -67,7 +67,7 @@ namespace GameLogic.GameLogic.AI.AIComponents
             }
             else if (normalMoveChoice == UserInput.E && character.UltimateCooldown > 0)
             {
-                return tryBasicMove(character, UserInput.Q);
+                return tryBasicMove(ref character, UserInput.Q);
             }
             else
             {

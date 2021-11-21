@@ -176,13 +176,13 @@ namespace GameLogic.Character.Components
             }
         }
 
-        public ModTool GetMainItem()
+        public ref ModTool GetMainItem()
         {
-            return currentItem;
+            return ref currentItem;
         }
-        public List<ModTool> GetItems()
+        public ref List<ModTool> GetItems()
         {
-            return items;
+            return ref items;
         }
 
         public void SetMainItem(CharacterComponent item)

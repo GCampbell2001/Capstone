@@ -16,7 +16,7 @@ namespace GameLogic.GameLogic.AI.AIComponents
          */
 
 
-        public UserInput MakeMove(Grunt character)
+        public UserInput MakeMove(ref Grunt character)
         {
             Random generator = new Random();
 

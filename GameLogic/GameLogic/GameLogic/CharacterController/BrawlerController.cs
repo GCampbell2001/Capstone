@@ -11,7 +11,7 @@ namespace GameLogic.GameLogic.CharacterController
     public class BrawlerController : GeneralCharacterController
     {
 
-        public override RoundResult UserTactical(Biggie player, ICharacter enemy, int importantData)
+        public override RoundResult UserTactical(ref Biggie player, ref ICharacter enemy, ref int importantData)
         {
             int attackDamage = player.Tactical();
             int attackAccuracy = player.Accuracy();
@@ -21,13 +21,13 @@ namespace GameLogic.GameLogic.CharacterController
             if (attackAccuracy > (enemyDodgeAttempt + 40))
             {
                 attackDamage = attackDamage * 2;
-                CheckBlockWithoutItems(enemy, attackDamage, importantData);
+                CheckBlockWithoutItems(ref enemy, attackDamage, ref importantData);
                 player.raiseHealth(importantData);
                 return RoundResult.CRITICAL;
             }
             else if (attackAccuracy >= enemyDodgeAttempt)
             {
-                RoundResult result = CheckBlockWithoutItems(enemy, attackDamage, importantData);
+                RoundResult result = CheckBlockWithoutItems(ref enemy, attackDamage, ref importantData);
                 player.raiseHealth(importantData);
                 return result;
             }
@@ -44,12 +44,12 @@ namespace GameLogic.GameLogic.CharacterController
                 return RoundResult.MISSED;
             }
         }
-        public override RoundResult PCUtility(Biggie player, int importantData)
+        public override RoundResult PCUtility(ref Biggie player, ref int importantData)
         {
             player.Utility();
             return RoundResult.BUFFED;
         }
-        public override RoundResult UserUltimate(Biggie player, ICharacter enemy, int importantData)
+        public override RoundResult UserUltimate(ref Biggie player, ref ICharacter enemy, ref int importantData)
         {
             player.Ultimate();
             return RoundResult.BUFFED;

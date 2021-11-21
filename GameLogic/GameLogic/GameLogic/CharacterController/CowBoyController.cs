@@ -9,19 +9,19 @@ namespace GameLogic.GameLogic.CharacterController
 {
     class CowBoyController : GeneralCharacterController
     {
-        public override RoundResult BossTactical(Biggie player, Biggie boss, int importantData)
+        public override RoundResult BossTactical(ref Biggie player, ref Biggie boss, ref int importantData)
         {
             boss.Tactical();
             return RoundResult.BUFFED;
         }
 
-        public override RoundResult PCUtility(Biggie player, int importantData)
+        public override RoundResult PCUtility(ref Biggie player, ref int importantData)
         {
             player.Utility();
             return RoundResult.BUFFED;
         }
 
-        public override RoundResult BossUltimate(Biggie player, Biggie boss, int importantData)
+        public override RoundResult BossUltimate(ref Biggie player, ref Biggie boss, ref int importantData)
         {
             int bossDamage = boss.Ultimate();
             player.LowerHealth(bossDamage);

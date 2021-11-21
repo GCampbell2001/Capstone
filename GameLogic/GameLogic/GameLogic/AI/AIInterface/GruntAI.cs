@@ -8,7 +8,7 @@ namespace GameLogic.GameLogic.AI.AIInterface
 {
     public interface GruntAI
     {
-        public UserInput MakeMove(Grunt character);
+        public UserInput MakeMove(ref Grunt character);
 
 
     }

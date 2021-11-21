@@ -11,7 +11,7 @@ namespace GameLogic.GameLogic.Controller
 {
     public class ThrillController : GeneralCharacterController
     {  
-        public override RoundResult UserTactical(Biggie player, ICharacter enemy, int importantData)
+        public override RoundResult UserTactical(ref Biggie player, ref ICharacter enemy, ref int importantData)
         {
             int daggerDamage = player.Tactical();
             int daggerAccuracy = player.Accuracy();
@@ -21,11 +21,11 @@ namespace GameLogic.GameLogic.Controller
             if(daggerAccuracy > (enemyDodgeAttempt + 40))
             {
                 daggerDamage = daggerDamage * 2;
-                CheckBlockWithoutItems(enemy, daggerDamage, importantData);
+                CheckBlockWithoutItems(ref enemy, daggerDamage, ref importantData);
                 return RoundResult.CRITICAL;
             } else if(daggerAccuracy >= enemyDodgeAttempt)
             {
-                return CheckBlockWithoutItems(enemy, daggerDamage, importantData);
+                return CheckBlockWithoutItems(ref enemy, daggerDamage, ref importantData);
 
             } else if(daggerAccuracy < enemyDodgeAttempt)
             {
@@ -41,13 +41,13 @@ namespace GameLogic.GameLogic.Controller
 
             
         }
-        public override RoundResult UserUltimate(Biggie player, ICharacter enemy, int importantData)
+        public override RoundResult UserUltimate(ref Biggie player, ref ICharacter enemy, ref int importantData)
         {
             int ghostDamage = player.Ultimate();
-            return CheckBlockWithoutItems(enemy, ghostDamage, importantData);
+            return CheckBlockWithoutItems(ref enemy, ghostDamage, ref importantData);
         }
 
-        public override RoundResult PCUtility(Biggie player, int importantData)
+        public override RoundResult PCUtility(ref Biggie player, ref int importantData)
         {
             player.Utility();
             return RoundResult.CRITICAL;

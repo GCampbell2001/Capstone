@@ -7,6 +7,6 @@ namespace GameLogic.GameLogic.AI.AIInterface
 {
     public interface BossAI
     {
-        public UserInput MakeMove(Biggie character);
+        public UserInput MakeMove(ref Biggie character);
     }
 }
