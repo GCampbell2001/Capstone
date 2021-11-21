@@ -207,6 +207,24 @@ namespace GameLogic
 
         }
 
+        public void Update(Biggie user, Biggie boss, Grunt grunt, List<string> audioFiles)
+        {
+            /*
+             * Taking in all possible characters and determining which is null here so I utilize class specific methods for enemies.   
+             * player first and then enemy 
+             */
+            prepare.PlayerUpdate(user, audioFiles);
+            if(grunt == null)
+            {
+                prepare.BossUpdate(boss, audioFiles);
+            } else
+            {
+                prepare.GruntUpdate(grunt, audioFiles);
+            }
+
+        }
+
+
         //Commented out this method. Going to test it later. If it turns out I'm good to delete this I will
 
         //private string ResultFileStyle(RoundResult result, ICharacter enemy)

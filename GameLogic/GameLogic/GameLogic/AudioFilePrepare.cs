@@ -116,6 +116,49 @@ namespace GameLogic.GameLogic
             return finalString;
         }
 
+        public void PlayerUpdate(Biggie player, List<string> update)
+        {
+            string name = GetCharacterName(player);
+            string health = name + "CurrentHealth";
+            string healthNumber = player.health.ToString();
+            string tactTitle = name + "TactUpdate";
+            string tactNumber = player.TacticalCooldown.ToString();
+            string utilTitle = name + "UtilUpdate";
+            string utilNumber = player.UtilityCooldown.ToString();
+            string ultTitle = name + "UltUpdate";
+            string ultNumber = player.UltimateCooldown.ToString();
+
+            update.Add(health);
+            update.Add(healthNumber);
+            update.Add(tactTitle);
+            update.Add(tactNumber);
+            update.Add(utilTitle);
+            update.Add(utilNumber);
+            update.Add(ultTitle);
+            update.Add(ultNumber);
+        }
+
+        public void BossUpdate(Biggie boss, List<string> update)
+        {
+            string name = GetCharacterName(boss);
+            string health = name + "CurrentHealth";
+            string healthNumber = boss.health.ToString();
+
+            update.Add(health);
+            update.Add(healthNumber);
+        }
+
+        public void GruntUpdate(Grunt grunt, List<string> update)
+        {
+            string name = GetCharacterName(grunt);
+            string health = name + "CurrentHealth";
+            string healthNumber = grunt.health.ToString();
+
+            update.Add(health);
+            update.Add(healthNumber);
+        }
+
+
         public string GetCharacterName(ICharacter character)
         {
             string[] namePieces = character.GetType().Name.Split(".");

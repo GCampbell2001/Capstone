@@ -19,7 +19,7 @@ namespace GameLogic.Character.Components
         private List<ModTool> items = new List<ModTool>();
         private ModTool currentItem = null;
         public int baseHealth { get; set; }
-        protected int health;
+        public int health;
         protected int damage;
         protected int[] dodge;
         protected int block;
