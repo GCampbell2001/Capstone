@@ -1,3 +1,4 @@
+using GameServer;
 using Microsoft.AspNetCore.SignalR;
 using NPOI.SS.Formula.Functions;
 using System;
@@ -8,11 +9,53 @@ using Windows.Media.SpeechSynthesis;
 
 namespace SignalRChat.Hubs
 {
-    public class ChatHub : Hub
+    public class GameHub : Hub
     {
+        InputHandler controller = new InputHandler();
 
         public async Task StartGame(string characterClass)
         {
+            controller.StartGame(characterClass);
+            await Clients.All.SendAsync("ReceiveMessage", "done");
+        }
+
+        public async Task Update(string userInput)
+        {
+            List<string> audioFiles = new List<string>();
+            controller.Update(audioFiles);
+
+            foreach(string file in audioFiles)
+            {
+                //TODO
+                //make client method that takes in a string and spits back an array of numbers
+            }
+
+
+        }
+
+        public async Task ChangeRooms(string userInput)
+        {
+            string roomAudio = controller.ChangeRoom(userInput);
+
+            //Run client method that handles audio strings
+
+
+        }
+
+        public async Task Fight(string userInput)
+        {
+            List<string> userAudio = new List<string>();
+            List<string> enemyAudio = new List<string>();
+            bool gameOver = controller.FightRound(userInput, userAudio, enemyAudio);
+            foreach(string file in userAudio)
+            {
+                //client method
+            }
+            foreach(string file in userAudio)
+            {
+                //client method
+            }
+
 
         }
         public async Task SendMessage(string user, string message)

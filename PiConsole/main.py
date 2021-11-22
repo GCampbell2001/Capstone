@@ -4,6 +4,7 @@ import sys
 from signalrcore.hub_connection_builder import HubConnectionBuilder
 from pydub import AudioSegment
 from pydub.playback import play
+import simpleaudio as sa
 import os
 
 
@@ -18,8 +19,12 @@ def play_message(msg):
     f = open("testing.wav", 'w+b')
     f.write(binary_format)
     f.close
-    sound = AudioSegment.from_wav("testing.wav")
-    play(sound)
+    sound = sa.WaveObject.from_wav_file("testing.wav")
+    play_obj = sound.play()
+    play_obj.wait_done()
+    print("This shouldn't print until after file is done playing")
+    os.remove("testing.wav")
+    # play(sound)
 
 
 def input_with_default(input_text, default_value):
@@ -43,8 +48,8 @@ hub_connection = HubConnectionBuilder()\
 hub_connection.on_open(lambda: print("connection opened and handshake received ready to send messages"))
 hub_connection.on_close(lambda: print("connection closed"))
 
-# hub_connection.on("RecieveAudio", play_message)
-hub_connection.on("ReceiveMessage", print)
+hub_connection.on("RecieveAudio", play_message)
+#hub_connection.on("ReceiveMessage", print)
 
 hub_connection.start()
 

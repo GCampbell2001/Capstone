@@ -56,7 +56,7 @@ namespace GameServer
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
-                endpoints.MapHub<ChatHub>("/chatHub");
+                endpoints.MapHub<GameHub>("/chatHub");
             });
         }
     }

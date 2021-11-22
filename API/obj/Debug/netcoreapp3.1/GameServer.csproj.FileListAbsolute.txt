@@ -120,3 +120,9 @@ C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\runtimes\linux\n
 C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\runtimes\osx\native\libmongocrypt.dylib
 C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\runtimes\win\native\mongocrypt.dll
 C:\Users\Matthew\Documents\Capstone\API\obj\Debug\netcoreapp3.1\GameServer.csprojAssemblyReference.cache
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\GameLogic.deps.json
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\GameLogic.runtimeconfig.json
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\GameLogic.runtimeconfig.dev.json
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\GameLogic.exe
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\GameLogic.dll
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\GameLogic.pdb

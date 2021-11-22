@@ -380,7 +380,7 @@ namespace GameServer
             }
         }
 
-        public ICharacter CreateNewEnemy(string enemyClass, int level)
+        private ICharacter CreateNewEnemy(string enemyClass, int level)
         {
             switch (enemyClass)
             {
@@ -401,7 +401,7 @@ namespace GameServer
             }
         }
 
-        public void UpdateGruntDead(Grunt enemy, Biggie user)
+        private void UpdateGruntDead(Grunt enemy, Biggie user)
         {
             IMongoDatabase database = client.GetDatabase("GameData");
             var run = database.GetCollection<BsonDocument>("CurrentRun");
@@ -431,7 +431,7 @@ namespace GameServer
             }
         }
 
-        public void UpdateBossDead(Biggie enemy, Biggie player)
+        private void UpdateBossDead(Biggie enemy, Biggie player)
         {
             IMongoDatabase database = client.GetDatabase("GameData");
             var run = database.GetCollection<BsonDocument>("CurrentRun");
@@ -503,7 +503,7 @@ namespace GameServer
             run.UpdateOneAsync(userFilter, user.ToBson());
         }
 
-        public Grunt FetchGrunt()
+        private Grunt FetchGrunt()
         {
             IMongoDatabase database = client.GetDatabase("GameData");
             var run = database.GetCollection<BsonDocument>("CurrentRun");
@@ -586,7 +586,7 @@ namespace GameServer
 
         }
 
-        public Biggie FetchBiggie(string isPlayer)
+        private Biggie FetchBiggie(string isPlayer)
         {
             IMongoDatabase database = client.GetDatabase("GameData");
             var run = database.GetCollection<BsonDocument>("CurrentRun");
@@ -807,7 +807,7 @@ namespace GameServer
         }
 
 
-        public void Test()
+        private void Test()
         {
             var client = new MongoClient("mongodb+srv://MatthewC:Vault159@cluster0.2ximt.mongodb.net/GameData?retryWrites=true&w=majority");
             IMongoDatabase database = client.GetDatabase("GameData");
@@ -820,7 +820,7 @@ namespace GameServer
             Console.WriteLine();
         }
 
-        public string GetCharacterName(string characterName)
+        private string GetCharacterName(string characterName)
         {
             string[] namePieces = characterName.Split(".");
             return namePieces[namePieces.Count() - 1];
