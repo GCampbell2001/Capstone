@@ -119,3 +119,4 @@ C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\runtimes\win\nat
 C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\runtimes\linux\native\libmongocrypt.so
 C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\runtimes\osx\native\libmongocrypt.dylib
 C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\runtimes\win\native\mongocrypt.dll
+C:\Users\Matthew\Documents\Capstone\API\obj\Debug\netcoreapp3.1\GameServer.csprojAssemblyReference.cache

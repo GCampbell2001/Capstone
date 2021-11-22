@@ -44,6 +44,5 @@
   </ItemGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgUno_UI Condition=" '$(PkgUno_UI)' == '' ">C:\Users\Matthew\.nuget\packages\uno.ui\3.10.11</PkgUno_UI>
-    <PkgNewtonsoft_Json Condition=" '$(PkgNewtonsoft_Json)' == '' ">C:\Users\Matthew\.nuget\packages\newtonsoft.json\10.0.1</PkgNewtonsoft_Json>
   </PropertyGroup>
 </Project>
