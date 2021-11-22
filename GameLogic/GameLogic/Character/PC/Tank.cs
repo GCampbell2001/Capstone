@@ -49,7 +49,7 @@ namespace GameLogic.Character.PC
             base.player = true;
             SetBaseStats();
             setRates();
-            setRates();
+            
             base.Level = currentLevel;
             this.tacticalDuration = currentTactDuration;
             base.TacticalCooldown = currentTactCooldown;
@@ -57,7 +57,7 @@ namespace GameLogic.Character.PC
             base.UtilityCooldown = currentUtilCooldown;
             this.ultimateDuration = currentUltDuration;
             base.UltimateCooldown = currentUltCooldown;
-            matchLevel(base.Level);
+            //matchLevel(base.Level);
             checkBlock();   
         }
 

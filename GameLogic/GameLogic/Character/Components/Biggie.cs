@@ -245,7 +245,7 @@ namespace GameLogic.Character.Components
         public BsonDocument ToBson()
         {
             string final = "";
-            if(items == null)
+            if(items == null || items.Count == 0)
             {
                 final = "{ player : \"" + this.player + "\", class : \"" + this.GetType().ToString() + "\", level : "
                 + this.Level + ", health : " + this.health + ", damage : " + this.damage
