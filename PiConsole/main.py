@@ -113,9 +113,11 @@ def play_game():
     #skipping intro and going right into Intro Dialogues
     need_to_make_choice = True
     while need_to_make_choice:
-        current_choice = 1
-        choice = Determine_Character_Choice()
-        print(choice)
+        current_choice = 0
+        current_choice = Determine_Character_Choice()
+        if current_choice < 4 and current_choice > 0:
+            print(current_choice)
+            need_to_make_choice = False
         # sound_reg = sa.WaveObject.from_wave_file("ReginaldIntro.wav")
         # sound_bel = sa.WaveObject.from_wave_file("BelladonnaIntro.wav")
         # sound_nodge = sa.WaveObject.from_wave_file("NodgeIntro.wav")
@@ -129,7 +131,7 @@ def play_game():
 
 
 
-    hub_connection.stop();
+#    hub_connection.stop();
 
 
 def Determine_Character_Choice():
@@ -141,53 +143,41 @@ def Determine_Character_Choice():
 def reginald_choice(reg):
     #this is choice 1
     key_not_pressed = True
-    try:
-        reg.stop()
-    except:
-        print()
     sound_reg = sa.WaveObject.from_wave_file("ReginaldIntro.wav")
     print("HitReggie")
     play_reg = sound_reg.play()
+    play_reg.wait_done()
     while key_not_pressed:
         if keyboard.is_pressed('down'):
             return belladonna_choice(play_reg)
         if keyboard.is_pressed('enter'):
-            play_reg.stop()
             return 1
 
 
 def belladonna_choice(reg):
     #this is choice 2
     key_not_pressed = True
-    try:
-        reg.stop()
-    except:
-        print()
     sound_bell = sa.WaveObject.from_wave_file("BelladonnaIntro.wav")
     print("htiBellodonna")
     play_bell = sound_bell.play()
+    play_bell.wait_done()
     while key_not_pressed:
         if keyboard.is_pressed('down'):
             return nodge_choice(play_bell)
         if keyboard.is_pressed('enter'):
-            play_bell.stop()
             return 2
 
 def nodge_choice(reg):
-    #this is choice 3
     key_not_pressed = True
-    try:
-        reg.stop()
-    except:
-        print()
     sound_nodg = sa.WaveObject.from_wave_file("NodgeIntro.wav")
     print("HitNodge")
     play_nodg = sound_nodg.play()
-    if keyboard.is_pressed('down'):
-        return reginald_choice(play_nodg)
-    if keyboard.is_pressed('enter'):
-        play_nodg.stop()
-        return 3
+    play_nodg.wait_done()
+    while key_not_pressed:
+        if keyboard.is_pressed('down'):
+            return reginald_choice(play_nodg)
+        if keyboard.is_pressed('enter'):
+            return 3
 
 
 play_game()
