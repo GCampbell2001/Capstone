@@ -6,6 +6,7 @@ from pydub import AudioSegment
 from pydub.playback import play
 import simpleaudio as sa
 import os
+import keyboard
 
 
 def play_message(msg):
@@ -19,10 +20,10 @@ def play_message(msg):
     f = open("testing.wav", 'w+b')
     f.write(binary_format)
     f.close
-    sound = sa.WaveObject.from_wav_file("testing.wav")
+    sound = sa.WaveObject.from_wave_file("testing.wav")
     play_obj = sound.play()
     play_obj.wait_done()
-    print("This shouldn't print until after file is done playing")
+    # print("This shouldn't print until after file is done playing")
     os.remove("testing.wav")
     # play(sound)
 
@@ -48,39 +49,101 @@ hub_connection = HubConnectionBuilder()\
 hub_connection.on_open(lambda: print("connection opened and handshake received ready to send messages"))
 hub_connection.on_close(lambda: print("connection closed"))
 
+
+hub_connection.start()
+
 hub_connection.on("RecieveAudio", play_message)
 #hub_connection.on("ReceiveMessage", print)
 
-hub_connection.start()
+
 
 
 message = None
 
 # Do login
 
-# while message != "exit()":
-#     message = input(">> ")
-#     if message is not None and message != "" and message != "exit()":
-#         hub_connection.send("SendAudio", [])
-#         print("I'M SENDING HERE")
-#         print("I'M SENDING HERE")
-#         print("I'M SENDING HERE")
-#     else:
-#         try:
-#             os.remove("testing.wav")
-#         finally:
-#             print("")
-
 while message != "exit()":
     message = input(">> ")
     if message is not None and message != "" and message != "exit()":
-        hub_connection.send("SendMessage", [username, message])
+        hub_connection.send("SendAudio", [])
         print("I'M SENDING HERE")
+        print("I'M SENDING HERE")
+        print("I'M SENDING HERE")
+    else:
+        try:
+            # os.remove("testing.wav")
+            print("python is angy and this fixes it. lil *****")
+        finally:
+            print("line72")
+
+# while message != "exit()":
+#     message = input(">> ")
+#     if message is not None and message != "" and message != "exit()":
+#         hub_connection.send("SendMessage", [username, message])
+#         print("I'M SENDING HERE")
 
 
 hub_connection.stop()
 
+def play_game():
+    server_url = "wss://localhost:5001/chatHub"
+    # username = input_with_default('Enter your username (default: {0}): ', "mandrewcito")
+    handler = logging.StreamHandler()
+    handler.setLevel(logging.DEBUG)
+    hub_connection = HubConnectionBuilder() \
+        .with_url(server_url, options={"verify_ssl": False}) \
+        .configure_logging(logging.DEBUG, socket_trace=True, handler=handler) \
+        .with_automatic_reconnect({
+        "type": "interval",
+        "keep_alive_interval": 10,
+        "intervals": [1, 3, 5, 6, 7, 87, 3]
+    }).build()
 
+    hub_connection.on_open(lambda: print("connection opened and handshake received ready to send messages"))
+    hub_connection.on_close(lambda: print("connection closed"))
+
+    hub_connection.start();
+
+    #TODO:          play intro audio.
+    #TODO:          play character Intro Dialogues
+    #TODO:          Need to either set it up so you can press up and down to navigate choices and then press enter to choose or make it key specific
+
+    #TODO:          Read UserInput KeyPress and make calls to methods based of this.
+
+    #skipping intro and going right into Intro Dialogues
+    need_to_make_choice = true
+    while need_to_make_choice:
+        current_choice = 1
+        Determine_Character_Choice(current_choice)
+        # sound_reg = sa.WaveObject.from_wave_file("ReginaldIntro.wav")
+        # sound_bel = sa.WaveObject.from_wave_file("BelladonnaIntro.wav")
+        # sound_nodge = sa.WaveObject.from_wave_file("NodgeIntro.wav")
+        # play_reg = sound_reg.play()
+        # if(keyboard.is_pressed('down')):
+        #     play_reg.stop()
+        #     play_bell = sound_bel.play()
+
+
+
+
+
+
+    hub_connection.stop();
+
+
+def Determine_Character_Choice(current_choice):
+    sound_reg = sa.WaveObject.from_wave_file("ReginaldIntro.wav")
+    sound_bel = sa.WaveObject.from_wave_file("BelladonnaIntro.wav")
+    sound_nodge = sa.WaveObject.from_wave_file("NodgeIntro.wav")
+    play_reg = sound_reg.play()
+    if (keyboard.is_pressed('down')):
+        if(current_choice == 1):
+            current_choice = 2
+            play_reg.stop()
+            play_bell = sound_bel.play()
+        elif(current_choice == 2):
+            current_choice = 3
+            play_
 
 
 sys.exit(0)

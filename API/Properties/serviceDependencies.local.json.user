@@ -2,23 +2,12 @@
   "dependencies": {
     "signalr1": {
       "restored": true,
-      "restoreTime": "2021-11-03T14:27:34.7483431Z"
+      "restoreTime": "2021-11-22T23:59:42.9924346Z"
     },
     "secrets1": {
       "restored": true,
-      "restoreTime": "2021-11-03T14:27:30.1445173Z"
+      "restoreTime": "2021-11-22T23:56:34.5938725Z"
     }
   },
-  "parameters": {
-    "signalr1.resourceGroupName": {
-      "Name": "signalr1.resourceGroupName",
-      "Type": "resourceGroup",
-      "Value": "Capstone"
-    },
-    "signalr1.subscriptionId": {
-      "Name": "signalr1.subscriptionId",
-      "Type": "subscription",
-      "Value": "4e8b1c2e-0ac9-4ec5-867e-25ae4304802f"
-    }
-  }
+  "parameters": {}
 }

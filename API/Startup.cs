@@ -48,7 +48,7 @@ namespace GameServer
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             
             
