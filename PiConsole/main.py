@@ -86,62 +86,108 @@ import keyboard
 # hub_connection.stop()
 
 def play_game():
-    # server_url = "wss://localhost:5001/chatHub"
-    # # username = input_with_default('Enter your username (default: {0}): ', "mandrewcito")
-    # handler = logging.StreamHandler()
-    # handler.setLevel(logging.DEBUG)
-    # hub_connection = HubConnectionBuilder() \
-    #     .with_url(server_url, options={"verify_ssl": False}) \
-    #     .configure_logging(logging.DEBUG, socket_trace=True, handler=handler) \
-    #     .with_automatic_reconnect({
-    #     "type": "interval",
-    #     "keep_alive_interval": 10,
-    #     "intervals": [1, 3, 5, 6, 7, 87, 3]
-    # }).build()
+    server_url = "wss://localhost:5001/chatHub"
+    # username = input_with_default('Enter your username (default: {0}): ', "mandrewcito")
+    handler = logging.StreamHandler()
+    handler.setLevel(logging.DEBUG)
+    hub_connection = HubConnectionBuilder() \
+        .with_url(server_url, options={"verify_ssl": False}) \
+        .configure_logging(logging.DEBUG, socket_trace=True, handler=handler) \
+        .with_automatic_reconnect({
+        "type": "interval",
+        "keep_alive_interval": 10,
+        "intervals": [1, 3, 5, 6, 7, 87, 3]
+    }).build()
+
+    hub_connection.on_open(lambda: print("connection opened and handshake received ready to send messages"))
+    hub_connection.on_close(lambda: print("connection closed"))
     #
-    # hub_connection.on_open(lambda: print("connection opened and handshake received ready to send messages"))
-    # hub_connection.on_close(lambda: print("connection closed"))
-    #
-    # hub_connection.start();
+    hub_connection.start()
 
-    #TODO:          play intro audio.
-    #TODO:          play character Intro Dialogues
-    #TODO:          Need to either set it up so you can press up and down to navigate choices and then press enter to choose or make it key specific
+    # TODO:          play intro audio.
+    # TODO:          play character Intro Dialogues
+    # TODO:          Need to either set it up so you can press up and down to navigate choices and then press enter to choose or make it key specific
 
-    #TODO:          Read UserInput KeyPress and make calls to methods based of this.
+    # TODO:          Read UserInput KeyPress and make calls to methods based of this.
 
-    #skipping intro and going right into Intro Dialogues
+    # skipping intro and going right into Intro Dialogues
     need_to_make_choice = True
+    player_alive = True
+    current_choice = 0
     while need_to_make_choice:
-        current_choice = 0
-        current_choice = Determine_Character_Choice()
+        current_choice = determine_character_choice()
         if current_choice < 4 and current_choice > 0:
             print(current_choice)
             need_to_make_choice = False
-        # sound_reg = sa.WaveObject.from_wave_file("ReginaldIntro.wav")
-        # sound_bel = sa.WaveObject.from_wave_file("BelladonnaIntro.wav")
-        # sound_nodge = sa.WaveObject.from_wave_file("NodgeIntro.wav")
-        # play_reg = sound_reg.play()
-        # if(keyboard.is_pressed('down')):
-        #     play_reg.stop()
-        #     play_bell = sound_bel.play()
+    hub_connection.send("StartGame", get_character_class(current_choice))
+    while player_alive:
+        if keyboard.is_pressed('a'):
+            hub_connection.send("Fight", 'a')
+        if keyboard.is_pressed('s'):
+            hub_connection.send("Fight", 's')
+        if keyboard.is_pressed('d'):
+            hub_connection.send("Fight", 'd')
+        if keyboard.is_pressed('q'):
+            hub_connection.send("Fight", 'q')
+        if keyboard.is_pressed('w'):
+            hub_connection.send("Fight", 'w')
+        if keyboard.is_pressed('e'):
+            hub_connection.send("Fight", 'e')
+        if keyboard.is_pressed('u'):
+            hub_connection.send("Update", 'u')
+        if keyboard.is_pressed('up'):
+            hub_connection.send("ChangeRooms", 'north')
+            hub_connection.on("ReceiveRoom", room_audio)
+        if keyboard.is_pressed('down'):
+            hub_connection.send("ChangeRooms", 'south')
+            hub_connection.on("ReceiveRoom", room_audio)
+        if keyboard.is_pressed('left'):
+            hub_connection.send("ChangeRooms", 'west')
+            hub_connection.on("ReceiveRoom", room_audio)
+        if keyboard.is_pressed('right'):
+            hub_connection.send("ChangeRooms", 'east')
+            hub_connection.on("ReceiveRoom", room_audio)
 
 
+def room_audio(msg):
+    #    print(msg)
+    encoded_msg = msg[0]
+    message_byte = base64.b64decode(encoded_msg)
+    m = []
+    for i in message_byte:
+        m.append(i)
+    binary_format = bytearray(m)
+    f = open("room.wav", 'w+b')
+    f.write(binary_format)
+    f.close
+    sound = sa.WaveObject.from_wave_file("room.wav")
+    play_obj = sound.play()
+    play_obj.wait_done()
+    # print("This shouldn't print until after file is done playing")
+    os.remove("room.wav")
 
 
+#     # play(sound)
 
 
-#    hub_connection.stop();
+def get_character_class(choice):
+    match choice:
+        case 1:
+            return "ThrillSeeker"
+        case 2:
+            return "Brawler"
+        case 3:
+            return "Tank"
 
 
-def Determine_Character_Choice():
+def determine_character_choice():
     sound_reg = sa.WaveObject.from_wave_file("ReginaldIntro.wav")
     play_reg = sound_reg
     return reginald_choice(play_reg)
 
 
 def reginald_choice(reg):
-    #this is choice 1
+    # this is choice 1
     key_not_pressed = True
     sound_reg = sa.WaveObject.from_wave_file("ReginaldIntro.wav")
     print("HitReggie")
@@ -155,7 +201,7 @@ def reginald_choice(reg):
 
 
 def belladonna_choice(reg):
-    #this is choice 2
+    # this is choice 2
     key_not_pressed = True
     sound_bell = sa.WaveObject.from_wave_file("BelladonnaIntro.wav")
     print("htiBellodonna")
@@ -166,6 +212,7 @@ def belladonna_choice(reg):
             return nodge_choice(play_bell)
         if keyboard.is_pressed('enter'):
             return 2
+
 
 def nodge_choice(reg):
     key_not_pressed = True
