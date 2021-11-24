@@ -1,16 +1,5 @@
-# This is a sample Python script.
+import mysql.connector
+from signalrcore.hub_connection_builder import HubConnectionBuilder
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+db = mysql.connector.connect( host="localhost", user="rasp", password="Yoru^558")
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/

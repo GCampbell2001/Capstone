@@ -102,7 +102,7 @@ def play_game():
     hub_connection.on_open(lambda: print("connection opened and handshake received ready to send messages"))
     hub_connection.on_close(lambda: print("connection closed"))
     #
-    hub_connection.start()
+    hub_connection.start().wait()
 
     # TODO:          play intro audio.
     # TODO:          play character Intro Dialogues
@@ -171,13 +171,9 @@ def room_audio(msg):
 
 
 def get_character_class(choice):
-    match choice:
-        case 1:
-            return "ThrillSeeker"
-        case 2:
-            return "Brawler"
-        case 3:
-            return "Tank"
+    if choice == 1: return "ThrillSeeker"
+    elif choice == 2: return "Brawler"
+    elif choice == 3: return "Tank"
 
 
 def determine_character_choice():
