@@ -69,6 +69,11 @@ namespace SignalRChat.Hubs
             await Clients.All.SendAsync("ReceiveMessage", "Server", "World");
         }
 
+        public async Task SendTest(string message)
+        {
+            await Clients.All.SendAsync("ReceiveTest", "THE AUDIO WAS RECIEVED");
+        }
+
         public async Task SendAudio()
         {
             string wavFile = "C:\\Users\\Matthew\\Documents\\Capstone\\API\\fuseyboi.wav";

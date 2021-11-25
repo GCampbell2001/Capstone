@@ -137,16 +137,16 @@ def play_game():
             hub_connection.send("Update", 'u')
         if keyboard.is_pressed('up'):
             hub_connection.send("ChangeRooms", 'north')
-            hub_connection.on("ReceiveRoom", room_audio)
+            hub_connection.on("ReceiveFile", room_audio)
         if keyboard.is_pressed('down'):
             hub_connection.send("ChangeRooms", 'south')
-            hub_connection.on("ReceiveRoom", room_audio)
+            hub_connection.on("ReceiveFile", room_audio)
         if keyboard.is_pressed('left'):
             hub_connection.send("ChangeRooms", 'west')
-            hub_connection.on("ReceiveRoom", room_audio)
+            hub_connection.on("ReceiveFile", room_audio)
         if keyboard.is_pressed('right'):
             hub_connection.send("ChangeRooms", 'east')
-            hub_connection.on("ReceiveRoom", room_audio)
+            hub_connection.on("ReceiveFile", room_audio)
 
 
 def room_audio(msg):
