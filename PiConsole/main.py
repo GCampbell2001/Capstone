@@ -102,7 +102,7 @@ def play_game():
     hub_connection.on_open(lambda: print("connection opened and handshake received ready to send messages"))
     hub_connection.on_close(lambda: print("connection closed"))
     #
-    hub_connection.start().wait()
+    hub_connection.start()
 
     # TODO:          play intro audio.
     # TODO:          play character Intro Dialogues
@@ -119,7 +119,7 @@ def play_game():
         if current_choice < 4 and current_choice > 0:
             print(current_choice)
             need_to_make_choice = False
-    hub_connection.send("StartGame", get_character_class(current_choice))
+    hub_connection.send("StartGame", [get_character_class(current_choice)])
     while player_alive:
         if keyboard.is_pressed('a'):
             hub_connection.send("Fight", 'a')
@@ -136,18 +136,21 @@ def play_game():
         if keyboard.is_pressed('u'):
             hub_connection.send("Update", 'u')
         if keyboard.is_pressed('up'):
-            hub_connection.send("ChangeRooms", 'north')
+            hub_connection.send("ChangeRooms", ['north'])
             hub_connection.on("ReceiveFile", room_audio)
         if keyboard.is_pressed('down'):
-            hub_connection.send("ChangeRooms", 'south')
+            hub_connection.send("ChangeRooms", ['south'])
             hub_connection.on("ReceiveFile", room_audio)
         if keyboard.is_pressed('left'):
-            hub_connection.send("ChangeRooms", 'west')
+            hub_connection.send("ChangeRooms", ['west'])
             hub_connection.on("ReceiveFile", room_audio)
         if keyboard.is_pressed('right'):
-            hub_connection.send("ChangeRooms", 'east')
+            hub_connection.send("ChangeRooms", ['east'])
             hub_connection.on("ReceiveFile", room_audio)
 
+
+# def read_key():
+#
 
 def room_audio(msg):
     #    print(msg)

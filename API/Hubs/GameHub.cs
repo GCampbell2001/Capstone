@@ -13,6 +13,11 @@ namespace SignalRChat.Hubs
     {
         InputHandler controller = new InputHandler();
 
+        public async Task SendFile(bytes soundFile)
+        {
+            await Clients.All.SendAsync("ReceiveFile", soundFile);
+        }
+
         public async Task StartGame(string characterClass)
         {
             controller.StartGame(characterClass);
@@ -36,7 +41,7 @@ namespace SignalRChat.Hubs
         public async Task ChangeRooms(string userInput)
         {
             string roomAudio = controller.ChangeRoom(userInput);
-
+            await Clients.All.SendAsync("ReceiveRequest", roomAudio);
             //Run client method that handles audio strings
 
 
