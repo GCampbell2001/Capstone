@@ -13,7 +13,7 @@ namespace SignalRChat.Hubs
     {
         InputHandler controller = new InputHandler();
 
-        public async Task SendFile(bytes soundFile)
+        public async Task SendFile(byte[] soundFile)
         {
             await Clients.All.SendAsync("ReceiveFile", soundFile);
         }

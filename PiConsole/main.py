@@ -113,13 +113,14 @@ def play_game():
     # skipping intro and going right into Intro Dialogues
     need_to_make_choice = True
     player_alive = True
-    current_choice = 0
-    while need_to_make_choice:
-        current_choice = determine_character_choice()
-        if current_choice < 4 and current_choice > 0:
-            print(current_choice)
-            need_to_make_choice = False
-    hub_connection.send("StartGame", [get_character_class(current_choice)])
+    # current_choice = 0
+    # while need_to_make_choice:
+    #     current_choice = determine_character_choice()
+    #     if current_choice < 4 and current_choice > 0:
+    #         print(current_choice)
+    #         need_to_make_choice = False
+    # hub_connection.send("StartGame", [get_character_class(current_choice)])
+    hub_connection.send("StartGame", [get_character_class(3)])
     while player_alive:
         if keyboard.is_pressed('a'):
             hub_connection.send("Fight", 'a')

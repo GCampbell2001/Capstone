@@ -9,6 +9,7 @@ import simpleaudio as sa
 import numpy as np
 import io
 import os
+import array
 from signalrcore.hub_connection_builder import HubConnectionBuilder
 
 
@@ -23,12 +24,14 @@ def get_audio_location(msg):
     my_cursor.execute(query_string)
     print("THIS IS WHERE THE RESULT SHOULD PRINT-f")
     result = my_cursor.fetchone()
-
-    with open(result[0], 'rb') as fd:
-        contents = fd.read()
-    signal_gm = np.frombuffer(contents, dtype='int16')
-    print(contents.__class__)
-    hub_connection.send("SendFile", [signal_gm])
+    byte_array = array.array('B')
+    audio_file = open(result[0], 'rb')
+    byte_array.fromstring(audio_file.read())
+    test_array = byte_array
+    # with open(result[0], 'rb') as fd:
+    #     contents = fd.read()
+    # test = bytearray(contents, 'utf-8')
+    hub_connection.send("SendFile", [test_array])
 
 
 
