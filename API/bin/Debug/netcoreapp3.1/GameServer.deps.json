@@ -40,6 +40,8 @@
           "Microsoft.Azure.SignalR": "1.4.0",
           "MongoDB.Driver": "2.13.2",
           "MongoDB.Driver.Core": "2.13.2",
+          "MySqlClient": "5.4.2",
+          "MySqlConnector": "2.0.0",
           "NPOI": "2.5.4",
           "Uno.UI": "3.10.11",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
@@ -192,7 +194,6 @@
           "System.Data": "4.0.0.0",
           "System.Diagnostics.Contracts": "4.0.4.0",
           "System.Diagnostics.Debug.Reference": "4.1.2.0",
-          "System.Diagnostics.DiagnosticSource.Reference": "4.0.5.0",
           "System.Diagnostics.EventLog": "4.0.2.0",
           "System.Diagnostics.FileVersionInfo": "4.0.4.0",
           "System.Diagnostics.Process": "4.2.2.0",
@@ -600,6 +601,35 @@
           "lib/netstandard2.1/MongoDB.Libmongocrypt.dll": {}
         }
       },
+      "MySqlClient/5.4.2": {
+        "dependencies": {
+          "MySqlConnector": "2.0.0",
+          "Savage.Data": "5.4.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Savage.Data.MySqlClient.dll": {
+            "assemblyVersion": "5.4.2.0",
+            "fileVersion": "5.4.2.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Savage.Data.MySqlClient.dll": {}
+        }
+      },
+      "MySqlConnector/2.0.0": {
+        "dependencies": {
+          "System.Diagnostics.DiagnosticSource": "5.0.1"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/MySqlConnector.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/MySqlConnector.dll": {}
+        }
+      },
       "NETStandard.Library/1.6.1": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.1.2",
@@ -691,6 +721,17 @@
           "lib/netstandard2.1/NPOI.dll": {}
         }
       },
+      "OptimizedDataReader/1.1.0": {
+        "runtime": {
+          "lib/netstandard2.0/OptimizedDataReader.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/OptimizedDataReader.dll": {}
+        }
+      },
       "Portable.BouncyCastle/1.8.6": {
         "runtime": {
           "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
@@ -750,6 +791,20 @@
       "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
+      "Savage.Data/5.4.2": {
+        "dependencies": {
+          "OptimizedDataReader": "1.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Savage.Data.dll": {
+            "assemblyVersion": "5.4.2.0",
+            "fileVersion": "5.4.2.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Savage.Data.dll": {}
+        }
+      },
       "SharpCompress/0.23.0": {
         "dependencies": {
           "System.Text.Encoding.CodePages": "4.5.1"
@@ -845,13 +900,15 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "System.Diagnostics.DiagnosticSource/4.3.0": {
-        "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.Diagnostics.Tracing": "4.3.0",
-          "System.Reflection": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Threading": "4.3.0"
+      "System.Diagnostics.DiagnosticSource/5.0.1": {
+        "runtime": {
+          "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.220.61120"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
         }
       },
       "System.Diagnostics.Tools/4.3.0": {
@@ -1013,7 +1070,7 @@
           "Microsoft.NETCore.Platforms": "2.1.2",
           "System.Collections": "4.3.0",
           "System.Diagnostics.Debug": "4.3.0",
-          "System.Diagnostics.DiagnosticSource": "4.3.0",
+          "System.Diagnostics.DiagnosticSource": "5.0.1",
           "System.Diagnostics.Tracing": "4.3.0",
           "System.Globalization": "4.3.0",
           "System.Globalization.Extensions": "4.3.0",
@@ -2425,12 +2482,6 @@
         },
         "compileOnly": true
       },
-      "System.Diagnostics.DiagnosticSource.Reference/4.0.5.0": {
-        "compile": {
-          "System.Diagnostics.DiagnosticSource.dll": {}
-        },
-        "compileOnly": true
-      },
       "System.Diagnostics.EventLog/4.0.2.0": {
         "compile": {
           "System.Diagnostics.EventLog.dll": {}
@@ -3394,6 +3445,20 @@
       "path": "mongodb.libmongocrypt/1.2.2",
       "hashPath": "mongodb.libmongocrypt.1.2.2.nupkg.sha512"
     },
+    "MySqlClient/5.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-P0Z6GVJFZaHMZSDzct6KpA2ANVkvMGR+B/B8KnSE8sN27hzBqmks4K9AYgLxooC9YlLMjhCWu1/vO11zRQPrRA==",
+      "path": "mysqlclient/5.4.2",
+      "hashPath": "mysqlclient.5.4.2.nupkg.sha512"
+    },
+    "MySqlConnector/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-EY0KXqQas+QvdZQU0NPkqBSfJitWAl8IUCg0v/Qn0P7f/KApJTFJFm8czYWoDPyewUjPHrAnE/cSYzzSFGc8Ng==",
+      "path": "mysqlconnector/2.0.0",
+      "hashPath": "mysqlconnector.2.0.0.nupkg.sha512"
+    },
     "NETStandard.Library/1.6.1": {
       "type": "package",
       "serviceable": true,
@@ -3414,6 +3479,13 @@
       "sha512": "sha512-RvkPglpis+1P7pmygJBk08XSZGFSBTdAlqpxbh8jQBIZnkXEfKJay0BrhSjXn/Nn+vFcTNyLYVdBPBMalSX32g==",
       "path": "npoi/2.5.4",
       "hashPath": "npoi.2.5.4.nupkg.sha512"
+    },
+    "OptimizedDataReader/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-04dri3ecUsXntxcFZ9JvSTLa4MGLXAGjed6JLNbzg2twg46K47Lc5ukoxjfrkSQnZMQn3HrzRO77jID1Gz4yJA==",
+      "path": "optimizeddatareader/1.1.0",
+      "hashPath": "optimizeddatareader.1.1.0.nupkg.sha512"
     },
     "Portable.BouncyCastle/1.8.6": {
       "type": "package",
@@ -3534,6 +3606,13 @@
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "hashPath": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512"
     },
+    "Savage.Data/5.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4DZKPUrIjnOLrzdx4LNa338lrxWxHQLtzXjefSzrMahs9HtM+Wr+By1ASdm267dMn0i8ORFjHZ1sKDJljS8Zmg==",
+      "path": "savage.data/5.4.2",
+      "hashPath": "savage.data.5.4.2.nupkg.sha512"
+    },
     "SharpCompress/0.23.0": {
       "type": "package",
       "serviceable": true,
@@ -3604,12 +3683,12 @@
       "path": "system.diagnostics.debug/4.3.0",
       "hashPath": "system.diagnostics.debug.4.3.0.nupkg.sha512"
     },
-    "System.Diagnostics.DiagnosticSource/4.3.0": {
+    "System.Diagnostics.DiagnosticSource/5.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-tD6kosZnTAGdrEa0tZSuFyunMbt/5KYDnHdndJYGqZoNy00XVXyACd5d6KnE1YgYv3ne2CjtAfNXo/fwEhnKUA==",
-      "path": "system.diagnostics.diagnosticsource/4.3.0",
-      "hashPath": "system.diagnostics.diagnosticsource.4.3.0.nupkg.sha512"
+      "sha512": "sha512-uXQEYqav2V3zP6OwkOKtLv+qIi6z3m1hsGyKwXX7ZA7htT4shoVccGxnJ9kVRFPNAsi1ArZTq2oh7WOto6GbkQ==",
+      "path": "system.diagnostics.diagnosticsource/5.0.1",
+      "hashPath": "system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512"
     },
     "System.Diagnostics.Tools/4.3.0": {
       "type": "package",
@@ -4810,11 +4889,6 @@
       "sha512": ""
     },
     "System.Diagnostics.Debug.Reference/4.1.2.0": {
-      "type": "referenceassembly",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "System.Diagnostics.DiagnosticSource.Reference/4.0.5.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

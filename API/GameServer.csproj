@@ -10,6 +10,8 @@
     <PackageReference Include="Microsoft.Azure.SignalR" Version="1.4.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.13.2" />
     <PackageReference Include="MongoDB.Driver.Core" Version="2.13.2" />
+    <PackageReference Include="MySqlClient" Version="5.4.2" />
+    <PackageReference Include="MySqlConnector" Version="2.0.0" />
     <PackageReference Include="NPOI" Version="2.5.4" />
     <PackageReference Include="Uno.UI" Version="3.10.11" />
   </ItemGroup>

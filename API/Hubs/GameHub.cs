@@ -13,6 +13,7 @@ namespace SignalRChat.Hubs
     public class GameHub : Hub
     {
         InputHandler controller = new InputHandler();
+        DatabaseController databaseController = new DatabaseController();
 
         public async Task SendFile(byte[] soundFile)
         {
@@ -42,7 +43,10 @@ namespace SignalRChat.Hubs
         public async Task ChangeRooms(string userInput)
         {
             string roomAudio = controller.ChangeRoom(userInput);
-            await Clients.All.SendAsync("ReceiveRequest", roomAudio);
+            databaseController.GetAudioFile(roomAudio);
+
+
+            //await Clients.All.SendAsync("ReceiveRequest", roomAudio);
 
             //string wavFile = "C:\\Users\\Matthew\\Documents\\Capstone\\API\\fuseyboi.wav";
 
