@@ -24,14 +24,20 @@ def get_audio_location(msg):
     my_cursor.execute(query_string)
     print("THIS IS WHERE THE RESULT SHOULD PRINT-f")
     result = my_cursor.fetchone()
-    byte_array = array.array('B')
-    audio_file = open(result[0], 'rb')
-    byte_array.fromstring(audio_file.read())
-    test_array = byte_array
+    bytes = open(result[0], "rb").read()
+    # byte_array = array.array('B')
+    # audio_file = open(result[0], 'rb')
+    # byte_array.fromstring(audio_file.read())
+    # test_array = byte_array
     # with open(result[0], 'rb') as fd:
     #     contents = fd.read()
     # test = bytearray(contents, 'utf-8')
-    hub_connection.send("SendFile", [test_array])
+    try:
+        hub_connection.send("SendFile", [bytes])
+    except:
+        print("ERRORORORORORORORORORORORORORORORORORORORORORORORORORORO")
+
+
 
 
 

@@ -361,6 +361,31 @@
           }
         }
       },
+      "MySqlClient/5.4.2": {
+        "type": "package",
+        "dependencies": {
+          "MySqlConnector": "0.30.0",
+          "Savage.Data": "5.4.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Savage.Data.MySqlClient.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Savage.Data.MySqlClient.dll": {}
+        }
+      },
+      "MySqlConnector/2.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Diagnostics.DiagnosticSource": "5.0.1"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/MySqlConnector.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/MySqlConnector.dll": {}
+        }
+      },
       "NETStandard.Library/1.6.1": {
         "type": "package",
         "dependencies": {
@@ -438,6 +463,15 @@
           "lib/netstandard2.1/NPOI.OpenXml4Net.dll": {},
           "lib/netstandard2.1/NPOI.OpenXmlFormats.dll": {},
           "lib/netstandard2.1/NPOI.dll": {}
+        }
+      },
+      "OptimizedDataReader/1.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/OptimizedDataReader.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/OptimizedDataReader.dll": {}
         }
       },
       "Portable.BouncyCastle/1.8.6": {
@@ -620,6 +654,18 @@
           }
         }
       },
+      "Savage.Data/5.4.2": {
+        "type": "package",
+        "dependencies": {
+          "OptimizedDataReader": "1.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Savage.Data.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Savage.Data.dll": {}
+        }
+      },
       "SharpCompress/0.23.0": {
         "type": "package",
         "dependencies": {
@@ -750,17 +796,10 @@
           "ref/netstandard1.3/System.Diagnostics.Debug.dll": {}
         }
       },
-      "System.Diagnostics.DiagnosticSource/4.3.0": {
+      "System.Diagnostics.DiagnosticSource/5.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.Diagnostics.Tracing": "4.3.0",
-          "System.Reflection": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Threading": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard1.3/_._": {}
+          "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
@@ -2365,6 +2404,49 @@
         "runtimes/win/native/mongocrypt.dll"
       ]
     },
+    "MySqlClient/5.4.2": {
+      "sha512": "P0Z6GVJFZaHMZSDzct6KpA2ANVkvMGR+B/B8KnSE8sN27hzBqmks4K9AYgLxooC9YlLMjhCWu1/vO11zRQPrRA==",
+      "type": "package",
+      "path": "mysqlclient/5.4.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Savage.Data.MySqlClient.dll",
+        "lib/net46/Savage.Data.MySqlClient.dll",
+        "lib/netstandard2.0/Savage.Data.MySqlClient.dll",
+        "mysqlclient.5.4.2.nupkg.sha512",
+        "mysqlclient.nuspec"
+      ]
+    },
+    "MySqlConnector/2.0.0": {
+      "sha512": "EY0KXqQas+QvdZQU0NPkqBSfJitWAl8IUCg0v/Qn0P7f/KApJTFJFm8czYWoDPyewUjPHrAnE/cSYzzSFGc8Ng==",
+      "type": "package",
+      "path": "mysqlconnector/2.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net45/MySqlConnector.dll",
+        "lib/net45/MySqlConnector.xml",
+        "lib/net461/MySqlConnector.dll",
+        "lib/net461/MySqlConnector.xml",
+        "lib/net471/MySqlConnector.dll",
+        "lib/net471/MySqlConnector.xml",
+        "lib/net5.0/MySqlConnector.dll",
+        "lib/net5.0/MySqlConnector.xml",
+        "lib/net6.0/MySqlConnector.dll",
+        "lib/net6.0/MySqlConnector.xml",
+        "lib/netcoreapp3.1/MySqlConnector.dll",
+        "lib/netcoreapp3.1/MySqlConnector.xml",
+        "lib/netstandard2.0/MySqlConnector.dll",
+        "lib/netstandard2.0/MySqlConnector.xml",
+        "lib/netstandard2.1/MySqlConnector.dll",
+        "lib/netstandard2.1/MySqlConnector.xml",
+        "logo.png",
+        "mysqlconnector.2.0.0.nupkg.sha512",
+        "mysqlconnector.nuspec"
+      ]
+    },
     "NETStandard.Library/1.6.1": {
       "sha512": "WcSp3+vP+yHNgS8EV5J7pZ9IRpeDuARBPN28by8zqff1wJQXm26PVU8L3/fYLBJVU7BtDyqNVWq2KlCVvSSR4A==",
       "type": "package",
@@ -2438,6 +2520,20 @@
         "logo/60_60.jpg",
         "npoi.2.5.4.nupkg.sha512",
         "npoi.nuspec"
+      ]
+    },
+    "OptimizedDataReader/1.1.0": {
+      "sha512": "04dri3ecUsXntxcFZ9JvSTLa4MGLXAGjed6JLNbzg2twg46K47Lc5ukoxjfrkSQnZMQn3HrzRO77jID1Gz4yJA==",
+      "type": "package",
+      "path": "optimizeddatareader/1.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/OptimizedDataReader.dll",
+        "lib/net46/OptimizedDataReader.dll",
+        "lib/netstandard2.0/OptimizedDataReader.dll",
+        "optimizeddatareader.1.1.0.nupkg.sha512",
+        "optimizeddatareader.nuspec"
       ]
     },
     "Portable.BouncyCastle/1.8.6": {
@@ -2677,6 +2773,20 @@
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.nuspec",
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
+      ]
+    },
+    "Savage.Data/5.4.2": {
+      "sha512": "4DZKPUrIjnOLrzdx4LNa338lrxWxHQLtzXjefSzrMahs9HtM+Wr+By1ASdm267dMn0i8ORFjHZ1sKDJljS8Zmg==",
+      "type": "package",
+      "path": "savage.data/5.4.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Savage.Data.dll",
+        "lib/net46/Savage.Data.dll",
+        "lib/netstandard2.0/Savage.Data.dll",
+        "savage.data.5.4.2.nupkg.sha512",
+        "savage.data.nuspec"
       ]
     },
     "SharpCompress/0.23.0": {
@@ -3079,25 +3189,32 @@
         "system.diagnostics.debug.nuspec"
       ]
     },
-    "System.Diagnostics.DiagnosticSource/4.3.0": {
-      "sha512": "tD6kosZnTAGdrEa0tZSuFyunMbt/5KYDnHdndJYGqZoNy00XVXyACd5d6KnE1YgYv3ne2CjtAfNXo/fwEhnKUA==",
+    "System.Diagnostics.DiagnosticSource/5.0.1": {
+      "sha512": "uXQEYqav2V3zP6OwkOKtLv+qIi6z3m1hsGyKwXX7ZA7htT4shoVccGxnJ9kVRFPNAsi1ArZTq2oh7WOto6GbkQ==",
       "type": "package",
-      "path": "system.diagnostics.diagnosticsource/4.3.0",
+      "path": "system.diagnostics.diagnosticsource/5.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net45/System.Diagnostics.DiagnosticSource.dll",
+        "lib/net45/System.Diagnostics.DiagnosticSource.xml",
         "lib/net46/System.Diagnostics.DiagnosticSource.dll",
         "lib/net46/System.Diagnostics.DiagnosticSource.xml",
+        "lib/net5.0/System.Diagnostics.DiagnosticSource.dll",
+        "lib/net5.0/System.Diagnostics.DiagnosticSource.xml",
         "lib/netstandard1.1/System.Diagnostics.DiagnosticSource.dll",
         "lib/netstandard1.1/System.Diagnostics.DiagnosticSource.xml",
         "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll",
         "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.xml",
         "lib/portable-net45+win8+wpa81/System.Diagnostics.DiagnosticSource.dll",
         "lib/portable-net45+win8+wpa81/System.Diagnostics.DiagnosticSource.xml",
-        "system.diagnostics.diagnosticsource.4.3.0.nupkg.sha512",
-        "system.diagnostics.diagnosticsource.nuspec"
+        "system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512",
+        "system.diagnostics.diagnosticsource.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Diagnostics.Tools/4.3.0": {
@@ -7243,6 +7360,8 @@
       "Microsoft.Azure.SignalR >= 1.4.0",
       "MongoDB.Driver >= 2.13.2",
       "MongoDB.Driver.Core >= 2.13.2",
+      "MySqlClient >= 5.4.2",
+      "MySqlConnector >= 2.0.0",
       "NPOI >= 2.5.4",
       "Uno.UI >= 3.10.11"
     ]
@@ -7311,6 +7430,14 @@
           "MongoDB.Driver.Core": {
             "target": "Package",
             "version": "[2.13.2, )"
+          },
+          "MySqlClient": {
+            "target": "Package",
+            "version": "[5.4.2, )"
+          },
+          "MySqlConnector": {
+            "target": "Package",
+            "version": "[2.0.0, )"
           },
           "NPOI": {
             "target": "Package",

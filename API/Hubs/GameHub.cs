@@ -2,6 +2,7 @@ using GameServer;
 using Microsoft.AspNetCore.SignalR;
 using NPOI.SS.Formula.Functions;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -42,6 +43,13 @@ namespace SignalRChat.Hubs
         {
             string roomAudio = controller.ChangeRoom(userInput);
             await Clients.All.SendAsync("ReceiveRequest", roomAudio);
+
+            //string wavFile = "C:\\Users\\Matthew\\Documents\\Capstone\\API\\fuseyboi.wav";
+
+            //byte[] bitArray = WavToBitArray(wavFile);
+
+
+            //await Clients.All.SendAsync("RecieveAudio", bitArray);
             //Run client method that handles audio strings
 
 
