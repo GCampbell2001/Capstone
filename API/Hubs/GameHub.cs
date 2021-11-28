@@ -42,9 +42,10 @@ namespace SignalRChat.Hubs
 
         public async Task ChangeRooms(string userInput)
         {
+            Console.WriteLine(userInput);
             string roomAudio = controller.ChangeRoom(userInput);
-            databaseController.GetAudioFile(roomAudio);
-
+            byte[] audioFile = databaseController.GetAudioFile(roomAudio);
+            await Clients.All.SendAsync("ReceiveFile", audioFile);
 
             //await Clients.All.SendAsync("ReceiveRequest", roomAudio);
 
@@ -61,15 +62,35 @@ namespace SignalRChat.Hubs
 
         public async Task Fight(string userInput)
         {
+            Console.WriteLine(userInput);
             List<string> userAudio = new List<string>();
             List<string> enemyAudio = new List<string>();
             bool gameOver = controller.FightRound(userInput, userAudio, enemyAudio);
             foreach(string file in userAudio)
             {
+                Console.WriteLine(file);
+                try
+                {
+                    byte[] audioFile = databaseController.GetAudioFile(file);
+                    await Clients.All.SendAsync("ReceiveFile", audioFile);
+                } catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
                 //client method
             }
             foreach(string file in userAudio)
             {
+                Console.WriteLine(file);
+                try
+                {
+                    byte[] audioFile = databaseController.GetAudioFile(file);
+                    await Clients.All.SendAsync("ReceiveFile", audioFile);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
                 //client method
             }
 

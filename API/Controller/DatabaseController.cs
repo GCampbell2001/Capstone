@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using MySqlConnector;
 
 namespace GameServer
@@ -6,7 +7,7 @@ namespace GameServer
     public class DatabaseController
     { 
     
-        public void GetAudioFile(string fileName)
+        public byte[] GetAudioFile(string fileName)
         {
             string cs = @"server=localhost;userid=rasp;password=Yoru^558;database=audio";
             using var connection = new MySqlConnection(cs);
@@ -22,6 +23,8 @@ namespace GameServer
                 while (dataReader.Read())
                 {
                     Console.WriteLine(dataReader[0]);
+                    byte[] audioFile = WavToBitArray(dataReader[0].ToString());
+                    return audioFile;
                 }
 
             } catch (Exception ex)
@@ -34,9 +37,22 @@ namespace GameServer
                 connection.Close();
             }
 
+            return null;
+
 
 
             //Console.WriteLine($"MySQL version : {con.ServerVersion}");
+        }
+
+        private byte[] WavToBitArray(string wavFilePath)
+        {
+            byte[] wavBitArray;
+            using (FileStream wavFileStream = new FileStream(wavFilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                wavBitArray = new byte[wavFileStream.Length];
+                wavFileStream.Read(wavBitArray, 0, (int)wavFileStream.Length);
+            }
+            return wavBitArray;
         }
     }
 }

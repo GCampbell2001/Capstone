@@ -122,36 +122,68 @@ def play_game():
     # hub_connection.send("StartGame", [get_character_class(current_choice)])
     hub_connection.send("StartGame", [get_character_class(3)])
     while player_alive:
-        if keyboard.is_pressed('a'):
-            hub_connection.send("Fight", 'a')
-        if keyboard.is_pressed('s'):
+        key = keyboard.read_key()
+        if key == 'a':
+            hub_connection.send("Fight", ['a'])
+            try:
+                hub_connection.on("ReceiveFile", room_audio)
+                hub_connection.on("ReceiveFile", room_audio)
+                hub_connection.on("ReceiveFile", room_audio)
+                hub_connection.on("ReceiveFile", room_audio)
+            except:
+                print("reached the catch at 133")
+            try:
+                hub_connection.on("ReceiveFile", room_audio)
+                hub_connection.on("ReceiveFile", room_audio)
+                hub_connection.on("ReceiveFile", room_audio)
+                hub_connection.on("ReceiveFile", room_audio)
+            except:
+                print("reached the execept at line 140")
+        if key == 's':
             hub_connection.send("Fight", 's')
-        if keyboard.is_pressed('d'):
+        if key == 'd':
             hub_connection.send("Fight", 'd')
-        if keyboard.is_pressed('q'):
+        if key == 'q':
             hub_connection.send("Fight", 'q')
-        if keyboard.is_pressed('w'):
+        if key == 'w':
             hub_connection.send("Fight", 'w')
-        if keyboard.is_pressed('e'):
+        if key == 'e':
             hub_connection.send("Fight", 'e')
-        if keyboard.is_pressed('u'):
+        if key == 'u':
             hub_connection.send("Update", 'u')
-        if keyboard.is_pressed('up'):
+        if key == 'up':
             hub_connection.send("ChangeRooms", ['north'])
             hub_connection.on("ReceiveFile", room_audio)
         if keyboard.is_pressed('down'):
             hub_connection.send("ChangeRooms", ['south'])
             hub_connection.on("ReceiveFile", room_audio)
-        if keyboard.is_pressed('left'):
+        if key == 'left':
             hub_connection.send("ChangeRooms", ['west'])
             hub_connection.on("ReceiveFile", room_audio)
-        if keyboard.is_pressed('right'):
+        if key == 'right':
             hub_connection.send("ChangeRooms", ['east'])
             hub_connection.on("ReceiveFile", room_audio)
+        keyboard.release(key)
 
 
 # def read_key():
 #
+
+def action_audio(msg):
+    encoded_msg = msg[0]
+    message_byte = base64.b64decode(encoded_msg)
+    m = []
+    for i in message_byte:
+        m.append(i)
+    binary_format = bytearray(m)
+    f = open("action.wav", 'w+b')
+    f.write(binary_format)
+    f.close
+    sound = sa.WaveObject.from_wave_file("action.wav")
+    play_obj = sound.play()
+    play_obj.wait_done()
+    # print("This shouldn't print until after file is done playing")
+    os.remove("action.wav")
 
 def room_audio(msg):
     #    print(msg)
