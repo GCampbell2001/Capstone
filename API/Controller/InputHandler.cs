@@ -794,6 +794,8 @@ namespace GameServer
 
             });
 
+            database.DropCollection("CurrentRun");
+            database.CreateCollection("CurrentRun");
             var run = database.GetCollection<BsonDocument>("CurrentRun");
             run.InsertOne(characterForMongo);
             run.InsertOne(roomData);

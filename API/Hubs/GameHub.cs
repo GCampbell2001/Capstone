@@ -33,8 +33,16 @@ namespace SignalRChat.Hubs
 
             foreach(string file in audioFiles)
             {
-                //TODO
-                //make client method that takes in a string and spits back an array of numbers
+                Console.WriteLine(file);
+                try
+                {
+                    byte[] audioFile = databaseController.GetAudioFile(file);
+                    await Clients.All.SendAsync("ReceiveFile", audioFile);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
 
 
@@ -96,6 +104,12 @@ namespace SignalRChat.Hubs
 
 
         }
+
+        public async void ResetGame()
+        {
+            databaseController.ResetMap("Map\\map.json");
+        }
+
         public async Task SendMessage(string user, string message)
         {
        

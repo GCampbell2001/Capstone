@@ -36,11 +36,11 @@ namespace GameLogic.Character.PC
             useDefaultStats();
 
             //this next bit is purely for testing
-            Goggles goggles = new Goggles(this);
-            Hat hat = new Hat(goggles);
-            AddItem(goggles);
-            AddItem(hat);
-            SetMainItem(hat);
+            //Goggles goggles = new Goggles(this);
+            //Hat hat = new Hat(goggles);
+            //AddItem(goggles);
+            //AddItem(hat);
+            //SetMainItem(hat);
         }
 
         public Tank(int currentHealth, int currentDamage, int[] currentDodge, int currentBlock, int[] currentAccuracy, int currentLevel, int currentTactCooldown, int currentTactDuration, int currentUtilCooldown, int currentUtilDuration, int currentUltCooldown, int currentUltDuration, bool AttemptedToBlock, bool AttempedToDodge)

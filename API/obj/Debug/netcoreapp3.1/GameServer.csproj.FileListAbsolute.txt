@@ -131,3 +131,4 @@ C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\MySqlConnector.d
 C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\OptimizedDataReader.dll
 C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\Savage.Data.dll
 C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\Map\map.json
