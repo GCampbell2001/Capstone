@@ -22,6 +22,7 @@ namespace GameLogic.Character
         {
             base.player = true;
             SetBaseStats();
+            base.health = baseHealth;
             base.Level = 0;
             setRates();
             useDefaultStats();
@@ -166,7 +167,6 @@ namespace GameLogic.Character
         public override void SetBaseStats()
         {
             base.baseHealth = 100;
-            this.health = base.baseHealth;
             base.baseDamage = 5;
             base.baseDodge[0] = 60;
             base.baseDodge[1] = 160;

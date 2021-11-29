@@ -321,7 +321,7 @@ namespace GameServer
             {
                 HealingFountain fountain = new HealingFountain();
                 fountain.HealingRoom(player);
-                return "FountainRoom.wav";
+                return "FountainRoom";
             }
             else if (item.ToBoolean())
             {
@@ -499,8 +499,8 @@ namespace GameServer
             var filter = builder.Eq("player", "False");
             var userFilter = builder.Eq("player", "True");
 
-            run.UpdateOneAsync(filter, enemy.ToBson());
-            run.UpdateOneAsync(userFilter, user.ToBson());
+            run.ReplaceOne(filter, enemy.ToBson());
+            run.ReplaceOne(userFilter, user.ToBson());
         }
 
         private Grunt FetchGrunt()

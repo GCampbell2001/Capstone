@@ -47,7 +47,7 @@ namespace GameLogic.GameLogic
             switch (result)
             {
                 case RoundResult.HIT:
-                    return GetCharacterName(enemy) + "Hit";
+                    return "Hit";
                 case RoundResult.CRITICAL:
                     return "Critical";
                 case RoundResult.BLOCKED:
@@ -118,14 +118,13 @@ namespace GameLogic.GameLogic
 
         public void PlayerUpdate(Biggie player, List<string> update)
         {
-            string name = GetCharacterName(player);
-            string health = name + "CurrentHealth";
+            string health = "PlayerHealth";
             string healthNumber = player.health.ToString();
-            string tactTitle = name + "TactUpdate";
+            string tactTitle = "TacticalCooldown";
             string tactNumber = player.TacticalCooldown.ToString();
-            string utilTitle = name + "UtilUpdate";
+            string utilTitle = "UtilityCooldown";
             string utilNumber = player.UtilityCooldown.ToString();
-            string ultTitle = name + "UltUpdate";
+            string ultTitle = "UltimateCooldown";
             string ultNumber = player.UltimateCooldown.ToString();
 
             update.Add(health);
@@ -140,8 +139,7 @@ namespace GameLogic.GameLogic
 
         public void BossUpdate(Biggie boss, List<string> update)
         {
-            string name = GetCharacterName(boss);
-            string health = name + "CurrentHealth";
+            string health = "EnemyHealth";
             string healthNumber = boss.health.ToString();
 
             update.Add(health);
@@ -150,8 +148,7 @@ namespace GameLogic.GameLogic
 
         public void GruntUpdate(Grunt grunt, List<string> update)
         {
-            string name = GetCharacterName(grunt);
-            string health = name + "CurrentHealth";
+            string health = "EnemyHealth";
             string healthNumber = grunt.health.ToString();
 
             update.Add(health);

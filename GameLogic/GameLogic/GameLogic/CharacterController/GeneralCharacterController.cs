@@ -16,7 +16,7 @@ namespace GameLogic.GameLogic.Controller
             /*
              * Determine if the player has items. Then choose which attack method to use from that
              */
-            if(player.GetItems() == null)
+            if(player.GetItems().Count == 0)
             {
                 return this.AttackWithoutItems(ref player, ref enemy, ref importantData);
             } else

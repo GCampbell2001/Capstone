@@ -27,6 +27,7 @@ namespace GameLogic.Character.Grunts
             : base()
         {
             SetBaseStats();
+            base.health = baseHealth;
             base.Level = 0;
             setRates();
             useDefaultStats();
@@ -95,8 +96,7 @@ namespace GameLogic.Character.Grunts
         public override void SetBaseStats()
         {
             //WaterGoblinHealth and BaseHealth are treated the same. WaterGoblinHealth is just character specific
-            base.baseHealth = 17;
-            this.health = base.baseHealth;
+            base.baseHealth = 27;
             base.baseDamage = 3;
             base.baseDodge[0] = 80;
             base.baseDodge[1] = 180;

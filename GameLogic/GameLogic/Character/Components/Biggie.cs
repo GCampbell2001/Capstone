@@ -187,7 +187,14 @@ namespace GameLogic.Character.Components
 
         public void SetMainItem(CharacterComponent item)
         {
-            this.currentItem = (ModTool)item;
+            try
+            {
+                this.currentItem = (ModTool)item;
+            }
+            catch
+            {
+                //No need to have anything here. This is just incase it tries to pass in a character instead of an item
+            }
         }
 
         public void AddItem(ModTool item)
@@ -213,6 +220,18 @@ namespace GameLogic.Character.Components
                     case "Watch":
                         items.Add(new Watch(this));
                         break;
+                    case "Magnetize":
+                        items.Add(new Magnetize(this));
+                        break;
+                    case "Burn":
+                        items.Add(new Burn(this));
+                        break;
+                    case "Fear":
+                        items.Add(new Fear(this));
+                        break;
+                    case "Screech":
+                        items.Add(new Screech(this));
+                        break;
                 }
                 SetMainItem(items[0]);
             }
@@ -231,6 +250,18 @@ namespace GameLogic.Character.Components
                         break;
                     case "Watch":
                         items.Add(new Watch(items[items.Count - 1]));
+                        break;
+                    case "Magnetize":
+                        items.Add(new Magnetize(this));
+                        break;
+                    case "Burn":
+                        items.Add(new Burn(this));
+                        break;
+                    case "Fear":
+                        items.Add(new Fear(this));
+                        break;
+                    case "Screech":
+                        items.Add(new Screech(this));
                         break;
                 }
                 SetMainItem(items[items.Count - 1]);

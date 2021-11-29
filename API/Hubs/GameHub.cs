@@ -87,7 +87,7 @@ namespace SignalRChat.Hubs
                 }
                 //client method
             }
-            foreach(string file in userAudio)
+            foreach(string file in enemyAudio)
             {
                 Console.WriteLine(file);
                 try

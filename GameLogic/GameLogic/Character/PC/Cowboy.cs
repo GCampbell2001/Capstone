@@ -30,6 +30,7 @@ namespace GameLogic.Character.PC
             : base()
         {
             SetBaseStats();
+            base.health = baseHealth;
             base.Level = 0;
             setRates();
             useDefaultStats();
@@ -39,6 +40,7 @@ namespace GameLogic.Character.PC
             : base()
         {
             SetBaseStats();
+            base.health = baseHealth;
             base.Level = 0;
             setRates();
             useDefaultStats();
@@ -163,7 +165,6 @@ namespace GameLogic.Character.PC
              * High Attack
              */
             base.baseHealth = 140;
-            this.health = base.baseHealth;
             base.baseDamage = 16;
             base.baseDodge[0] = 65;
             base.baseDodge[1] = 165;

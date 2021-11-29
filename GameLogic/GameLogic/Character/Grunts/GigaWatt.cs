@@ -29,6 +29,7 @@ namespace GameLogic.Character.Grunts
             : base()
         {
             SetBaseStats();
+            base.health = baseHealth;
             base.Level = 0;
             setRates();
             useDefaultStats();
@@ -93,8 +94,7 @@ namespace GameLogic.Character.Grunts
 
         public override void SetBaseStats()
         {
-            base.baseHealth = 18;
-            this.health = base.baseHealth;
+            base.baseHealth = 28;
             base.baseDamage = 6;
             base.baseDodge[0] = 10;
             base.baseDodge[1] = 110;

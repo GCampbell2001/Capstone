@@ -57,7 +57,7 @@ def play_game():
     # player_menu(1)
     # with keyboard.Listener(on_press=on_press, on_release=on_release_menu) as listener:
     #     listener.join()
-    hub_connection.send("StartGame", [get_character_class(3)])
+    hub_connection.send("StartGame", [get_character_class(1)])
     with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
         listener.join()
 
