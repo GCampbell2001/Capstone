@@ -54,18 +54,6 @@ namespace SignalRChat.Hubs
             string roomAudio = controller.ChangeRoom(userInput);
             byte[] audioFile = databaseController.GetAudioFile(roomAudio);
             await Clients.All.SendAsync("ReceiveFile", audioFile);
-
-            //await Clients.All.SendAsync("ReceiveRequest", roomAudio);
-
-            //string wavFile = "C:\\Users\\Matthew\\Documents\\Capstone\\API\\fuseyboi.wav";
-
-            //byte[] bitArray = WavToBitArray(wavFile);
-
-
-            //await Clients.All.SendAsync("RecieveAudio", bitArray);
-            //Run client method that handles audio strings
-
-
         }
 
         public async Task Fight(string userInput)
@@ -101,8 +89,6 @@ namespace SignalRChat.Hubs
                 }
                 //client method
             }
-
-
         }
 
         public async void ResetGame()
@@ -137,11 +123,6 @@ namespace SignalRChat.Hubs
 
         }
 
-
-        /*
-         * TODO
-         * Make Python Application to talk to this hub that Sends the Wav file Already turned to Array
-         */
         private byte[] WavToBitArray(string wavFilePath)
         {
             byte[] wavBitArray;

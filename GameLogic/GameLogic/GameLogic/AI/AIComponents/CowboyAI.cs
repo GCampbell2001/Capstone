@@ -19,7 +19,7 @@ namespace GameLogic.GameLogic.AI.AIComponents
         public UserInput MakeMove(ref Biggie character)
         {
             List<UserInput> normalMoveSet = new List<UserInput>() { UserInput.Q, UserInput.W, UserInput.A, UserInput.D, UserInput.D };
-            List<UserInput> threeQuartersHealthMoveSet = new List<UserInput> { UserInput.Q, UserInput.W, UserInput.E, UserInput.A, UserInput.D, UserInput.D };
+            List<UserInput> threeQuartersHealthMoveSet = new List<UserInput> { UserInput.Q, UserInput.W, UserInput.E, UserInput.E, UserInput.A, UserInput.D };
             List<UserInput> utilityMoveSet = new List<UserInput> { UserInput.A, UserInput.E };
             UserInput normalMoveChoice = normalMoveSet.OrderBy(m => new Random().Next()).ElementAt(0);
             UserInput threeQuartersHealthMoveChoice = threeQuartersHealthMoveSet.OrderBy(m => new Random().Next()).ElementAt(0);

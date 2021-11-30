@@ -13,7 +13,7 @@ namespace GameServer
     
         public byte[] GetAudioFile(string fileName)
         {
-            string cs = @"server=localhost;userid=rasp;password=Yoru^558;database=audio";
+            string cs = @"server=127.0.0.1;port=3306;userid=rasp;password=Yoru^558;database=audio";
             using var connection = new MySqlConnection(cs);
             try
             {
@@ -27,6 +27,7 @@ namespace GameServer
                 while (dataReader.Read())
                 {
                     Console.WriteLine(dataReader[0]);
+                    System.Diagnostics.Trace.TraceInformation(dataReader[0].ToString());
                     byte[] audioFile = WavToBitArray(dataReader[0].ToString());
                     return audioFile;
                 }
@@ -34,18 +35,14 @@ namespace GameServer
             } catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+                System.Diagnostics.Trace.TraceError(ex.ToString());
                 // Returns Audio File that says there was an error with Getting audio from Database
             }
             finally
             {
                 connection.Close();
             }
-
             return null;
-
-
-
-            //Console.WriteLine($"MySQL version : {con.ServerVersion}");
         }
 
         public void ResetMap(string file)

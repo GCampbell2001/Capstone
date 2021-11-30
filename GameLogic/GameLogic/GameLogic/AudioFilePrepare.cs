@@ -62,6 +62,10 @@ namespace GameLogic.GameLogic
         public string HitpointFileStyle(int damage)
         {
             string hitpointNumber = damage.ToString();
+            if(damage <= 0)
+            {
+                hitpointNumber = "0";
+            }
             return hitpointNumber;
         }
 
