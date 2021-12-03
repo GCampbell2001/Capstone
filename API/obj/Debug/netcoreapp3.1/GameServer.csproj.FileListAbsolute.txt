@@ -132,3 +132,4 @@ C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\OptimizedDataRea
 C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\Savage.Data.dll
 C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
 C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\Map\map.json
+C:\Users\Matthew\Documents\Capstone\API\bin\Debug\netcoreapp3.1\Map\demo.json

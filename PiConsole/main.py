@@ -12,7 +12,6 @@ import os
 from pynput import keyboard
 
 server_url = "wss://localhost:5001/chatHub"
-# username = input_with_default('Enter your username (default: {0}): ', "mandrewcito")
 handler = logging.StreamHandler()
 handler.setLevel(logging.DEBUG)
 hub_connection = HubConnectionBuilder() \
@@ -23,10 +22,6 @@ hub_connection = HubConnectionBuilder() \
         "keep_alive_interval": 10,
         "intervals": [1, 3, 5, 6, 7, 87, 3]
     }).build()
-
-# this is the baseline for the character selection
-
-
 
 
 def play_game():
@@ -57,10 +52,10 @@ def play_game():
     # player_menu(1)
     # with keyboard.Listener(on_press=on_press, on_release=on_release_menu) as listener:
     #     listener.join()
+    nodge_choice()
     hub_connection.send("StartGame", [get_character_class(1)])
     with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
         listener.join()
-
 
 
 def on_press(key):
@@ -332,7 +327,7 @@ def belladonna_choice():
 
 def nodge_choice():
     sound_nodg = sa.WaveObject.from_wave_file("NodgeIntro.wav")
-    print("HitNodge")
+    # print("HitNodge")
     play_nodg = sound_nodg.play()
     play_nodg.wait_done()
 

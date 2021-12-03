@@ -1,0 +1,54 @@
+[
+    {
+        "location" : "G4",
+        "level" : 1,
+        "enemy": "none",
+        "boss" : false,
+        "item" : false,
+        "heals" : false,
+        "start" : true,
+        "north" : "F4"
+    },
+    {
+        "location" : "F4",
+        "level" : 1,
+        "enemy" : "random",
+        "boss": false,
+        "item": false,
+        "heals": false,
+        "start": false,
+        "north" : "E4",
+        "south" : "G4"
+    },
+    {
+        "location" : "E4",
+        "level" : 1,
+        "enemy" : "random",
+        "boss" : false,
+        "item" : false,
+        "heals" : false,
+        "start" : false,
+        "north" : "D4",
+        "south" : "F4"
+    },
+    {
+        "location" : "D4",
+        "level" : 1,
+        "enemy" : "Cowboy",
+        "boss" : true,
+        "item" : false,
+        "heals" : false,
+        "start" : false,
+        "south" : "E4"
+    },
+    {
+        "location" : "D4",
+        "level" : 2,
+        "enemy": "none",
+        "boss" : false,
+        "item" : false,
+        "heals" : false,
+        "start" : true,
+        "north" : "C4"
+    }
+]

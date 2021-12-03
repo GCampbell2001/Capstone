@@ -91,12 +91,25 @@ namespace GameLogic.Character.PC
              * Medium Attack
              */
             base.baseHealth = 150;
-            base.baseDamage = 11;
+
+
+
+            //base.baseDamage = 11;
+            //For Demo  --
+            base.baseDamage = 20;
+
+
+
+
             base.baseDodge[0] = 0;
             base.baseDodge[1] = 100;
             base.baseBlock = 20;
-            base.baseAccuracy[0] = 60;
-            base.baseAccuracy[1] = 160;
+
+            //For Demo --
+            base.baseAccuracy[0] = 90;
+            base.baseAccuracy[1] = 190;
+            //base.baseAccuracy[0] = 60;
+            //base.baseAccuracy[1] = 160;
         }
 
         public override void setRates()
