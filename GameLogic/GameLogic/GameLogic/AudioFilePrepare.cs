@@ -94,7 +94,7 @@ namespace GameLogic.GameLogic
             switch(result)
             {
                 case RoundResult.HIT:
-                    finalString += "|" + GetCharacterName(enemy) + "";
+                    finalString += "|Hit";
                     break;
                 case RoundResult.BUFFED:
                     finalString += "|";
