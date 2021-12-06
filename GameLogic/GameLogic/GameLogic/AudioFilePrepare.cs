@@ -126,10 +126,22 @@ namespace GameLogic.GameLogic
             string healthNumber = player.health.ToString();
             string tactTitle = "TacticalCooldown";
             string tactNumber = player.TacticalCooldown.ToString();
+            if(player.TacticalCooldown < 0)
+            {
+                tactNumber = "0";
+            }
             string utilTitle = "UtilityCooldown";
             string utilNumber = player.UtilityCooldown.ToString();
+            if(player.UtilityCooldown < 0)
+            {
+                utilNumber = "0";
+            }
             string ultTitle = "UltimateCooldown";
             string ultNumber = player.UltimateCooldown.ToString();
+            if(player.UltimateCooldown < 0)
+            {
+                ultNumber = "0";
+            }
 
             update.Add(health);
             update.Add(healthNumber);

@@ -169,8 +169,12 @@ namespace GameLogic.Character.PC
             base.baseDodge[0] = 65;
             base.baseDodge[1] = 165;
             base.baseBlock = 3;
-            base.baseAccuracy[0] = 0;
-            base.baseAccuracy[1] = 100;
+
+            //Demo
+            //base.baseAccuracy[0] = 0;
+            //base.baseAccuracy[1] = 100;
+            base.baseAccuracy[0] = 60;
+            base.baseAccuracy[1] = 160;
         }
 
         public override void setRates()
