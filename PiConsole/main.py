@@ -247,7 +247,7 @@ def action_audio(msg):
 
 def room_audio(msg):
     #    print(msg)
-    print(msg[0])
+    #print(msg[0])
     encoded_msg = msg[0]
     message_byte = base64.b64decode(encoded_msg)
     m = []

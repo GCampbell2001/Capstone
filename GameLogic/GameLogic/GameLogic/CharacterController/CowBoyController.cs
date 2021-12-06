@@ -24,6 +24,7 @@ namespace GameLogic.GameLogic.CharacterController
         public override RoundResult BossUltimate(ref Biggie player, ref Biggie boss, ref int importantData)
         {
             int bossDamage = boss.Ultimate();
+            importantData = bossDamage;
             player.LowerHealth(bossDamage);
             return RoundResult.HIT;
         }

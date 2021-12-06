@@ -327,8 +327,7 @@ namespace GameServer
             {
                 BsonValue tool;
                 newRoom.TryGetValue("tool", out tool);
-                string characterString = GetCharacterName(player.GetType().Name);
-                string itemSound = characterString;
+                string itemSound = "";
                 //sadly there will be coupling here
                 switch (tool.AsString)
                 {

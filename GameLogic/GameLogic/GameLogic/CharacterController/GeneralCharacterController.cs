@@ -226,7 +226,7 @@ namespace GameLogic.GameLogic.Controller
             // Override
             throw new NotImplementedException();
         }
-        public virtual RoundResult UserUltimate(ref Biggie player, ref ICharacter enemy, ref int importantData)
+        public virtual RoundResult UserUltimate(ref Biggie player, ICharacter enemy, ref int importantData)
         {
             // this is meant to be overriden by only the user controller class
             throw new NotImplementedException();

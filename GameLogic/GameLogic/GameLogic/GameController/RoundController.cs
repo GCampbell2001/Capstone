@@ -76,7 +76,7 @@ namespace GameLogic
                     return prepare.AbilityFileName(user, userInput, enemy, results, hitPointData);
                 case UserInput.E:
                     //Ultimate
-                    results = controller.UserUltimate(ref user, ref enemy, ref hitPointData);
+                    results = controller.UserUltimate(ref user, enemy, ref hitPointData);
                     return prepare.AbilityFileName(user, userInput, enemy, results, hitPointData);
                 default:
                     return "ERROR.wav - RoundController Problem with userInput - " + userInput;
@@ -200,6 +200,10 @@ namespace GameLogic
                 case UserInput.W:
                     //Utility
                     results = controller.PCUtility(ref boss, ref hitPointData);
+                    return prepare.AbilityFileName(boss, bossMove, player, results, hitPointData);
+                case UserInput.E:
+                    //Ultimate
+                    results = controller.BossUltimate(ref boss, ref player, ref hitPointData);
                     return prepare.AbilityFileName(boss, bossMove, player, results, hitPointData);
                 default:
                     return "ERROR.wav - RoundController Problem with bossMove - " + bossMove;

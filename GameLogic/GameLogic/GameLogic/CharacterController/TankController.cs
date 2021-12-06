@@ -42,7 +42,7 @@ namespace GameLogic.GameLogic.CharacterController
             }
         }
 
-        public override RoundResult UserUltimate(ref Biggie player, ref ICharacter enemy, ref int importantData)
+        public override RoundResult UserUltimate(ref Biggie player, ICharacter enemy, ref int importantData)
         {
             importantData = player.Ultimate();
             return RoundResult.HEALED;

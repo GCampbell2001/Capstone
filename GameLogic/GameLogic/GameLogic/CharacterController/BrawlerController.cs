@@ -49,7 +49,7 @@ namespace GameLogic.GameLogic.CharacterController
             player.Utility();
             return RoundResult.BUFFED;
         }
-        public override RoundResult UserUltimate(ref Biggie player, ref ICharacter enemy, ref int importantData)
+        public override RoundResult UserUltimate(ref Biggie player, ICharacter enemy, ref int importantData)
         {
             player.Ultimate();
             return RoundResult.BUFFED;

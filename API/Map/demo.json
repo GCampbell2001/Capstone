@@ -34,21 +34,44 @@
     {
         "location" : "D4",
         "level" : 1,
+        "enemy" : "none",
+        "boss" : false,
+        "item" : true,
+        "heals" : false,
+        "start" : false,
+        "north" : "C4",
+        "south" : "E4",
+        "tool" : "Amulet"
+    },
+    {
+        "location" : "C4",
+        "level" : 1,
+        "enemy" : "none",
+        "boss" : false,
+        "item" : false,
+        "heals" : true,
+        "start" : false,
+        "north" : "B4",
+        "south" : "D4"
+    },
+    {
+        "location" : "B4",
+        "level" : 1,
         "enemy" : "Cowboy",
         "boss" : true,
         "item" : false,
         "heals" : false,
         "start" : false,
-        "south" : "E4"
+        "south" : "C4"
     },
     {
-        "location" : "D4",
+        "location" : "B4",
         "level" : 2,
         "enemy": "none",
         "boss" : false,
         "item" : false,
         "heals" : false,
         "start" : true,
-        "north" : "C4"
+        "north" : "A4"
     }
 ]
