@@ -788,7 +788,7 @@ namespace GameServer
             IMongoDatabase database = client.GetDatabase("GameData");
             var room = database.GetCollection<BsonDocument>("Map");
             var builder = Builders<BsonDocument>.Filter;
-            var filter = builder.Eq("start", true) & builder.Eq("level", 1);
+            var filter = builder.Eq("start", true) & builder.Eq("level", 0);
 
             var currentRoom = room.Find(filter).ToList();
             BsonDocument roomData = new BsonDocument();

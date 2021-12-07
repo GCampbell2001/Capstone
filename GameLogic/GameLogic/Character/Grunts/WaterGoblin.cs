@@ -66,6 +66,7 @@ namespace GameLogic.Character.Grunts
             //accuracy + 5
             Level++;
             baseHealth += 25;
+            health = base.baseHealth;
             baseDamage += 10;
             baseDodge[0] += 7;
             baseDodge[1] += 7;
@@ -97,7 +98,8 @@ namespace GameLogic.Character.Grunts
         {
             //WaterGoblinHealth and BaseHealth are treated the same. WaterGoblinHealth is just character specific
             base.baseHealth = 27;
-            base.baseDamage = 3;
+            health = base.baseHealth;
+            base.baseDamage = 13;
             base.baseDodge[0] = 80;
             base.baseDodge[1] = 180;
             base.baseBlock = 1;

@@ -70,6 +70,7 @@ namespace GameLogic.Character.Grunts
             //accuracy + 10
             Level++;
             baseHealth += 15;
+            health = base.baseHealth;
             baseDamage += 6;
             baseDodge[0] += 15;
             baseDodge[1] += 15;
@@ -96,6 +97,7 @@ namespace GameLogic.Character.Grunts
         public override void SetBaseStats()
         {
             base.baseHealth = 33;
+            health = base.baseHealth;
             base.baseDamage = 7;
             base.baseDodge[0] = 70;
             base.baseDodge[1] = 170;

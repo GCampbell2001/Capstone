@@ -1,7 +1,7 @@
 [
     {
         "location" : "G4",
-        "level" : 1,
+        "level" : 0,
         "enemy": "none",
         "boss" : false,
         "item" : false,
@@ -11,8 +11,8 @@
     },
     {
         "location" : "F4",
-        "level" : 1,
-        "enemy" : "random",
+        "level" : 0,
+        "enemy" : "WaterGoblin",
         "boss": false,
         "item": false,
         "heals": false,
@@ -22,8 +22,8 @@
     },
     {
         "location" : "E4",
-        "level" : 1,
-        "enemy" : "random",
+        "level" : 0,
+        "enemy" : "GigaWatt",
         "boss" : false,
         "item" : false,
         "heals" : false,
@@ -33,7 +33,7 @@
     },
     {
         "location" : "D4",
-        "level" : 1,
+        "level" : 0,
         "enemy" : "none",
         "boss" : false,
         "item" : true,
@@ -45,7 +45,7 @@
     },
     {
         "location" : "C4",
-        "level" : 1,
+        "level" : 0,
         "enemy" : "none",
         "boss" : false,
         "item" : false,
@@ -56,7 +56,7 @@
     },
     {
         "location" : "B4",
-        "level" : 1,
+        "level" : 0,
         "enemy" : "Cowboy",
         "boss" : true,
         "item" : false,
@@ -66,7 +66,7 @@
     },
     {
         "location" : "B4",
-        "level" : 2,
+        "level" : 1,
         "enemy": "none",
         "boss" : false,
         "item" : false,

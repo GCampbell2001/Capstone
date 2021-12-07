@@ -131,6 +131,7 @@ namespace GameLogic.Character
             //accuracy + 3
             Level++;
             baseHealth += 35;
+            health = base.baseHealth;
             baseDamage += 10;
             baseDodge[0] += 10;
             baseDodge[1] += 10;
@@ -167,6 +168,7 @@ namespace GameLogic.Character
         public override void SetBaseStats()
         {
             base.baseHealth = 100;
+            health = base.baseHealth;
             base.baseDamage = 5;
             base.baseDodge[0] = 60;
             base.baseDodge[1] = 160;

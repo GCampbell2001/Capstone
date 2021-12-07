@@ -202,6 +202,7 @@ namespace GameLogic.Character.PC
              */
             Level++;
             baseHealth += 15;
+            health = base.baseHealth;
             baseDamage += 15;
             baseDodge[0] += 5;
             baseDodge[1] += 5;
@@ -307,6 +308,7 @@ namespace GameLogic.Character.PC
              * High Attack
              */
             base.baseHealth = 80;
+            health = base.baseHealth;
             base.baseDamage = 20;
             base.baseDodge[0] = 0;
             base.baseDodge[1] = 100;
