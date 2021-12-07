@@ -145,14 +145,15 @@ namespace GameLogic.Character.PC
         private void checkUtilityState()
         {
             //Utility affects Accuracy so its duration is checked
-            if (utilityDuration > 0)
+            if (utilityDuration == 0)
             {
-                // UltState is not reset
+                
+                base.accuracy[0] -= 50;
+                base.accuracy[1] -= 50; 
             }
             else
             {
-                base.accuracy[0] -= 50;
-                base.accuracy[1] -= 50;             
+                // UltState is not reset            
             }
         }
 

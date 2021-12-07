@@ -63,30 +63,37 @@ namespace GameLogic.GameLogic.Controller
         {
             int damage = player.Attack();
             int accuracy = player.Accuracy();
-
-            int enemyDodgeAttempt = enemy.Dodge();
-
-            if (accuracy > (enemyDodgeAttempt + 40))
+            try
             {
-                damage = damage * 2;
-                CheckBlockWithoutItems(ref enemy, damage, ref importantData);
-                return RoundResult.CRITICAL;
-            }
-            else if (accuracy >= enemyDodgeAttempt)
-            {
-                return CheckBlockWithoutItems(ref enemy, damage, ref importantData);
 
-            }
-            else if (accuracy < enemyDodgeAttempt)
-            {
-                return RoundResult.MISSED;
+                int enemyDodgeAttempt = enemy.Dodge();
 
-            }
-            else
+                if (accuracy > (enemyDodgeAttempt + 40))
+                {
+                    damage = damage * 2;
+                    CheckBlockWithoutItems(ref enemy, damage, ref importantData);
+                    return RoundResult.CRITICAL;
+                }
+                else if (accuracy >= enemyDodgeAttempt)
+                {
+                    return CheckBlockWithoutItems(ref enemy, damage, ref importantData);
+
+                }
+                else if (accuracy < enemyDodgeAttempt)
+                {
+                    return RoundResult.MISSED;
+
+                }
+                else
+                {
+                    Console.WriteLine("GeneralCharacterController.cs - Line 38 \r\nNo Conditional Met");
+                    Console.WriteLine("Player Accuracy: " + accuracy);
+                    Console.WriteLine("Enemy Dodge: " + enemyDodgeAttempt);
+                    return RoundResult.MISSED;
+                }
+            } catch (NullReferenceException ex)
             {
-                Console.WriteLine("GeneralCharacterController.cs - Line 38 \r\nNo Conditional Met");
-                Console.WriteLine("Player Accuracy: " + accuracy);
-                Console.WriteLine("Enemy Dodge: " + enemyDodgeAttempt);
+                Console.WriteLine("woops");
                 return RoundResult.MISSED;
             }
         }

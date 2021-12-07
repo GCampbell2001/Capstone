@@ -203,7 +203,7 @@ namespace GameLogic
                     return prepare.AbilityFileName(boss, bossMove, player, results, hitPointData);
                 case UserInput.E:
                     //Ultimate
-                    results = controller.BossUltimate(ref boss, ref player, ref hitPointData);
+                    results = controller.BossUltimate(ref player, ref boss, ref hitPointData);
                     return prepare.AbilityFileName(boss, bossMove, player, results, hitPointData);
                 default:
                     return "ERROR.wav - RoundController Problem with bossMove - " + bossMove;

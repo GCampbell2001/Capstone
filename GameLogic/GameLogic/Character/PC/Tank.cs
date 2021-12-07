@@ -220,7 +220,7 @@ namespace GameLogic.Character.PC
 
         private void checkBlock()
         {
-            if (utilityDuration > 0 || ultimateDuration > 0)
+            if (utilityDuration >= 0 || ultimateDuration >= 0)
             {
                 // block is not reset
             }
