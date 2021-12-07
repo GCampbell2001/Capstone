@@ -19,7 +19,9 @@ namespace GameLogic.GameLogic.AI.AIComponents
         {
             Random generator = new Random();
 
-            UserInput[] moveSet = { UserInput.A, UserInput.Q, UserInput.S, UserInput.Q, UserInput.A };
+            //Demo
+            //UserInput[] moveSet = { UserInput.A, UserInput.Q, UserInput.S, UserInput.Q, UserInput.A };
+            UserInput[] moveSet = { UserInput.A, UserInput.Q, UserInput.S, UserInput.Q, UserInput.A, UserInput.Q };
 
             int moveChoice = generator.Next(moveSet.Length);
 

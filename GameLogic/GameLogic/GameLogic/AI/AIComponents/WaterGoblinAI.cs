@@ -21,8 +21,13 @@ namespace GameLogic.GameLogic.AI
         {
             Random generator = new Random();
 
+            //Demo
+            //UserInput[] highChances = { UserInput.D, UserInput.S, UserInput.D, UserInput.A };
+            //UserInput[] lowChances = { UserInput.Q, UserInput.D, UserInput.A, UserInput.Q, UserInput.S };
+
+
             UserInput[] highChances = { UserInput.D, UserInput.S, UserInput.D, UserInput.A };
-            UserInput[] lowChances = { UserInput.Q, UserInput.D, UserInput.A, UserInput.Q, UserInput.S };
+            UserInput[] lowChances = { UserInput.Q, UserInput.D, UserInput.A, UserInput.Q, UserInput.S, UserInput.Q, UserInput.Q, UserInput.Q };
 
             int moveChoice;
 

@@ -384,8 +384,14 @@ namespace GameServer
             switch (enemyClass)
             {
                 case "random":
-                    List<Grunt> grunts = new List<Grunt>() { new Sqwaubler(), new GigaWatt(), new WaterGoblin() };
+                    List<Grunt> grunts = new List<Grunt>() { new Sqwaubler(level), new GigaWatt(level), new WaterGoblin(level) };
                     return grunts.OrderBy(g => new Random().Next()).ElementAt(0);
+                case "Sqwaubler":
+                    return new Sqwaubler(level);
+                case "GigaWatt":
+                    return new GigaWatt(level);
+                case "WaterGoblin":
+                    return new WaterGoblin(level);
                 case "JimKin":
                     return new JimKin(level);
                 case "InfernalWish":

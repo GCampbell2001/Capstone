@@ -22,11 +22,17 @@ namespace GameLogic.GameLogic.AI.AIComponents
         {
             Random generator = new Random();
 
-            UserInput[] normalSet = { UserInput.A, UserInput.D, UserInput.D, UserInput.Q };
+
+
+            //Demo
+                //UserInput[] normalSet = { UserInput.A, UserInput.D, UserInput.D, UserInput.Q };
+            
             //Quarter set doesn't include tactical cause it's only used
             //when tactical is on cooldown
-            UserInput[] quarterSet = { UserInput.A, UserInput.D, UserInput.D };
-
+                //UserInput[] quarterSet = { UserInput.A, UserInput.D, UserInput.D };
+            UserInput[] quarterSet = { UserInput.A, UserInput.D, UserInput.D, UserInput.Q, UserInput.Q };
+            UserInput[] normalSet = { UserInput.A, UserInput.D, UserInput.D, UserInput.Q, UserInput.Q, UserInput.Q };
+            
             int moveChoice;
 
             if(character.GetHealth() <= character.baseHealth / 4)
